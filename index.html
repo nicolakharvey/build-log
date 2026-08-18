@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Build Log · Nicola Harvey</title>
+<style>
+  :root { --ink:#16212a; --paper:#faf8f5; --soft:#6b7a86; --line:#e5e0d8; --accent:#0d4d56; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:18px/1.7 Georgia, serif; }
+  .wrap { max-width:680px; margin:0 auto; padding:56px 22px 100px; }
+  h1 { font-size:2.1rem; margin:0 0 6px; }
+  .standfirst { color:var(--soft); font-style:italic; margin-bottom:8px; }
+  .rule { color:var(--soft); font-size:.85rem; font-family:-apple-system, sans-serif; border-bottom:1px solid var(--line); padding-bottom:24px; margin-bottom:8px; }
+  .entry { border-bottom:1px solid var(--line); padding:30px 0; }
+  .date { font-family:-apple-system, sans-serif; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin-bottom:6px; }
+  h2 { font-size:1.25rem; margin:0 0 10px; }
+  p { margin:10px 0; }
+  a { color:var(--accent); }
+  .proof { font-family:-apple-system, sans-serif; font-size:.85rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>The Build Log</h1>
+<p class="standfirst">A dated record of what I build, kept as I build it.</p>
+<p class="rule">Every entry here was working before it was written up. Nothing is listed as an idea, a plan, or a roadmap. Dates are the dates things ran.</p>
+
+<div class="entry">
+<div class="date">19 August 2026</div>
+<h2>The Medium bridge</h2>
+<p>Medium retired its publishing API, so I built my own lane: a dedicated browser my scheduler drives through the developer tools protocol. One command stages a complete story, title, cover image and formatted body, as a saved draft, and screenshots every step as proof. The final publish press stays human. The first essay went through it the same night it was built.</p>
+<p class="proof">Proof: <a href="https://medium.com/@nicolakharvey/the-48-characters-i-could-not-see-d6c8316c1643">the essay it staged</a></p>
+</div>
+
+<div class="entry">
+<div class="date">18 August 2026</div>
+<h2>The provenance sweep</h2>
+<p>I pointed my own checker at my own website and found four published images serving the complete prompts that made them, model and settings included, inside their metadata. Cleaned and redeployed the same night, then wrote up the three separate marks that ride on AI-touched work so other people could run the same sweep.</p>
+<p class="proof">Proof: <a href="https://medium.com/@nicolakharvey/the-48-characters-i-could-not-see-d6c8316c1643">The 48 characters I could not see</a></p>
+</div>
+
+<div class="entry">
+<div class="date">18 August 2026</div>
+<h2>Clearing 1.0</h2>
+<p>An open-source command-line tool that finds and strips invisible Unicode characters from text and scrubs generation metadata out of images, on your own machine, without changing a word or a pixel. Built after finding 48 invisible characters riding in one of my own exports. It states its limits plainly: it does not touch how words score on AI detectors, because that layer is the writing itself.</p>
+<p class="proof">Proof: <a href="https://github.com/nicolakharvey/clearing">github.com/nicolakharvey/clearing</a> (MIT)</p>
+</div>
+
+<div class="entry">
+<div class="date">4 August 2026</div>
+<h2>The cloud publisher</h2>
+<p>My scheduler learned to publish with the computer asleep. Posts due while the Mac is closed hand themselves to a small edge worker I run, which publishes on time and hands back the results. The scheduling desk stays local-first; only the due post travels.</p>
+<p class="proof">Proof: the posts go out on time either way, including the ones in this log</p>
+</div>
+
+<div class="entry">
+<div class="date">18 July 2026</div>
+<h2>Team portal on the scheduler</h2>
+<p>My social media desk grew member logins: teammates sign in over my own domains, see only the brands they work on, and publish from the same calendar, while the application itself never leaves my machine. Scoped access with admin control, on infrastructure I hold, with nothing rented in between. First two members were live the day it was built.</p>
+<p class="proof">Proof: in daily use by a working team across two ventures</p>
+</div>
+
+<div class="entry">
+<div class="date">2 July 2026</div>
+<h2>Social Command</h2>
+<p>My own replacement for the subscription scheduling desks: multi-brand calendar, per-platform composer, media library, analytics and an engagement inbox, publishing to fourteen channels, running on my machine with my data in my files. Everything above in this log runs through it, including the posts that announced this log.</p>
+<p class="proof">Proof: the LinkedIn post and Medium essay above went out through it</p>
+</div>
+
+<p class="rule" style="border-bottom:none; border-top:1px solid var(--line); padding-top:24px; margin-top:8px;">Kept by Nicola Harvey. New entries most weeks.</p>
+
+</div>
+</body>
+</html>
