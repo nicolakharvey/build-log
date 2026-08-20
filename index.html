@@ -30,6 +30,17 @@
 <p class="rule">Every entry here was working before it was written up. Nothing is listed as an idea, a plan, or a roadmap. Dates are the dates things ran.</p>
 
 <div class="entry">
+<div class="date">21 August 2026</div>
+<h2>Three bugs that made the safe way to play the winning way</h2>
+<p>I built a small puzzle game and wrote the rules so that bold play pays better than careful play. It went through thirty one passing checks doing the exact reverse, and I could not see it by playing it, because every individual rule was working perfectly.</p>
+<p>Three separate faults, all the same family. A bonus multiplier was read after the move had resolved, so the bigger the move the smaller its own multiplier. A streak bonus counted pressure but not effort, so the cheapest possible move made under pressure earned the reward courage was meant to buy, paying nearly three times as much per move on a third of the work. And the difficulty curve advanced on a counter that bold play increments more slowly, so the bold player got an easier ride than the timid one. Each was a defensible line of code. Together they made timidity the winning strategy and nothing anywhere said so.</p>
+<p>What found them was changing the shape of the test rather than adding more of them. An incentive is a relationship between two strategies, so it can only be checked as one: simulate the behaviour you want to reward and its opposite under identical conditions, and require the one you want to win on the payoff and on staying alive. That single comparison caught all three at once. No number could have, because any number a bold run produces a timid run can reach by another route.</p>
+<p>The same test shape caught a fourth thing later. When I added levels I set every target by feel, and the check said fourteen of the twenty four were impossible and one completed itself if you did nothing. The targets are measured now. Four different players are simulated on each level, and every target sits strictly between what a careless one reaches and what a sloppy handed real one does. Four goals had to be re-aimed rather than re-numbered, because they turned out to be passive. They happened whether or not you played well, and a goal that happens anyway is not a goal.</p>
+<p>Limits, honestly. Every number here comes from simulated players on my own machine, and no person has played it on a phone yet. That is the only test that can say whether it is any fun. The frame timing is a laptop measurement and a mid range phone is several times slower. And I have not tested it in Firefox, because the tooling for that is not installed here.</p>
+<p class="caption">Proof: <a href="https://muplu.com/pulsemerge/">muplu.com/pulsemerge</a>. Fifty three checks, run against the live site rather than my copy of it, and the published file compared by fingerprint against the one that passed them.</p>
+</div>
+
+<div class="entry">
 <div class="date">20 August 2026</div>
 <h2>The archive that renders perfectly and is empty</h2>
 <p>A twenty year old website is being retired, so the content had to come off it first. I pulled 1,561 pages, 1,792 images and the stylesheets and fonts, and then spent most of the effort on the part that is easy to skip: proving the copy still works once the original is switched off. Every check you can run casually runs while the old site is still answering. That is the one condition where a hollow copy looks identical to a good one.</p>
