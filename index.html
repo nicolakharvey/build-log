@@ -18,6 +18,8 @@
   p { margin:10px 0; }
   a { color:var(--accent); }
   .proof { font-family:-apple-system, sans-serif; font-size:.85rem; }
+  .entry img { max-width:100%; display:block; margin:14px 0 4px; border-radius:4px; }
+  .caption { font-family:-apple-system, sans-serif; font-size:.8rem; color:var(--soft); margin:0 0 6px; }
 </style>
 </head>
 <body>
@@ -26,6 +28,26 @@
 <h1>The Build Log</h1>
 <p class="standfirst">A dated record of what I build, kept as I build it.</p>
 <p class="rule">Every entry here was working before it was written up. Nothing is listed as an idea, a plan, or a roadmap. Dates are the dates things ran.</p>
+
+<div class="entry">
+<div class="date">20 August 2026</div>
+<h2>A rule is not a check</h2>
+<p>I keep this page as a record of what I build, and the instruction to keep it current was written down in three separate places. It was still twelve days behind, and the entry below this one had been finished and left sitting on my machine, unpublished. Nothing had gone wrong with the intention. A rule gets read at the moment it is written and never at the moment it is broken.</p>
+<p>The check reads two things that cannot have an opinion, the commit history across every project folder and this page itself, and reports only the gap: which days have work and no entry, and whether an entry is written and not published. It runs at the end of every session and costs about a tenth of a second, because it serves a cached scan and rebuilds it in the background.</p>
+<p>It ships with a waiver list. Any day I decide is not worth an entry gets named in a file and silenced for good, since a check that keeps raising things I have already ruled on becomes noise within a week, and a check you have learned to ignore is worse than no check at all.</p>
+<p>One limit, and it is printed inside the tool rather than in its documentation: it can only see work that touched a tracked folder, so a render, a video or a one-off page is invisible to it and stays my own judgment.</p>
+<p class="proof">Proof: this page. The entry below, dated 19 August, is the one it caught written and unpublished, and both went up together.</p>
+</div>
+
+<div class="entry">
+<div class="date">19 August 2026</div>
+<h2>Three lip sync engines</h2>
+<p>My AI influencer is in beta and she needed to speak. I tested three engines against the same still image and the same voice track. The local LTX video rig kept her mouth shut in twelve of fifteen samples. Seedance 2.0, hosted, articulated on every sampled frame and rendered in about two minutes; at 36 credits per 8 seconds of video, short pieces are the affordable shape. LatentSync is built for CUDA, so I ported it to Apple Silicon in six patches. The port ran. That is all it did: 81 minutes for a 7.6 second clip, mouth barely moving.</p>
+<p>One caveat, stated because it could change the verdict: the port was fed the clip whose mouth never moved, the hardest job a re-sync model can get. The rematch costs another 81 minutes, so it waits for a reason.</p>
+<img src="lipsync-three-engines.png" alt="Three strips of sampled mouth frames from the same image and audio: the top strip mostly closed, the middle strip articulating in every frame, the bottom strip mostly closed" width="1200" height="525">
+<p class="caption">Sampled frames, same image, same audio. Top: LTX, local. Middle: Seedance 2.0, hosted. Bottom: LatentSync, ported to Apple Silicon.</p>
+<p class="proof">Proof: the strips above; every frame came from a render that ran on 18 and 19 August</p>
+</div>
 
 <div class="entry">
 <div class="date">19 August 2026</div>
