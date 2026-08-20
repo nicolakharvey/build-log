@@ -31,6 +31,28 @@
 
 <div class="entry">
 <div class="date">20 August 2026</div>
+<h2>The archive that renders perfectly and is empty</h2>
+<p>A twenty year old website is being retired, so the content had to come off it first. I pulled 1,561 pages, 1,792 images and the stylesheets and fonts, and then spent most of the effort on the part that is easy to skip: proving the copy still works once the original is switched off. Every check you can run casually runs while the old site is still answering. That is the one condition where a hollow copy looks identical to a good one.</p>
+<p>Three things would have shipped a broken archive and all three looked fine at the time. The pages lazy load, so the real image sits in a data attribute while the visible one is a blank placeholder, and a saver that reads the obvious attribute stores empty boxes. Every internal link is absolute, about forty a page. Nothing would have clicked through. The styling and fonts live on the domain being switched off.</p>
+<p>The one I nearly missed is the one I want to remember. I shorten saved filenames, and the shortening cut the extension off the main stylesheet. The host then served it as a generic download, and because that host sends a header telling browsers to be strict about types, the browser refuses the file outright. All 673 styled pages would have rendered as bare text. The file was present, the link resolved, and every check short of asking the server what type it was returned green.</p>
+<p>Two smaller ones worth keeping. Three pairs of addresses differed only by capital letters, and my filesystem treats those as one name, so each was overwriting its twin: six real pages, three of them about to vanish without a message. And I built the address list from two sources rather than one, the site's own index and a public web archive, because each was missing over four hundred pages the other had.</p>
+<p>Limits, honestly: the only test that means anything is a count of references still pointing at the old host, and it is zero, but that is a machine reading structure rather than a person reading 1,561 pages. Five pages the site links to were already dead before I arrived and no archive holds them, so they stay as honest broken links rather than something I invented. And the work is private, so the proof below is the verification rather than a public address.</p>
+<p class="caption">Proof: the archive answers with its source treated as gone. Zero images, stylesheets or fonts still pointing at the old host, zero blank placeholders left, zero broken internal links out of 35,218 that resolve inside it, and every referenced file present.</p>
+</div>
+
+<div class="entry">
+<div class="date">20 August 2026</div>
+<h2>An app that is mostly a beach</h2>
+<p>My AI influencer's audience got an app today. One minute a day with your dog is the whole ask: you walk, you press a paw into the sand, and something small washes up on a photographed shore, a shell, a feather, sea glass, each one carrying that day's short lesson in reading a dog or settling your own attention. The scene is a real render that follows the actual clock, dawn to stars. Thirty days of curriculum, a shelf that keeps every find, and seven of the finds hold her cloned voice, framed as putting a shell to your ear.</p>
+<p>The design rule that shaped everything: no punishment anywhere. A missed day is never mentioned and the count never goes down, because the product is for people worn out by apps that shame them. I took the engagement checklist from my game work and translated it mechanism by mechanism, keeping autonomy and collection, refusing streak-breaking, timers and escalation by name.</p>
+<p>It shipped twice. The first version worked and was rejected as flat, the second was rejected as off-brand, and the third is the one that stayed: real photographs, a living scene, the voice pieces. A browser-driven test caught a dead button every static check had passed, and the deploy was proven with a live canary signup, a delivered email, and a clean deletion before anyone was told it existed.</p>
+<p>Limits, honestly: the audience is small today, so this is a product bet, not a traction claim; the seven voice pieces went live machine-verified and my own ear came after the ship, not before; and the research finding that no other openly-AI persona has built a ritual app instead of a chatbot of herself is an absence of evidence across targeted searches, not a proven absence.</p>
+<img src="walk-ritual-app.png" alt="Two phone screens over a night beach photograph: the left offers today's small practice above a circular paw button, the right shows a lesson card with a photographed spiral shell, the day's teaching, and running counts" width="788" height="570">
+<p class="caption">Proof: the app live on the night beach. Left, the daily choice and the paw press. Right, day one's find and its lesson.</p>
+</div>
+
+<div class="entry">
+<div class="date">20 August 2026</div>
 <h2>A rule is not a check</h2>
 <p>I keep this page as a record of what I build, and the instruction to keep it current was written down in three separate places. It was still twelve days behind, and the entry below this one had been finished and left sitting on my machine, unpublished. Nothing had gone wrong with the intention. A rule gets read at the moment it is written and never at the moment it is broken.</p>
 <p>The check reads two things that cannot have an opinion, the commit history across every project folder and this page itself, and reports only the gap: which days have work and no entry, and whether an entry is written and not published. It runs at the end of every session and costs about a tenth of a second, because it serves a cached scan and rebuilds it in the background.</p>
