@@ -18,6 +18,8 @@
   p { margin:10px 0; }
   a { color:var(--accent); }
   .proof { font-family:-apple-system, sans-serif; font-size:.85rem; }
+  .entry img { max-width:100%; display:block; margin:14px 0 4px; border-radius:4px; }
+  .caption { font-family:-apple-system, sans-serif; font-size:.8rem; color:var(--soft); margin:0 0 6px; }
 </style>
 </head>
 <body>
@@ -26,6 +28,16 @@
 <h1>The Build Log</h1>
 <p class="standfirst">A dated record of what I build, kept as I build it.</p>
 <p class="rule">Every entry here was working before it was written up. Nothing is listed as an idea, a plan, or a roadmap. Dates are the dates things ran.</p>
+
+<div class="entry">
+<div class="date">20 August 2026</div>
+<h2>A rule is not a check</h2>
+<p>I keep this page as a record of what I build, and the instruction to keep it current was written down in three separate places. It was still twelve days behind, and the entry below this one had been finished and left sitting on my machine, unpublished. Nothing had gone wrong with the intention. A rule gets read at the moment it is written and never at the moment it is broken.</p>
+<p>The check reads two things that cannot have an opinion, the commit history across every project folder and this page itself, and reports only the gap: which days have work and no entry, and whether an entry is written and not published. It runs at the end of every session and costs about a tenth of a second, because it serves a cached scan and rebuilds it in the background.</p>
+<p>It ships with a waiver list. Any day I decide is not worth an entry gets named in a file and silenced for good, since a check that keeps raising things I have already ruled on becomes noise within a week, and a check you have learned to ignore is worse than no check at all.</p>
+<p>One limit, and it is printed inside the tool rather than in its documentation: it can only see work that touched a tracked folder, so a render, a video or a one-off page is invisible to it and stays my own judgment.</p>
+<p class="proof">Proof: this page. The entry below, dated 19 August, is the one it caught written and unpublished, and both went up together.</p>
+</div>
 
 <div class="entry">
 <div class="date">19 August 2026</div>

@@ -1,0 +1,5 @@
+# GitHub Pages serves this whole repo. Nothing that is not meant to be public may sit here.
+*.bak
+*.bak-*
+*.tmp
+.DS_Store
