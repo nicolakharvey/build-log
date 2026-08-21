@@ -31,6 +31,22 @@
 
 <div class="entry">
 <div class="date">21 August 2026</div>
+<h2>I broke my own test before I ran the real one</h2>
+<p>Someone in a group I am part of built a git tool that checkpoints your work. I read it first: no outside dependencies, nothing that can reach a network, nothing self scheduling, every destructive command behind a phrase you type in full. Then I ran it in a container against four decoy repositories. Before that I ran a fake destructive version to see whether my comparison caught anything. It caught four failures. The real tool changed nothing.</p>
+<p>Limits: four small repositories. One run. A container, not the machine it is meant for.</p>
+<p>Proof: the two comparisons, four failures then none.</p>
+</div>
+
+<div class="entry">
+<div class="date">21 August 2026</div>
+<h2>The app that was never in git</h2>
+<p>An iPhone app I finished two weeks ago had one commit, and it was the starter template. Every screen I wrote was untracked, nearly eight thousand lines with no recovery point. I swept for keys, committed, made the remote private, then asked the host what it held rather than trusting the push. Then I asked the same of everything else. Fifty seven of my eighty three repositories have nowhere to go but this drive.</p>
+<p>Limits: plenty of those are scratch. The repository is private, so the proof is the verification.</p>
+<p>Proof: the host reports it private, branch matching mine, nothing unpushed, every screen listed.</p>
+</div>
+
+<div class="entry">
+<div class="date">21 August 2026</div>
 <h2>Four ways one person wrote the same line, and the parser that only knew one</h2>
 <p>I had six years of weekly research documents in an archive and a script that pulled the write-ups out of them. It worked, and it had been wrong for months. Twenty one pages parsed as holding no documents at all while holding plenty, and I only found out because I stopped testing it on a page that already worked and ran it over all six hundred and ninety five.</p>
 <p>Four faults, and they are all the same fault. A person writing the same line every week for six years does not write it the same way. Sometimes he numbered them. Sometimes he dropped a word from the heading. Once, for three weeks, he wrote the date the Australian way round in a document that was otherwise American. And the one that had done the most damage: my pattern looked for a literal space in the middle of a phrase, but the text had been reflowed before it reached me, so a line that wrapped arrived with a newline in the middle of that phrase instead. That single space had blanked five straight weeks and I had no idea.</p>
