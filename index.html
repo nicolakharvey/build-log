@@ -27,12 +27,12 @@
 
 <h1>The Build Log</h1>
 <p class="standfirst">A dated record of what I build and how I prove it worked.</p>
-<p class="rule">Every entry here was working before it was written up. Nothing is listed as an idea, a plan, or a roadmap. Dates are the dates things ran.</p>
+<p class="rule">Every entry here was working before it was written up. Each one names the build, the assurance check, the proof, and the limit. Dates are the dates things ran; nothing here is a plan or roadmap.</p>
 
 <div class="entry">
 <div class="date">21 August 2026</div>
-<h2>Adversarial test of a git checkpointing tool</h2>
-<p>Someone in a group I am part of built a tool that checkpoints local git work. I did not treat "helpful git automation" as safe by default. I read the source first: no external dependencies, no network path, no scheduler, and every destructive command behind a full typed confirmation phrase. Then I tested the safety claim in a container against four decoy repositories.</p>
+<h2>Sandboxed safety test for a git checkpointing tool</h2>
+<p>I reviewed a local Git checkpointing tool before letting it near real work. The source had no external dependencies, no network path, no scheduler, and every destructive command behind a full typed confirmation phrase. Then I tested the safety claim in a container against four decoy repositories.</p>
 <p>Before running the real tool, I ran a deliberately destructive fake version to prove my comparison would catch damage. It did: four failures, one for each decoy. The real tool then produced no working-tree changes.</p>
 <p>Limits: four small decoy repositories, one run, inside a container rather than on the machine it is meant to protect.</p>
 <p class="proof">Proof: before/after comparisons showing four failures on the fake and none on the real tool.</p>
@@ -41,7 +41,7 @@
 <div class="entry">
 <div class="date">21 August 2026</div>
 <h2>Backup verification by host state, not push output</h2>
-<p>I found an iPhone app I had finished two weeks earlier with almost all of the real work outside git: one starter-template commit, then thousands of lines of screens and app state sitting untracked. I swept for secrets, committed the work, made the remote private, and verified the backup by asking GitHub what it actually held rather than trusting the local push.</p>
+<p>A finished iPhone app had one starter-template commit while nearly eight thousand lines of screens and app state were still untracked. I swept for secrets, committed the work, made the remote private, and verified the backup by asking GitHub what it actually held rather than trusting the local push.</p>
 <p>That changed the test I use for my project estate. A backup is not "git push succeeded." A backup is: the host reports the repo private when it should be private, the remote branch matches the local branch, there is nothing unpushed, and the files I care about are present on the host.</p>
 <p>Limits: some repositories in the scan are scratch work, and private repositories cannot be used as public proof.</p>
 <p class="proof">Proof: GitHub's own report: private repo, matching branch, no unpushed commits, and the app screens listed remotely.</p>
@@ -70,7 +70,7 @@
 <h2>Multi-agent product strategy audit</h2>
 <p>Ten product concepts came out of a chat. Instead of picking by taste, I used agents as reviewers and adversaries. Five checked claims against my repositories, two drafted rival strategies, one merged the strongest plan, and three attacked the result for weak assumptions, already-built work, and missing proof.</p>
 <p>The useful result was not the number of agents. It was that the process treated my own machine as the source of truth. Three of the ten ideas were already built locally and unpublished, which would have been missed by a normal brainstorming pass. The run turned a loose list into a checked strategy in eighteen minutes.</p>
-<p>Limits: one run, private live strategy, and the reviewers share model DNA with the builders.</p>
+<p>Limits: one run, private live strategy, and the reviewers use the same family of models as the builders.</p>
 <p class="proof">Proof: forty findings held privately because the output contains current strategy.</p>
 </div>
 
@@ -86,8 +86,8 @@
 <div class="entry">
 <div class="date">21 August 2026</div>
 <h2>Incentive regression test for PulseMerge</h2>
-<p>PulseMerge is meant to reward bold play more than careful play. It had passed dozens of checks while doing the opposite. Three separate faults combined into one bad incentive: a multiplier was read after the move resolved, pressure paid out without effort, and the difficulty curve advanced in a way that gave cautious play the easier path.</p>
-<p>The fix was to test the incentive as a relationship, not as isolated mechanics. I simulated a bold player and a timid player against the same rules and required the bold strategy to win. That comparison found the fault that ordinary feature checks missed.</p>
+<p>PulseMerge is meant to reward bold play more than careful play. It had passed 31 checks while doing the opposite. Three separate faults combined into one bad incentive: a multiplier was read after the move resolved, pressure paid out without effort, and the difficulty curve advanced in a way that gave cautious play the easier path.</p>
+<p>The fix was to test the incentive as a relationship, not as isolated mechanics. I simulated a bold player and a timid player against the same rules and required the bold strategy to win. That comparison found the failure pattern that ordinary feature checks missed.</p>
 <p>Limits: simulated players only, and the Android version has not yet been play-tested on a phone.</p>
 <p class="proof">Proof: live PulseMerge build at <a href="https://muplu.com/pulsemerge/">muplu.com/pulsemerge</a>, with 53 checks against the live site.</p>
 </div>
@@ -95,7 +95,7 @@
 <div class="entry">
 <div class="date">20 August 2026</div>
 <h2>Offline verification for a retiring site archive</h2>
-<p>A twenty-year-old site was being retired, so I pulled down 1,561 pages. The important check was not whether the archive looked fine while the old site still answered. I tested it as if the original host were already gone.</p>
+<p>A twenty-year-old site was being retired, so I archived 1,561 pages. The important check was not whether the archive looked fine while the old site still answered. I tested it as if the original host were already gone.</p>
 <p>That exposed the failures a casual check would miss: lazy-loaded images saving as blanks, internal links still pointing at the old host, and a filename-shortening rule that removed the extension from the main stylesheet. That last bug would have left 673 pages rendering bare after the source disappeared.</p>
 <p>Limits: a machine verified the structure and links; nobody manually read all 1,561 archived pages.</p>
 <p class="proof">Proof: 35,218 internal links resolve locally and nothing points back to the old host.</p>
