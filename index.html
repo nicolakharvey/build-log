@@ -31,6 +31,37 @@
 
 <div class="entry">
 <div class="date">21 August 2026</div>
+<h2>My lead engine now emails me what its unattended runs found</h2>
+<p>My scheduler runs saved searches overnight, dedupes, enriches and pushes the results to a CRM. It now emails the account owner a digest of what changed. It stays silent when nothing is new, so a run that finds the same businesses as yesterday sends nothing at all. Change detection against the previous run is what decides.</p>
+<p>Limits: the opt-out is separate from the prospect unsubscribe list, so turning it off cannot change who may be contacted. It sends through the operator's own mail provider. Nobody has received one in production yet.</p>
+<p class="proof">Proof: 32 checks, including a first run that reports no news because it has no baseline to compare against.</p>
+</div>
+<div class="entry">
+<div class="date">21 August 2026</div>
+<h2>A DNS zone rebuilt by API, and a proof that nothing was missing</h2>
+<p>I rebuilt an eleven record zone on a new host by API and checked it against the live original, both directions.</p>
+<p>I also swept for records I had not thought to check. Ten mail-signing selectors, all absent, proved by running the same query against one I knew existed. My first control was invalid: the domain I picked does not use that selector.</p>
+<p>Limits: one zone. Nothing is live yet. Selector names are arbitrary, so absence is likely, not certain.</p>
+<p class="proof">Proof: the negative control caught three missing records.</p>
+</div>
+<div class="entry">
+<div class="date">21 August 2026</div>
+<h2>My model routing check now runs the route, not just the config</h2>
+<p>I wrote a check that resolves my eight task classes across three auth lanes, validates each candidate the way the executor would, then calls it for real.</p>
+<p>Validating alone had passed everything. Executing found that only one of my three providers can authenticate, and that the one local route I had just configured dies on a script the tool never shipped.</p>
+<p>Limits: one machine. It tests routing and auth, not answer quality.</p>
+<p class="proof">Proof: the resolve, validate and execute pass across 22 lanes.</p>
+</div>
+<div class="entry">
+<div class="date">21 August 2026</div>
+<h2>Reach diagnosis by grouping my own posts</h2>
+<p>I grouped 108 of my AI influencer's published posts by source media. Images had a median of 6 views and never passed 11 in 28 attempts. Video had a median of 64 and held every spike.</p>
+<p>I built a converter that turns a still into a vertical video with a slow push and a music bed, matched to my own best performer, then converted 31 scheduled posts. The first two published at 23 and 124 views.</p>
+<p>Limits: two posts so far. One account. The converter makes a still move, it does not make it better.</p>
+<p class="proof">Proof: the before and after view counts on the first two converted posts.</p>
+</div>
+<div class="entry">
+<div class="date">21 August 2026</div>
 <h2>Sandboxed safety test for a git checkpointing tool</h2>
 <p>I reviewed a local Git checkpointing tool before letting it near real work. The source had no external dependencies, no network path, no scheduler, and every destructive command behind a full typed confirmation phrase. Then I tested the safety claim in a container against four decoy repositories.</p>
 <p>Before running the real tool, I ran a deliberately destructive fake version to prove my comparison would catch damage. It did: four failures, one for each decoy. The real tool then produced no working-tree changes.</p>
@@ -127,6 +158,15 @@
 <p>The bridge later gained a controlled publish path: it can add topics and press publish when I explicitly schedule that, but it refuses to call the job done until the story appears in the public Medium feed. A click is not a post.</p>
 <p>Limits: it depends on Medium's browser UI, so it is monitored and falls back to a reminder rather than silently losing a story.</p>
 <p class="proof">Proof: <a href="https://medium.com/@nicolakharvey/the-48-characters-i-could-not-see-d6c8316c1643">the first essay it staged</a> and the bridge code in Social Command.</p>
+</div>
+
+<div class="entry">
+<div class="date">18 August 2026</div>
+<h2>A nightly reader for my own WhatsApp</h2>
+<p>My laptop reads my own WhatsApp each night and writes one page: what came in, and what is still waiting on me. Voice notes are transcribed locally. No conversation leaves the machine. The first unattended run captured 33 messages.</p>
+<p>Scheduling it took three attempts. macOS blocks a scheduled job, ignores a grant given to a shell script, and hangs silently on a compiled launcher run directly. Starting the app with open works.</p>
+<p>Limits: one Mac. Fourteen of 563 conversations are switched on. What is waiting on me is computed, not summarised.</p>
+<p class="proof">Proof: the workshop, with the code I run, at workshops.herfrontier.com/whatsapp-reader</p>
 </div>
 
 <div class="entry">
