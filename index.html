@@ -31,18 +31,18 @@
 
 <div class="entry">
 <div class="date">21 August 2026</div>
-<h2>I broke my own test before I ran the real one</h2>
-<p>Someone in a group I am part of built a git tool that checkpoints your work. I read it first: no outside dependencies, nothing that can reach a network, nothing self scheduling, every destructive command behind a phrase you type in full. Then I ran it in a container against four decoy repositories. Before that I ran a fake destructive version to see whether my comparison caught anything. It caught four failures. The real tool changed nothing.</p>
+<h2>A box for trying tools that can delete your work</h2>
+<p>I can give a program permission to commit into repositories now without risking any of mine. It runs in a container holding four decoys, each copying a shape I would hate to lose, networking off and nothing of my own mounted. I built it for a git tool that takes checkpoints: no outside dependencies, nothing that can reach a network, every destructive command behind a typed phrase. I ran a deliberately destructive fake sweep first and the comparison caught all four of its failures. The real tool changed nothing.</p>
 <p>Limits: four small repositories. One run. A container, not the machine it is meant for.</p>
 <p>Proof: the two comparisons, four failures then none.</p>
 </div>
 
 <div class="entry">
 <div class="date">21 August 2026</div>
-<h2>The app that was never in git</h2>
-<p>An iPhone app I finished two weeks ago had one commit, and it was the starter template. Every screen I wrote was untracked, nearly eight thousand lines with no recovery point. I swept for keys, committed, made the remote private, then asked the host what it held rather than trusting the push. Then I asked the same of everything else. Fifty seven of my eighty three repositories have nowhere to go but this drive.</p>
-<p>Limits: plenty of those are scratch. The repository is private, so the proof is the verification.</p>
-<p>Proof: the host reports it private, branch matching mine, nothing unpushed, every screen listed.</p>
+<h2>One command tells me which repositories have somewhere to go</h2>
+<p>Eighty three git repositories live on this machine and one read-only sweep now reports the backup state of every one. I wrote it after finishing an iPhone fitness app in React Native, on Apple's real Liquid Glass and native tab bar, and finding its only commit was the starter template. That one is committed and pushed private now, checked against the host rather than the push output. Fifty seven others still have no remote.</p>
+<p>Limits: plenty of those are scratch. The sweep reads one folder deep, so fifty seven is a floor.</p>
+<p>Proof: the sweep output, and the host reporting the app private with nothing unpushed.</p>
 </div>
 
 <div class="entry">
