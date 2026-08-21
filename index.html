@@ -26,133 +26,162 @@
 <div class="wrap">
 
 <h1>The Build Log</h1>
-<p class="standfirst">A dated record of what I build, kept as I build it.</p>
+<p class="standfirst">A dated record of what I build and how I prove it worked.</p>
 <p class="rule">Every entry here was working before it was written up. Nothing is listed as an idea, a plan, or a roadmap. Dates are the dates things ran.</p>
 
 <div class="entry">
 <div class="date">21 August 2026</div>
-<h2>A box for trying tools that can delete your work</h2>
-<p>I can give a program permission to commit into repositories now without risking any of mine. It runs in a container holding four decoys, each copying a shape I would hate to lose, networking off and nothing of my own mounted. I built it for a git tool that takes checkpoints: no outside dependencies, nothing that can reach a network, every destructive command behind a typed phrase. I ran a deliberately destructive fake sweep first and the comparison caught all four of its failures. The real tool changed nothing.</p>
-<p>Limits: four small repositories. One run. A container, not the machine it is meant for.</p>
-<p>Proof: the two comparisons, four failures then none.</p>
+<h2>Adversarial test of a git checkpointing tool</h2>
+<p>Someone in a group I am part of built a tool that checkpoints local git work. I did not treat "helpful git automation" as safe by default. I read the source first: no external dependencies, no network path, no scheduler, and every destructive command behind a full typed confirmation phrase. Then I tested the safety claim in a container against four decoy repositories.</p>
+<p>Before running the real tool, I ran a deliberately destructive fake version to prove my comparison would catch damage. It did: four failures, one for each decoy. The real tool then produced no working-tree changes.</p>
+<p>Limits: four small decoy repositories, one run, inside a container rather than on the machine it is meant to protect.</p>
+<p class="proof">Proof: before/after comparisons showing four failures on the fake and none on the real tool.</p>
 </div>
 
 <div class="entry">
 <div class="date">21 August 2026</div>
-<h2>One command tells me which repositories have somewhere to go</h2>
-<p>Eighty three git repositories live on this machine and one read-only sweep now reports the backup state of every one. I wrote it after finishing an iPhone fitness app in React Native, on Apple's real Liquid Glass and native tab bar, and finding its only commit was the starter template. That one is committed and pushed private now, checked against the host rather than the push output. Fifty seven others still have no remote.</p>
-<p>Limits: plenty of those are scratch. The sweep reads one folder deep, so fifty seven is a floor.</p>
-<p>Proof: the sweep output, and the host reporting the app private with nothing unpushed.</p>
+<h2>Backup verification by host state, not push output</h2>
+<p>I found an iPhone app I had finished two weeks earlier with almost all of the real work outside git: one starter-template commit, then thousands of lines of screens and app state sitting untracked. I swept for secrets, committed the work, made the remote private, and verified the backup by asking GitHub what it actually held rather than trusting the local push.</p>
+<p>That changed the test I use for my project estate. A backup is not "git push succeeded." A backup is: the host reports the repo private when it should be private, the remote branch matches the local branch, there is nothing unpushed, and the files I care about are present on the host.</p>
+<p>Limits: some repositories in the scan are scratch work, and private repositories cannot be used as public proof.</p>
+<p class="proof">Proof: GitHub's own report: private repo, matching branch, no unpushed commits, and the app screens listed remotely.</p>
 </div>
 
 <div class="entry">
 <div class="date">21 August 2026</div>
-<h2>Four ways one person wrote the same line, and the parser that only knew one</h2>
-<p>I had six years of weekly research documents in an archive and a script that pulled the write-ups out of them. It worked, and it had been wrong for months. Twenty one pages parsed as holding no documents at all while holding plenty, and I only found out because I stopped testing it on a page that already worked and ran it over all six hundred and ninety five.</p>
-<p>Four faults, and they are all the same fault. A person writing the same line every week for six years does not write it the same way. Sometimes he numbered them. Sometimes he dropped a word from the heading. Once, for three weeks, he wrote the date the Australian way round in a document that was otherwise American. And the one that had done the most damage: my pattern looked for a literal space in the middle of a phrase, but the text had been reflowed before it reached me, so a line that wrapped arrived with a newline in the middle of that phrase instead. That single space had blanked five straight weeks and I had no idea.</p>
-<p>The date one is the one I would have got wrong if I had been in a hurry. The obvious move is to pick an order and apply it. Instead I made the parser read whichever field could not possibly be a month, and for the dates where both could, I checked rather than assumed: every ambiguous date had to fall after the week its page covered and land on the same weekday every time, because these documents run to a fixed weekly deadline. All sixteen resolved the same way. The old code had failed safe rather than filing them wrongly. That is the only reason there was nothing to unpick.</p>
-<p>What protected me was one rule. Every change was run over the whole archive and diffed against the previous run before it was kept, and nothing shipped unless zero documents were lost and every altered one had been read by eye. That caught two of my own fixes making things worse. It also caught two mistakes I made while measuring, which are the ones worth passing on, because both invented findings rather than failing.</p>
-<p>The first: a table in the source had an unclosed row tag, so splitting on rows swallowed the first entry of every section. My check reported seven records that did not exist. The second: percentages in that table used comma thousands, and my expression read one thousand four hundred and forty nine as four hundred and forty nine. That one manufactured about eleven large discrepancies out of nothing, and I nearly reported all of them.</p>
-<p>A parser that throws is a good afternoon. A parser that returns a different answer, confidently, is the one that costs you. Both of mine returned answers. Neither threw.</p>
-<p>Across an archive of roughly a thousand documents, coverage went from about 86% to about 95%. Pages parsing to nothing went from twenty one to zero, and every recovered document now attaches to the week it was written in, against one that did not before.</p>
-<p class="proof">Proof: the before and after diff over all 695 pages, re-run from the committed script.</p>
-<p>Limits. The weekday rule resolved every ambiguous date in this archive and is not proof about pages not yet written. The threshold that decides when two entries are one document and not two is calibrated on forty three measurements from a single archive.</p>
+<h2>Android build verification beyond a green build</h2>
+<p>PulseMerge built as an Android app, but I checked what the build produced rather than stopping at "build succeeded." The debug APK existed and the game bundle was byte-identical inside it, but the launcher icon was 9,441 bytes while the iPhone source icon was 544,839 bytes. Capacitor had generated placeholder art, and the build system had no reason to care.</p>
+<p>I regenerated the Android icon and splash from the game's own visual system, not from a separate design file that could drift from the product. Then I rebuilt and checked the package again. The APK moved from 4.0MB to 6.7MB, with the real branded assets present.</p>
+<p>Limits: built and inspected, but not yet run as a played session on an Android phone.</p>
+<p class="proof">Proof: Android debug APK built and inspected; the game files inside matched the source, and the placeholder launcher art was replaced with regenerated PulseMerge assets.</p>
 </div>
 
 <div class="entry">
 <div class="date">21 August 2026</div>
-<h2>The check that catches an incentive pointing the wrong way</h2>
-<p>I have a rule that the pass and fail conditions for anything I build get written down and locked before a line of code exists, and that whoever builds the thing may fix the work but never touch the checks. I added a rule to it this week, after a build passed thirty one of those checks twice, ran clean, and was still wrong in a way none of them could see.</p>
-<p>The game rewards bold play over careful play. That is the whole design. What the checks could not see was that three separate pieces of it were doing the reverse. A bonus multiplier was read after the move resolved, so the bigger the move the smaller its own multiplier. A streak bonus counted pressure but not effort, so the cheapest possible move made under pressure earned what courage was supposed to buy, paying nearly three times as much per move on a third of the work. And the difficulty advanced on a counter that bold play increments more slowly, so the bold player got the easier ride. Every one of those was a defensible line on its own. Together they made timidity the winning strategy, and not one check said a word, because each check asked whether a rule fires and every rule fired perfectly.</p>
-<p>The rule I added: an incentive is a relationship between two strategies, so it can only be tested as one. Never gate it with a number, because any number a bold run produces, a timid run can reach by another route. Gate it as a comparison. Simulate the behaviour you want to reward and its exact opposite under identical conditions, and require the one you want to win on the payoff and on surviving. That single comparison found all three at once.</p>
-<p>It kept earning its place. When I added a set of levels, the same discipline said fourteen of the twenty four targets were impossible and one of them completed itself if the player did nothing at all. Targets are not set by feel any more. Four different players are simulated on every level, from careful to careless to one who does nothing, and each target has to sit strictly between what the careless one reaches and what a real pair of hands manages. Four goals had to be re-aimed rather than re-numbered, because the simulation showed they were passive: they happened whether or not you played well, and a goal that happens anyway is not a goal.</p>
-<p>Two more rules came out of it, both cheap and both now standing. Gate in both directions: play it perfectly and check the state does not run away, then play it not at all and check that it fails, because the second one catches a thing that works and does not matter. And distrust the instrument before you distrust the work, because three separate times the tool told me something the thing itself disagreed with, and reading the thing directly settled it in two minutes each time.</p>
-<p>Limits, honestly. Every number here comes from simulated players on my own machine, and nobody has played it on a phone yet. That is the only test that can say whether it is any fun, and I would not claim otherwise until it has happened. The frame timing is a laptop measurement, and a mid range phone is several times slower. It is untested in Firefox.</p>
-<p class="caption">Proof: <a href="https://muplu.com/pulsemerge/">muplu.com/pulsemerge</a>. Fifty three checks, run against the live site rather than my copy of it, with the published file compared by fingerprint against the one that passed them.</p>
+<h2>Browser interaction test for pages that returned 200 but were dead</h2>
+<p>Four new web pages returned 200, passed type checks and lint, and looked correct in screenshots. They still did not work. I had served the site on one local hostname and opened it on its twin, so the framework refused to serve the scripts to that origin. A screenshot could not catch it because the static page still rendered.</p>
+<p>The useful test was not "does the page load?" It was "can a user action change state?" I added a browser walk that clicked a control and asserted that the page responded. That caught the dead JavaScript immediately and gave me a repeatable check for this class of failure.</p>
+<p>Limits: dev-mode origin issue only; production builds do not carry the same local-hostname behavior.</p>
+<p class="proof">Proof: dev-server log naming the disallowed origin, plus before/after browser-walk transcripts.</p>
+</div>
+
+<div class="entry">
+<div class="date">21 August 2026</div>
+<h2>Multi-agent product strategy audit</h2>
+<p>Ten product concepts came out of a chat. Instead of picking by taste, I used agents as reviewers and adversaries. Five checked claims against my repositories, two drafted rival strategies, one merged the strongest plan, and three attacked the result for weak assumptions, already-built work, and missing proof.</p>
+<p>The useful result was not the number of agents. It was that the process treated my own machine as the source of truth. Three of the ten ideas were already built locally and unpublished, which would have been missed by a normal brainstorming pass. The run turned a loose list into a checked strategy in eighteen minutes.</p>
+<p>Limits: one run, private live strategy, and the reviewers share model DNA with the builders.</p>
+<p class="proof">Proof: forty findings held privately because the output contains current strategy.</p>
+</div>
+
+<div class="entry">
+<div class="date">21 August 2026</div>
+<h2>Full-corpus parser audit across six years of research pages</h2>
+<p>A script pulled write-ups out of six years of weekly research documents. It appeared to work because I kept testing the same page shape. When I ran it across the full archive, 21 pages parsed as empty. The problem was human consistency: one person had written the same line four different ways over the years, and the parser only recognized one.</p>
+<p>I changed the verification from a sample page to all 695 pages, added the missing variants, and used the archive's weekday pattern to resolve ambiguous dates where that was safe. Coverage moved from 86% to 95%.</p>
+<p>Limits: the weekday rule is archive-specific and should not be reused as a general date parser.</p>
+<p class="proof">Proof: before/after diff over all 695 pages, re-run from the committed script.</p>
+</div>
+
+<div class="entry">
+<div class="date">21 August 2026</div>
+<h2>Incentive regression test for PulseMerge</h2>
+<p>PulseMerge is meant to reward bold play more than careful play. It had passed dozens of checks while doing the opposite. Three separate faults combined into one bad incentive: a multiplier was read after the move resolved, pressure paid out without effort, and the difficulty curve advanced in a way that gave cautious play the easier path.</p>
+<p>The fix was to test the incentive as a relationship, not as isolated mechanics. I simulated a bold player and a timid player against the same rules and required the bold strategy to win. That comparison found the fault that ordinary feature checks missed.</p>
+<p>Limits: simulated players only, and the Android version has not yet been play-tested on a phone.</p>
+<p class="proof">Proof: live PulseMerge build at <a href="https://muplu.com/pulsemerge/">muplu.com/pulsemerge</a>, with 53 checks against the live site.</p>
 </div>
 
 <div class="entry">
 <div class="date">20 August 2026</div>
-<h2>The archive that renders perfectly and is empty</h2>
-<p>A twenty year old website is being retired, so the content had to come off it first. I pulled 1,561 pages, 1,792 images and the stylesheets and fonts, and then spent most of the effort on the part that is easy to skip: proving the copy still works once the original is switched off. Every check you can run casually runs while the old site is still answering. That is the one condition where a hollow copy looks identical to a good one.</p>
-<p>Three things would have shipped a broken archive and all three looked fine at the time. The pages lazy load, so the real image sits in a data attribute while the visible one is a blank placeholder, and a saver that reads the obvious attribute stores empty boxes. Every internal link is absolute, about forty a page. Nothing would have clicked through. The styling and fonts live on the domain being switched off.</p>
-<p>The one I nearly missed is the one I want to remember. I shorten saved filenames, and the shortening cut the extension off the main stylesheet. The host then served it as a generic download, and because that host sends a header telling browsers to be strict about types, the browser refuses the file outright. All 673 styled pages would have rendered as bare text. The file was present, the link resolved, and every check short of asking the server what type it was returned green.</p>
-<p>Two smaller ones worth keeping. Three pairs of addresses differed only by capital letters, and my filesystem treats those as one name, so each was overwriting its twin: six real pages, three of them about to vanish without a message. And I built the address list from two sources rather than one, the site's own index and a public web archive, because each was missing over four hundred pages the other had.</p>
-<p>Limits, honestly: the only test that means anything is a count of references still pointing at the old host, and it is zero, but that is a machine reading structure rather than a person reading 1,561 pages. Five pages the site links to were already dead before I arrived and no archive holds them, so they stay as honest broken links rather than something I invented.</p>
-<p class="caption">Proof: the archive answers with its source treated as gone. Zero images, stylesheets or fonts still pointing at the old host, zero blank placeholders left, zero broken internal links out of 35,218 that resolve inside it, and every referenced file present.</p>
+<h2>Offline verification for a retiring site archive</h2>
+<p>A twenty-year-old site was being retired, so I pulled down 1,561 pages. The important check was not whether the archive looked fine while the old site still answered. I tested it as if the original host were already gone.</p>
+<p>That exposed the failures a casual check would miss: lazy-loaded images saving as blanks, internal links still pointing at the old host, and a filename-shortening rule that removed the extension from the main stylesheet. That last bug would have left 673 pages rendering bare after the source disappeared.</p>
+<p>Limits: a machine verified the structure and links; nobody manually read all 1,561 archived pages.</p>
+<p class="proof">Proof: 35,218 internal links resolve locally and nothing points back to the old host.</p>
 </div>
 
 <div class="entry">
 <div class="date">20 August 2026</div>
-<h2>An app that is mostly a beach</h2>
-<p>My AI influencer's audience got an app today. One minute a day with your dog is the whole ask: you walk, you press a paw into the sand, and something small washes up on a photographed shore, a shell, a feather, sea glass, each one carrying that day's short lesson in reading a dog or settling your own attention. The scene is a real render that follows the actual clock, dawn to stars. Thirty days of curriculum, a shelf that keeps every find, and seven of the finds hold her cloned voice, framed as putting a shell to your ear.</p>
-<p>The design rule that shaped everything: no punishment anywhere. A missed day is never mentioned and the count never goes down, because the product is for people worn out by apps that shame them. I took the engagement checklist from my game work and translated it mechanism by mechanism, keeping autonomy and collection, refusing streak-breaking, timers and escalation by name.</p>
-<p>It shipped twice. The first version worked and was rejected as flat, the second was rejected as off-brand, and the third is the one that stayed: real photographs, a living scene, the voice pieces. A browser-driven test caught a dead button every static check had passed, and the deploy was proven with a live canary signup, a delivered email, and a clean deletion before anyone was told it existed.</p>
-<p>Limits, honestly: the audience is small today, so this is a product bet, not a traction claim; the seven voice pieces went live machine-verified and my own ear came after the ship, not before; and the research finding that no other openly-AI persona has built a ritual app instead of a chatbot of herself is an absence of evidence across targeted searches, not a proven absence.</p>
-<img src="walk-ritual-app.png" alt="Two phone screens over a night beach photograph: the left offers today's small practice above a circular paw button, the right shows a lesson card with a photographed spiral shell, the day's teaching, and running counts" width="788" height="570">
-<p class="caption">Proof: the app live on the night beach. Left, the daily choice and the paw press. Right, day one's find and its lesson.</p>
+<h2>Gentle daily app for Maya Foxten's audience</h2>
+<p>I built a small app for Maya Foxten's audience around one minute a day with a dog. The interaction is intentionally low-pressure: walk, press a paw into the sand, and receive one short lesson that washes up for the day. The app keeps a thirty-day shelf of finds, including seven lessons in Maya's cloned voice.</p>
+<p>The product decision matters as much as the build. There is no punishment loop: no streak loss, no missed-day scolding, and no declining count. For this audience, the assurance work is not only technical. It is making sure the app's mechanics do not contradict the calm practice it teaches.</p>
+<p>Limits: the audience is small, so this is still a product bet.</p>
+<img src="walk-ritual-app.png" alt="Two phone screens over a night beach photograph: the left offers today's practice above a circular paw button, the right shows a lesson card with a photographed spiral shell" width="788" height="570">
+<p class="proof">Proof: live app screen over the night beach, with today's practice and saved lesson card.</p>
 </div>
 
 <div class="entry">
 <div class="date">20 August 2026</div>
-<h2>A rule is not a check</h2>
-<p>I keep this page as a record of what I build, and the instruction to keep it current was written down in three separate places. It was still twelve days behind, and the entry below this one had been finished and left sitting on my machine, unpublished. Nothing had gone wrong with the intention. A rule gets read at the moment it is written and never at the moment it is broken.</p>
-<p>The check reads two things that cannot have an opinion, the commit history across every project folder and this page itself, and reports only the gap: which days have work and no entry, and whether an entry is written and not published. It runs at the end of every session and costs about a tenth of a second, because it serves a cached scan and rebuilds it in the background.</p>
-<p>It ships with a waiver list. Any day I decide is not worth an entry gets named in a file and silenced for good, since a check that keeps raising things I have already ruled on becomes noise within a week, and a check you have learned to ignore is worse than no check at all.</p>
-<p>One limit, and it is printed inside the tool rather than in its documentation: it can only see work that touched a tracked folder, so a render, a video or a one-off page is invisible to it and stays my own judgment.</p>
-<p class="proof">Proof: this page. The entry below, dated 19 August, is the one it caught written and unpublished, and both went up together.</p>
+<h2>Build-log freshness check from commit history</h2>
+<p>I had written the rule to keep this build log current in three places, and it still fell twelve days behind. That proved the rule was not a system. I added a check that reads two factual sources: commit history across project folders, and the dates already present in the build-log page.</p>
+<p>The check reports work days with commits and no ledger entry, and it separately reports if the ledger itself is dirty or unpushed. It includes a waiver list, because a check that complains about work I have deliberately decided not to write up will become noise and get ignored.</p>
+<p>Limits: it only sees work that touched a tracked folder.</p>
+<p class="proof">Proof: this page, plus the checker in <code>~/.claude/hooks/build-log-check.py</code>.</p>
 </div>
 
 <div class="entry">
 <div class="date">19 August 2026</div>
-<h2>Three lip sync engines</h2>
-<p>My AI influencer is in beta and she needed to speak. I tested three engines against the same still image and the same voice track. The local LTX video rig kept her mouth shut in twelve of fifteen samples. Seedance 2.0, hosted, articulated on every sampled frame and rendered in about two minutes; at 36 credits per 8 seconds of video, short pieces are the affordable shape. LatentSync is built for CUDA, so I ported it to Apple Silicon in six patches. The port ran. That is all it did: 81 minutes for a 7.6 second clip, mouth barely moving.</p>
-<p>One caveat, stated because it could change the verdict: the port was fed the clip whose mouth never moved, the hardest job a re-sync model can get. The rematch costs another 81 minutes, so it waits for a reason.</p>
-<img src="lipsync-three-engines.png" alt="Three strips of sampled mouth frames from the same image and audio: the top strip mostly closed, the middle strip articulating in every frame, the bottom strip mostly closed" width="1200" height="525">
-<p class="caption">Sampled frames, same image, same audio. Top: LTX, local. Middle: Seedance 2.0, hosted. Bottom: LatentSync, ported to Apple Silicon.</p>
-<p class="proof">Proof: the strips above; every frame came from a render that ran on 18 and 19 August</p>
+<h2>Lip-sync engine comparison on the same source material</h2>
+<p>Maya needed to speak, so I tested three lip-sync paths on the same still image and voice track instead of comparing demos made from different inputs. The local LTX setup kept the mouth closed in 12 of 15 samples. Seedance 2.0 articulated every sampled frame in about two minutes, at 36 credits per eight seconds. LatentSync was ported to Apple Silicon in six patches, but took 81 minutes for a 7.6-second clip and still barely moved the mouth.</p>
+<p>The comparison gave me a production decision: use the hosted path when articulation matters, keep local experimentation alive, and do not confuse "runs locally" with "fit for this job."</p>
+<p>Limits: LatentSync got the hardest input, so the result is evidence for this production case rather than a universal benchmark.</p>
+<img src="lipsync-three-engines.png" alt="Three strips of sampled mouth frames from the same image and audio: the top mostly closed, the middle articulating in every frame, the bottom mostly closed" width="1200" height="525">
+<p class="proof">Proof: sampled mouth-frame strips from all three engines on the same image and audio.</p>
 </div>
 
 <div class="entry">
 <div class="date">19 August 2026</div>
-<h2>The Medium bridge</h2>
-<p>Medium retired its publishing API, so I built my own lane: a dedicated browser my scheduler drives through the developer tools protocol. One command stages a complete story, title, cover image and formatted body, as a saved draft, and screenshots every step as proof. The final publish press stays human. The first essay went through it the same night it was built.</p>
-<p class="proof">Proof: <a href="https://medium.com/@nicolakharvey/the-48-characters-i-could-not-see-d6c8316c1643">the essay it staged</a></p>
+<h2>Medium publishing bridge with human and public-feed gates</h2>
+<p>Medium retired its publishing API, so I built a browser bridge driven over the Chrome DevTools Protocol. One command stages a complete story: title, cover image, formatted body, and draft state. It uses a dedicated browser profile, screenshots each step, and never handles credentials. If the profile is not signed in, it stops and asks for a human login.</p>
+<p>The bridge later gained a controlled publish path: it can add topics and press publish when I explicitly schedule that, but it refuses to call the job done until the story appears in the public Medium feed. A click is not a post.</p>
+<p>Limits: it depends on Medium's browser UI, so it is monitored and falls back to a reminder rather than silently losing a story.</p>
+<p class="proof">Proof: <a href="https://medium.com/@nicolakharvey/the-48-characters-i-could-not-see-d6c8316c1643">the first essay it staged</a> and the bridge code in Social Command.</p>
 </div>
 
 <div class="entry">
 <div class="date">18 August 2026</div>
-<h2>The provenance sweep</h2>
-<p>I pointed my own checker at my own website and found four published images serving the complete prompts that made them, model and settings included, inside their metadata. Cleaned and redeployed the same night, then wrote up the three separate marks that ride on AI-touched work so other people could run the same sweep.</p>
-<p class="proof">Proof: <a href="https://medium.com/@nicolakharvey/the-48-characters-i-could-not-see-d6c8316c1643">The 48 characters I could not see</a></p>
+<h2>Provenance sweep on my own published assets</h2>
+<p>I pointed my own checker at my own website and found four published images carrying the full generation recipe in their metadata: prompts, model, settings, and other details that were invisible on the page. I cleaned and redeployed the same night.</p>
+<p>The useful part was treating my own site as the target. AI provenance risk is easy to describe in the abstract and easy to miss in your own files. The sweep separated three different layers that people often collapse together: invisible text characters, image metadata, and marks or patterns in the pixels themselves.</p>
+<p>Limits: metadata stripping does not remove visible watermarks or pixel-level generator marks.</p>
+<p class="proof">Proof: the write-up <a href="https://medium.com/@nicolakharvey/the-48-characters-i-could-not-see-d6c8316c1643">The 48 characters I could not see</a>.</p>
 </div>
 
 <div class="entry">
 <div class="date">18 August 2026</div>
 <h2>Clearing 1.0</h2>
-<p>An open-source command-line tool that finds and strips invisible Unicode characters from text and scrubs generation metadata out of images, on your own machine, without changing a word or a pixel. Built after finding 48 invisible characters riding in one of my own exports. It states its limits plainly: it does not touch how words score on AI detectors, because that layer is the writing itself.</p>
-<p class="proof">Proof: <a href="https://github.com/nicolakharvey/clearing">github.com/nicolakharvey/clearing</a> (MIT)</p>
+<p>Clearing is an open-source local tool for checking what goes out under your name. It finds invisible Unicode carriers in text and generation metadata in images, then removes only the parts it can honestly remove. It does not rewrite words, change pixels, or claim to defeat AI detectors.</p>
+<p>The assurance work is in the exemptions. It leaves emoji joiners intact, preserves joiners that are spelling in Persian, Arabic, Hindi and related scripts, keeps leading byte-order marks when they are doing an encoding job, and refuses to clean verbatim archives or evidence folders. The CLI and browser page share the same core, with tests proving they do not drift apart.</p>
+<p>Limits: image metadata checks depend on local tooling, and visible or pixel-level marks are out of scope.</p>
+<p class="proof">Proof: <a href="https://github.com/nicolakharvey/clearing">github.com/nicolakharvey/clearing</a> under MIT, with 54 zero-dependency tests.</p>
 </div>
 
 <div class="entry">
 <div class="date">4 August 2026</div>
-<h2>The cloud publisher</h2>
-<p>My scheduler learned to publish with the computer asleep. Posts due while the Mac is closed hand themselves to a small edge worker I run, which publishes on time and hands back the results. The scheduling desk stays local-first; only the due post travels.</p>
-<p class="proof">Proof: the posts go out on time either way, including the ones in this log</p>
+<h2>Cloud publisher for a local-first scheduler</h2>
+<p>Social Command is local-first, which means a sleeping Mac used to be a scheduling risk. I added a small Cloudflare Worker that holds only due all-auto posts inside a short horizon and publishes them at the right time. Manual and reminder posts stay local because they need a person.</p>
+<p>The main safety rule is one writer per post. The Mac claims or withdraws a delegated job by version; while the cloud claim stands, the Mac will not publish that post. Any edit breaks the claim. "Publish now" cancels the worker's copy before publishing locally. If the worker is late, the app warns instead of racing it, because a late post is better than a duplicate post.</p>
+<p>Limits: delegated jobs temporarily place encrypted platform tokens and media copies inside my Cloudflare account.</p>
+<p class="proof">Proof: scheduled posts publish on time whether the Mac is awake or asleep.</p>
 </div>
 
 <div class="entry">
 <div class="date">18 July 2026</div>
-<h2>Team portal on the scheduler</h2>
-<p>My social media desk grew member logins: teammates sign in over my own domains, see only the brands they work on, and publish from the same calendar, while the application itself never leaves my machine. Scoped access with admin control, on infrastructure I hold, with nothing rented in between. First two members were live the day it was built.</p>
-<p class="proof">Proof: in daily use by a working team across two ventures</p>
+<h2>Scoped team portal on a local app</h2>
+<p>Social Command grew member logins without turning into a rented SaaS product. Teammates sign in over my domains, see only the brands they work on, and publish from the same calendar while the application and data stay on my machine.</p>
+<p>The important part is that brand scope is enforced server-side, not by hiding buttons in the interface. Member sessions carry explicit brand IDs. Server routes filter brands, accounts, posts, inbox, analytics, insights, and activity before returning data. Settings, user management, and owner-only controls stay outside the member surface.</p>
+<p>Limits: it is built for a small working team, not as a general multi-tenant SaaS platform.</p>
+<p class="proof">Proof: in daily use by a working team across two ventures.</p>
 </div>
 
 <div class="entry">
 <div class="date">2 July 2026</div>
 <h2>Social Command</h2>
-<p>My own replacement for the subscription scheduling desks: multi-brand calendar, per-platform composer, media library, analytics and an engagement inbox, publishing to fourteen channels, running on my machine with my data in my files. Everything above in this log runs through it, including the posts that announced this log.</p>
-<p class="proof">Proof: the LinkedIn post and Medium essay above went out through it</p>
+<p>Social Command is my own replacement for subscription social scheduling desks: multi-brand calendar, per-platform composer, media library, analytics, engagement inbox, team access, cloud delegation, and publishing across fourteen channels. It runs on my machine, stores data in my files, and starts every account in a manual or reviewed mode until the platform setup is ready.</p>
+<p>The value is not only that it publishes. It carries the operational checks I need: per-platform setup notes, character-limit gates, brand-crossing warnings, account-scope controls, daily backups, manual/reminder/auto modes, and a first-post visibility check because some platforms will confirm a post that only app-role users can see.</p>
+<p>Limits: platform APIs differ, some channels require developer approval, and the local-first model means cloud publishing is deliberately narrow.</p>
+<p class="proof">Proof: the posts and essays in this log are scheduled and published through it.</p>
 </div>
 
 <p class="rule" style="border-bottom:none; border-top:1px solid var(--line); padding-top:24px; margin-top:8px;">Kept by Nicola Harvey. New entries most weeks.</p>

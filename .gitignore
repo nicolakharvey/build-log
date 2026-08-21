@@ -1,5 +1,14 @@
-# GitHub Pages serves this whole repo. Nothing that is not meant to be public may sit here.
-*.bak
-*.bak-*
-*.tmp
-.DS_Store
+# GitHub Pages serves this WHOLE repo, so this file is a whitelist, not a blacklist.
+# Blacklisting failed twice on 21 Aug 2026: *.bak missed a working brief left as .md,
+# then !README.md missed the same brief rendered to .html plus its build script.
+# Everything is ignored unless it is named below. To publish something new, add it here.
+*
+
+!.gitignore
+!index.html
+!README.md
+!*.png
+!*.jpg
+!*.jpeg
+!*.webp
+!*.svg
