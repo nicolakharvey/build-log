@@ -30,6 +30,140 @@
 <p class="rule">Every entry here was working before it was written up. Each one names the build, the assurance check, the proof, and the limit. Dates are the dates things ran; nothing here is a plan or roadmap.</p>
 
 <div class="entry">
+<div class="date">22 August 2026</div>
+<h2>My nightly note summariser runs in 50 seconds</h2>
+<p>I benched the job's real prompt against two model sizes. The large one took 145 seconds and 1480 tokens to produce 228 characters. A model a third of the size took 33 seconds and 101 tokens to produce 430. I swapped it and the whole job now finishes in 50 seconds.</p>
+<p>The large model was a reasoning model, so it deliberated before writing bullets. It also needed most of the job's three minute timeout on an idle machine, so under load the job failed silently.</p>
+<p>Limits: one prompt shape, one machine. I compared speed and length, not quality.</p>
+<p class="proof">Proof: 145.3s against 33.0s on the same prompt, and a live run finishing in 50 seconds.</p>
+</div>
+<div class="entry">
+<div class="date">22 August 2026</div>
+<h2>My desk mirrors every scheduled post to a second channel</h2>
+<p>A rule on the scheduler tick adds the second target itself, picking the destination board by matching the post text against my content pillars. It skips posts with no image and posts I label to opt out. I backfilled twenty already-published posts the same way.</p>
+<p>Limit: nothing has posted through it yet, the channel is still switched off. Fifteen of the twenty are video, which takes a slower path.</p>
+<p class="proof">Proof: a throwaway post gained its second target, on the right board, twelve seconds after I created it.</p>
+</div>
+
+<div class="entry">
+<div class="date">22 August 2026</div>
+<h2>My Pinterest poster checks whose account it is holding</h2>
+<p>Before it creates anything, the worker reads which handle the window is signed in as and refuses on a mismatch or an unreadable answer. I added it while splitting the lane across a second brand.</p>
+<p>The first version asked a Pinterest resource endpoint, which answered 403 against a live window, so it reads the page's own bootstrap state instead. Limit: the second lane is off and has posted nothing, so only the check is proven.</p>
+<p class="proof">Proof: the shipped function lifted from the file and run against a live window, returning the right handle.</p>
+</div>
+
+<div class="entry">
+<div class="date">22 August 2026</div>
+<h2>My quiz tells a modest answerer from a careless one</h2>
+<p>Four statistics run over the raw answers. Agreeing with every line used to produce a confident named result. It now says the answers cannot make a reading, and gives the reasons.</p>
+<p>Every threshold sits outside the 99th percentile of 15,000 simulated honest respondents, so a cautious answerer still gets a full reading.</p>
+<p>Limits: the honest respondents are simulated. The check changes no score. My first threshold caught random clicking two thirds of the time and my own test failed it.</p>
+<p class="proof">Proof: 233 tests passing, and both cases side by side in the browser.</p>
+</div>
+<div class="entry">
+<div class="date">22 August 2026</div>
+<h2>A mailing list that reports its own drift</h2>
+<p>Adding a signup to my campaign audience is best effort, so a failure was possible by design and invisible by accident. Each failure path now logs who it dropped, and a daily check reads both sides and writes the difference into the run record.</p>
+<p>Limits: it reports drift, it does not repair it. Both sides currently hold one address.</p>
+<p class="proof">Proof: the audit returning one in each, in sync, against live data.</p>
+</div>
+<div class="entry">
+<div class="date">22 August 2026</div>
+<h2>Password links that work from any browser</h2>
+<p>My reset links carried a code that only completed in the browser that asked for it, so one opened from webmail did nothing. Links now carry a token the server verifies, and a dead link says whether it expired or was already used.</p>
+<p>Limits: links already sent use the old form, so both are handled. The sender change needs a dashboard.</p>
+<p class="proof">Proof: a bad token now redirects to a login page that explains it.</p>
+</div>
+<div class="entry">
+<div class="date">22 August 2026</div>
+<h2>A calendar that holds a vendor's date until a human ticks it</h2>
+<p>Automatic dates now reach a members-only calendar after review. A fetched earnings date is written unconfirmed and a row-level rule keeps it out of every member read. Published central bank dates are seeded and shown straight away.</p>
+<p>Limits: two release schedules are missing, the agency blocks this machine. The seeded list runs out in 2027.</p>
+<p class="proof">Proof: the member page shows the confirmed dates and none of the unconfirmed ones.</p>
+</div>
+<div class="entry">
+<div class="date">22 August 2026</div>
+<h2>A weekly note now arrives three quarters written</h2>
+<p>A publishing tool I built sat unused for a month because every week started from an empty form. A Friday job now assembles the week into a draft: what was published, what closed with real numbers, what is still open. The author writes only the judgement.</p>
+<p>Limits: the market view stays a human field on purpose. First live run is next Friday.</p>
+<p class="proof">Proof: the draft built from production data, wins and losses in the same list.</p>
+</div>
+<div class="entry">
+<div class="date">22 August 2026</div>
+<h2>My dispatch layer now fans work out to background scouts on both assistants</h2>
+<p>Switched on with the worker pinned to one chosen provider, so I know where background task text goes. A substantive prompt now plans eight read-only lanes; trivial ones get none, by design.</p>
+<p>The flip also explained the tool's failing tests: 36 fell to 19 once the switches were on, so that family was my kill switch, not the code.</p>
+<p>Limits: one machine. 19 remain, unchanged by the flags.</p>
+<p class="proof">Proof: the route plan naming eight lanes, and the two test counts.</p>
+</div>
+<div class="entry">
+<div class="date">22 August 2026</div>
+<h2>A one-command fix for hooks my second assistant silently drops</h2>
+<p>The tool disables any edited hook until a stored hash is renewed, with no error shown. My script asks the tool itself for each hook's current hash over its own API and writes trust back.</p>
+<p>Proven by breaking it first: 15 logged routes, one harmless edit, still 15. After the script, 16.</p>
+<p>Limits: one machine. The hash algorithm is internal, so the script reads it, never computes it.</p>
+<p class="proof">Proof: the route counts across the break and the fix.</p>
+</div>
+<div class="entry">
+<div class="date">22 August 2026</div>
+<h2>My routing layer now briefs both of my terminal assistants</h2>
+<p>The same dispatch hook that routes my first assistant now fires in my second, with six tool servers and 21 skills carried across as links. The first probe looked dead because untrusted hooks are skipped silently; trust is a hash written through its own config API.</p>
+<p>Limits: one machine. The servers are configured, not yet exercised. A hook edit breaks the hash and it goes silent.</p>
+<p class="proof">Proof: the route log naming both surfaces, and the doctor check listing seven servers.</p>
+</div>
+<div class="entry">
+<div class="date">22 August 2026</div>
+<h2>My two assistants read one standing brief instead of two</h2>
+<p>I made one file with two names, a symlink, so both tools open with it. The private lines came out first, duplicated where only one tool reads, so nothing was lost.</p>
+<p>Asked in an empty folder where my notes live, it answered from the brief in 1,357 tokens and confirmed the private lines were absent.</p>
+<p>Limits: one machine, two tools. An installer writing to the linked name would follow the link.</p>
+<p class="proof">Proof: both names, identical checksum, and the two answers.</p>
+</div>
+<div class="entry">
+<div class="date">22 August 2026</div>
+<h2>I measure an AI rewrite before anyone reviews it</h2>
+<p>An automated pass rewrote 191 passages of a product I build with two others. I scored each by the share of words that moved. 143 were light edits, 46 real rewrites, so the review became 46 decisions. Counting the deletions showed the light edits struck my own filler list.</p>
+<p>Limits: word overlap measures text moved, not meaning. A two word change that flips the sense hides in the bulk group.</p>
+<p class="proof">Proof: the review page, opening on the 46 with changed words marked in both versions.</p>
+</div>
+<div class="entry">
+<div class="date">22 August 2026</div>
+<h2>My team can rewrite their own comments on our shared review tool</h2>
+<p>A teammate could not edit hers. The server had always allowed it. The page had never grown a button. I wired one, and froze the comment rail while someone types, because it rebuilds every five seconds and would have eaten the edit.</p>
+<p>Limits: the existing suites run the page with no server, so this path needs its own check.</p>
+<p class="proof">Proof: live, with the same comment count before and after the deploy.</p>
+</div>
+<div class="entry">
+<div class="date">22 August 2026</div>
+<h2>My automation windows come back signed in after a restart</h2>
+<p>Eight browser windows drive the channels with no usable API. A scheduled job reopens any that are down, at login and every ten minutes, and reads a signed-in signal off each page so the session is confirmed rather than assumed. I proved it by killing a window outright: it came back logged in, no prompt.</p>
+<p>Limits: one window is held closed on purpose. A site redesign can break a signal.</p>
+<p class="proof">Proof: the agent log listing sign-in state for every window.</p>
+</div>
+<div class="entry">
+<div class="date">22 August 2026</div>
+<h2>My scheduler presses Post in my own browser now</h2>
+<p>Two of my channels have no publishing API I can use, so due posts became hand-post reminders. The browser lane runs from the scheduler now: it finds a due pack, drives my logged-in window, and marks the desk done only once the post shows on the public profile. One went out on its own tonight, unattended.</p>
+<p>Limits: one channel proven, a second wired and not yet cast. The window has to be open.</p>
+<p class="proof">Proof: the post the scheduler sent, live on my public profile.</p>
+</div>
+<div class="entry">
+<div class="date">22 August 2026</div>
+<h2>A membership site I built paints its member area while the data loads</h2>
+<p>A loading boundary on the member routes streams a skeleton while the data comes, so the page answers immediately instead of holding a frozen button. Live, three warm runs measure 2.4 seconds against 8.8 before.</p>
+<p>Limits: one pre-change measurement, so I cannot split that gain from a warm start. A cold start still takes 34 seconds.</p>
+<p class="proof">Proof: both button states and the skeleton, driven on the live site.</p>
+</div>
+<div class="entry">
+<div class="date">21 August 2026</div>
+<h2>My dispatch tool can route work to a model on my own machine</h2>
+<p>I added a local provider to a dispatch tool I run. A call routed by task class, naming no model, came back correct in 37 seconds on a 30B model on my laptop.</p>
+<p>An upgrade of the tool reverts my files, so the re-apply is a script with apply, check and revert. I proved it by reverting them: the check named all four missing edits and restored them.</p>
+<p>Limits: one machine. Two of the four files belong to someone else's repository. Token usage comes back empty.</p>
+<p class="proof">Proof: the routed call returning MYOS LOCAL PROVIDER OK with no model named in the request.</p>
+</div>
+<div class="entry">
 <div class="date">21 August 2026</div>
 <h2>My lead engine now emails me what its unattended runs found</h2>
 <p>My scheduler runs saved searches overnight, dedupes, enriches and pushes the results to a CRM. It now emails the account owner a digest of what changed. It stays silent when nothing is new, so a run that finds the same businesses as yesterday sends nothing at all. Change detection against the previous run is what decides.</p>
@@ -38,11 +172,11 @@
 </div>
 <div class="entry">
 <div class="date">21 August 2026</div>
-<h2>A DNS zone rebuilt by API, and a proof that nothing was missing</h2>
-<p>I rebuilt an eleven record zone on a new host by API and checked it against the live original, both directions.</p>
-<p>I also swept for records I had not thought to check. Ten mail-signing selectors, all absent, proved by running the same query against one I knew existed. My first control was invalid: the domain I picked does not use that selector.</p>
-<p>Limits: one zone. Nothing is live yet. Selector names are arbitrary, so absence is likely, not certain.</p>
-<p class="proof">Proof: the negative control caught three missing records.</p>
+<h2>A 1,544 page site moved hosts without dropping mail or a URL</h2>
+<p>I rebuilt the DNS zone by API, moved the nameservers, then repointed the site to a new stack. Mail records stayed identical throughout and I checked them after every change.</p>
+<p>The command line tool created two settings empty and reported success. Reading every setting back caught it before deploy.</p>
+<p>Limits: redirects sampled at 40 of 1,544. A human still sends the real email.</p>
+<p class="proof">Proof: old member bookmarks 301 into the new member area, mail records unchanged.</p>
 </div>
 <div class="entry">
 <div class="date">21 August 2026</div>
