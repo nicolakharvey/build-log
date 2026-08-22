@@ -63,6 +63,13 @@
 </div>
 <div class="entry">
 <div class="date">22 August 2026</div>
+<h2>Billing mail and content mail can now go to different inboxes</h2>
+<p>Two subscribers pay from one address and read their alerts at another, so a sign-in email went somewhere neither of them opens. Receipts and content now have separate fields, each with its own form, so changing one cannot move the other.</p>
+<p>Limits: with no preference set, billing still copies both addresses. Neither person has signed in yet.</p>
+<p class="proof">Proof: each account resolving to a different address per message type.</p>
+</div>
+<div class="entry">
+<div class="date">22 August 2026</div>
 <h2>A mailing list that reports its own drift</h2>
 <p>Adding a signup to my campaign audience is best effort, so a failure was possible by design and invisible by accident. Each failure path now logs who it dropped, and a daily check reads both sides and writes the difference into the run record.</p>
 <p>Limits: it reports drift, it does not repair it. Both sides currently hold one address.</p>
