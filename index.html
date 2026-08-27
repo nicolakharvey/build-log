@@ -429,6 +429,7 @@
 <p class="proof">Proof: this page, plus the checker in <code>~/.claude/hooks/build-log-check.py</code>.</p>
 </div>
 
+
 <div class="entry">
 <div class="date">19 August 2026</div>
 <h2>A publishing bridge that checks the public feed before reporting success</h2>
@@ -514,7 +515,6 @@
 <div class="date">4 August 2026</div>
 <h2>A mirror that removes what it stopped shipping</h2>
 <p>The push mirrors with delete, so an extension pulled from the package is pulled from the licensee's machine on their next upgrade. It also switches the publishing account for the push and puts the previous one back.</p><p>A mirror that only adds leaves withdrawn code running on someone else's machine forever. The credential helper follows whichever account is signed in, so the switch is what keeps a push under the right identity.</p>
-
 
 <p>Limit: the delete reaches the distribution repository. A copy the licensee has already taken out of it is beyond its reach.</p><p class="proof">Proof: the publish script restores the previous account after the push, and the distribution repo matches the staged output.</p>
 </div>
