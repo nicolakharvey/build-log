@@ -10,6 +10,8 @@
   body { margin:0; background:var(--paper); color:var(--ink); font:18px/1.7 Georgia, serif; }
   .wrap { max-width:680px; margin:0 auto; padding:56px 22px 100px; }
   h1 { font-size:2.1rem; margin:0 0 6px; }
+  .byline { font-family:-apple-system, sans-serif; font-size:.85rem; letter-spacing:.08em;
+            text-transform:uppercase; color:var(--accent); margin:0 0 14px; }
   .standfirst { color:var(--soft); font-style:italic; margin-bottom:8px; }
   .rule { color:var(--soft); font-size:.85rem; font-family:-apple-system, sans-serif; border-bottom:1px solid var(--line); padding-bottom:24px; margin-bottom:8px; }
   .entry { border-bottom:1px solid var(--line); padding:30px 0; }
@@ -26,332 +28,629 @@
 <div class="wrap">
 
 <h1>The Build Log</h1>
+<p class="byline">Nicola Harvey</p>
 <p class="standfirst">A dated record of what I build and how I prove it worked.</p>
 <p class="rule">Every entry here was working before it was written up. Each one names the build, the assurance check, the proof, and the limit. Dates are the dates things ran; nothing here is a plan or roadmap.</p>
 
 <div class="entry">
+<div class="date">27 August 2026</div>
+<h2>An adversarial test that assumes the model was fooled</h2>
+<p>test_injection.py feeds an agent a deliberately hostile feed and checks that nothing harmful can leave. Server instructions are stripped, hidden characters removed, invented post ids dropped, and an outbound firewall refuses anything sensitive.</p>
+<p>The claim it tests is not that the model resists injection. Small models often do not. It tests that the deterministic layers around the model make a fooled one harmless. That is the only claim that holds when the model is the part you cannot audit.</p>
+<p>Limit: it proves the layers hold against the hostile inputs it carries. A payload shaped unlike any of them is untested.</p>
+<p class="proof">Proof: twelve hostile scenarios, run without the model at all, then again against the real model call.</p>
+</div>
+
+<div class="entry">
+<div class="date">25 August 2026</div>
+<h2>A scheduled queue check that catches a year written as words</h2>
+<p>check-spelled-years.mjs reads my publishing queue twice a day and files an alert. Seven patterns cover century years, the 2000s, spoken twenty-twenties, round centuries and the long form, so "in seventeen hundred" and "nineteen hundred and six" both land.</p><p>A count and a year are the same words. "Seventeen hundred people" is correct and "in seventeen hundred" is a year, so the grammar around the number decides, not the number. Every pattern is written to stay silent where a count would sit.</p>
+<p>Limit: it reads queued posts. Anything typed straight into a platform bypasses it.</p><p>Limit: eleven and twelve are left out as century heads, because "twelve thirty" is a time. Years in the 1100s and 1200s are not caught.</p>
+
+<p class="proof">Proof: the scheduled run logs "Scanned 170 posts (queued only). No years spelled as words."</p>
+</div>
+<div class="entry">
+<div class="date">25 August 2026</div>
+<h2>Four rounds of a grader attacking my own tool</h2>
+<p>A grader that never saw the build attacked it and prescribed the fixes. Round three named the pattern behind three rounds of the same bug. Each rule was written from a property of legitimate text, then trusted to exclude everything else.</p><p>One rule assumed every base taking a presentation selector is non-ASCII. True, and the converse of what the code needed. It exempted 1.1 million code points, and a payload hid in ordinary text with smart quotes.</p>
+
+<p>Limit: three grading passes is the cap, then a human looks.</p><p>Limit: the grader prescribes only from what it can demonstrate, so a channel it never tried stays open.</p>
+
+<p class="proof">Proof: 213 tests, and every change in the last round is the grader's own prescription rather than mine.</p>
+</div>
+
+<div class="entry">
+<div class="date">24 August 2026</div>
+<h2>My worlds tell you how to begin</h2>
+<p>Every world arrives as one unlit point waiting for a touch. It lights that point, says so, and begins on its own after twelve seconds.</p><p>It had been running at sixty frames a second the whole time, and reading as frozen. The fix threw 2500 caught errors a run, hidden by the loop's safety net, while all three of my checks passed. The probes assert a clean log now.</p>
+
+<p>Limit: the probes read the log and the screen. They cannot tell whether a world is worth staying in.</p>
+<p class="proof">Proof: both dives say the line, the point lights on both, it begins at twelve seconds, no errors.</p>
+</div>
+<div class="entry">
+<div class="date">23 August 2026</div>
+<h2>A sign-in check that reads positive evidence, proved in both directions</h2>
+<p>check-bridge-logins.mjs opens a fresh tab on each automation window and looks for evidence the session is live. It reads a signed-in signal rather than the absence of a signed-out one.</p><p>I pointed it at a clean browser with no session and required it to report LOGGED OUT. An absent warning proves nothing on its own, so the check only counts positive evidence.</p>
+
+<p>Limit: it proves a session exists. It cannot prove the account behind it is the right one.</p>
+<p class="proof">Proof: a clean no-session browser still reads LOGGED OUT while all nine real windows read logged in.</p>
+</div>
+<div class="entry">
+<div class="date">23 August 2026</div>
+<h2>A publishing scheduler that sleeps until the next post is due</h2>
+<p>x-post-scheduler.mjs reads when the next post falls due and sleeps to that minute. lane-watchdog.mjs covers the process itself and restarts a wedged one.</p><p>Polling on a fixed interval buys accuracy with wasted work, and this one was waking 144 times a day for a single yes. Sleeping to the due time trades a poll loop for a long-lived process. The watchdog covers that trade.</p>
+
+<p>Limit: it decides when the poster runs. It posts nothing itself.</p><p>Limit: it schedules the X lane. Other channels keep their own timing.</p>
+<p class="proof">Proof: the log reads "next look in 240 min (next post at 22:00Z)."</p>
+</div>
+<div class="entry">
+<div class="date">23 August 2026</div>
+<h2>A reply worker that confirms a send by counting, not by looking</h2>
+<p>tiktok-comment-worker.mjs counts the replies under a comment before and after it posts, so a send is confirmed by a number that moved. It refuses any reply over 150 characters at approval, because the platform truncates those in silence and still reports success.</p><p>A presence check cannot verify a send on a comment that already has replies. Counting holds whatever state the target was already in. The worker confirms every action it takes that way.</p>
+
+<p>Limit: it confirms the reply appeared. It does not confirm the text survived.</p>
+<p class="proof">Proof: the reply is live under the comment and the queue is empty.</p>
+</div>
+<div class="entry">
+<div class="date">23 August 2026</div>
+<h2>A reply engine that reads the video, not just the caption</h2>
+<p>Videos carry a transcript into tiktok-comment-worker.mjs, and it reaches the model before the caption. A figure in a comment counts as substance, so the reply takes the full branch instead of the short one.</p><p>A comment answers the video. An engine reading only the caption answers a different question and sounds certain doing it. The persona is held to asserting no competing number.</p>
+
+<p>Limit: the transcript carries the spoken line. A figure shown on screen and never said is not read.</p>
+<p class="proof">Proof: the stored transcript reads "He has tens of times the scent receptors you do."</p>
+</div>
+<div class="entry">
+<div class="date">23 August 2026</div>
+<h2>A comment reader for a channel whose API returns nothing</h2>
+<p>tiktok-comment-worker.mjs reads comments through a browser already signed in, capturing the JSON the page requests rather than scraping the markup. It types back replies I approve, matching each on the commenter's name and exact words.</p><p>Capturing the request gives the same data the platform gives its own front end, which survives a redesign that breaks a scraper. The page exposes no comment id. Matching on name and exact words is what lands a reply on the right thread.</p>
+
+<p>Limit: it reads top-level comments. Nested replies are not read.</p><p>Limit: it works only while that browser window is open.</p>
+<p class="proof">Proof: ~/Library/Logs/tiktok-comments.log, five comments filed on the first run and none on the second.</p>
+</div>
+<div class="entry">
+<div class="date">23 August 2026</div>
+<h2>An X poster that asks the desk what is due before it opens a browser</h2>
+<p>x-post-worker.mjs queries the desk first, so on a quiet day the browser window is never opened. The identity check still runs before anything is typed.</p><p>An identity check costs a page load. Running it before the cheap question means paying that cost to prove something the run then uses for nothing. All four browser lanes now ask what is due first.</p>
+
+<p>Limit: it answers for the X lane. Each browser lane holds its own schedule.</p><p class="proof">Proof: the log now reads "nothing due for X, so the window was left alone."</p>
+</div>
+<div class="entry">
+<div class="date">23 August 2026</div>
+<h2>A build loop that writes, drives and looks at ten prototypes</h2>
+<p>Ten premises in, ten playable files out from one run. All ten parse and nine boot clean. A local coder model writes each one, a headless browser drives it, and a local vision model reads the screenshot.</p><p>The vision pass judges what the code cannot assert. It disagreed with all ten builds on the same point, and it caught five that ignore their own keys.</p>
+
+<p>Limit: the loop cannot tell whether any of them are fun.</p>
+<p class="proof">Proof: one report page carrying twenty screenshots, three per prototype for the ones that booted.</p>
+</div>
+<div class="entry">
+<div class="date">23 August 2026</div>
+<h2>A game forge where an unmarked rule is an unmade decision</h2>
+<p>The game-forge skill holds a spine of rules every build obeys. A style pack per genre marks each rule applies, inverts, adapts or not applicable, and gives a reason. One safety rule forbade a whole genre. That pack inverts it and says why.</p><p>Forcing a mark on every rule is what stops a genre skipping one. verify-ambient-toy.mjs is the runnable instrument for that style, gating responsiveness, aliveness and a performance soak. Its first run found one toy at 12fps and another throwing a 404.</p>
+
+<p>Limit: every instrument in the skill gates mechanics. None of them can tell whether a game is fun, and each pack names that blind spot in its own words.</p>
+<p class="proof">Proof: a 35-phrase sweep against the old version found one lost rule and I restored it, and every cross-reference across nineteen files resolves.</p>
+</div>
+<div class="entry">
+<div class="date">23 August 2026</div>
+<h2>An App Store client that signs its own Apple token</h2>
+<p>asc.py mints a short-lived App Store Connect JWT from my own key and carries four commands: doctor, state, builds and upload. upload_shots.py pushed sixteen screenshots, and Apple validated all sixteen and reported their dimensions back.</p><p>Signing the token locally keeps the key on my machine and out of any third-party dashboard. What's New is rejected on a first release, and the privacy label is not on the public API at all.</p>
+
+<p>Limit: it moves builds and screenshots. Listing text, categories, price and age rating are not on the path it drives.</p>
+<p class="proof">Proof: <a href="https://www.fluidfrontier.app" target="_blank" rel="noopener">fluidfrontier.app</a></p>
+</div>
+<div class="entry">
+<div class="date">23 August 2026</div>
+<h2>One share file that gives fifty-one toy pages a matching button</h2>
+<p>share.js carries the button across all fifty-one pages of the playground, and add-share.mjs installs it. On a toy it reads the computed style of that toy's own corner pill, so every palette matches with nothing written per toy.</p><p>It places itself by measuring. It scores candidate slots along the pill's own row against every visible control. It slides sideways, then nudges within the row, and takes the first slot that collides with nothing.</p>
+
+<p>Limit: it measures the DOM, so a control a toy paints inside its canvas is invisible to it.</p>
+<p class="proof">Proof: <a href="https://muplu.com/scurry/" target="_blank" rel="noopener">muplu.com/scurry</a></p>
+</div>
+<div class="entry">
+<div class="date">23 August 2026</div>
+<h2>An X poster that drives my own browser and proves the post landed</h2>
+<p>x-post-worker.mjs drives my logged-in Chrome, because the X API answers payment required on every write. It checks the handle and reads the composer back against the approved text. It carries up to four images and posts the first comment. It finds the post on my profile before marking it done.</p><p>A browser lane can report success at four points where nothing was sent. Reading the composer back, then finding the post on the public profile, are the two checks that close them.</p>
+
+<p>Limit: it never composes. It sends only posts already written and approved at the desk.</p><p>Limit: images only, so a video attachment is dropped and logged rather than sent.</p>
+<p class="proof">Proof: <a href="https://x.com/nicolakharvey/status/2091167889172930837" target="_blank" rel="noopener">the post it sent</a></p>
+</div>
+<div class="entry">
 <div class="date">22 August 2026</div>
-<h2>My nightly note summariser runs in 50 seconds</h2>
-<p>I benched the job's real prompt against two model sizes. The large one took 145 seconds and 1480 tokens to produce 228 characters. A model a third of the size took 33 seconds and 101 tokens to produce 430. I swapped it and the whole job now finishes in 50 seconds.</p>
-<p>The large model was a reasoning model, so it deliberated before writing bullets. It also needed most of the job's three minute timeout on an idle machine, so under load the job failed silently.</p>
-<p>Limits: one prompt shape, one machine. I compared speed and length, not quality.</p>
+<h2>A model-size bench that cut a note job from three minutes to fifty seconds</h2>
+<p>I ran sync.py's real prompt against two model sizes rather than a synthetic one. The large model took 145 seconds and 1480 tokens to produce 228 characters. A model a third of the size took 33 seconds and 101 tokens to produce 430. The job now finishes in 50 seconds.</p><p>The large model was a reasoning model, so it deliberated before writing bullets. Benching the job's own prompt is what surfaces that; a generic benchmark would have shown the bigger model ahead.</p>
+
+<p>Limit: one prompt shape on one machine, measured for speed and length rather than quality.</p>
 <p class="proof">Proof: 145.3s against 33.0s on the same prompt, and a live run finishing in 50 seconds.</p>
 </div>
 <div class="entry">
 <div class="date">22 August 2026</div>
-<h2>My desk mirrors every scheduled post to a second channel</h2>
-<p>A rule on the scheduler tick adds the second target itself, picking the destination board by matching the post text against my content pillars. It skips posts with no image and posts I label to opt out. I backfilled twenty already-published posts the same way.</p>
-<p>Limit: nothing has posted through it yet, the channel is still switched off. Fifteen of the twenty are video, which takes a slower path.</p>
-<p class="proof">Proof: a throwaway post gained its second target, on the right board, twelve seconds after I created it.</p>
+<h2>A scheduler rule that mirrors a post to a second board on its own</h2>
+<p>The rule runs on the scheduler tick and picks the destination board by matching the post text against my content pillars. It skips posts with no image and posts I label to opt out. I backfilled twenty already-published posts the same way.</p><p>On an account holding drafts, the publish button moves out of the header into the drafts sidebar as a bulk action. The poster ticks only the draft it made, so a bulk control cannot publish anything it did not create.</p>
+
+<p>Limit: it mirrors posts carrying an image. Text-only posts are skipped by design.</p><p>Limit: video takes a slower path than a still.</p><p class="proof">Proof: a throwaway post gained its second target, on the right board, twelve seconds after I created it.</p>
 </div>
 
 <div class="entry">
 <div class="date">22 August 2026</div>
-<h2>My Pinterest poster checks whose account it is holding</h2>
-<p>Before it creates anything, the worker reads which handle the window is signed in as and refuses on a mismatch or an unreadable answer. I added it while splitting the lane across a second brand.</p>
-<p>The first version asked a Pinterest resource endpoint, which answered 403 against a live window, so it reads the page's own bootstrap state instead. Limit: the second lane is off and has posted nothing, so only the check is proven.</p>
-<p class="proof">Proof: the shipped function lifted from the file and run against a live window, returning the right handle.</p>
+<h2>A Pinterest worker that reads which account the window is holding</h2>
+<p>pinterest-post-worker.mjs reads the signed-in handle from the page's own bootstrap state before it creates anything, and refuses on a mismatch or an unreadable answer. I added it while splitting the lane across a second brand's account.</p><p>A resource endpoint answers 403 against a live signed-in window, so the page's bootstrap state is the readable source. A browser lane driving two brands has no other way to know whose account it is about to post to.</p>
+
+<p>Limit: it never writes a description, picks a board or chooses a moment. Every pin it creates was written and scheduled elsewhere.</p><p>Limit: it reads the handle the page reports, not whether that account should be posting.</p><p class="proof">Proof: the shipped function lifted from the file and run against a live window, returning the right handle.</p>
 </div>
 
 <div class="entry">
 <div class="date">22 August 2026</div>
-<h2>My quiz tells a modest answerer from a careless one</h2>
-<p>Four statistics run over the raw answers. Agreeing with every line used to produce a confident named result. It now says the answers cannot make a reading, and gives the reasons.</p>
-<p>Every threshold sits outside the 99th percentile of 15,000 simulated honest respondents, so a cautious answerer still gets a full reading.</p>
-<p>Limits: the honest respondents are simulated. The check changes no score. My first threshold caught random clicking two thirds of the time and my own test failed it.</p>
+<h2>A quiz that refuses to give a reading the answers cannot support</h2>
+<p>Four statistics run over a personality instrument's raw answers and can withhold the result, saying which pattern in the answering stopped it. Agreeing with every line used to return a confident named type.</p><p>Every threshold sits outside the 99th percentile of 15,000 simulated honest respondents. Setting the cut from a simulated distribution is what lets a cautious answerer through while a careless one is caught.</p>
+
+<p>Limit: the honest respondents are simulated, not sampled.</p><p>Limit: the checks gate the reading. They change no score.</p>
 <p class="proof">Proof: 233 tests passing, and both cases side by side in the browser.</p>
 </div>
 <div class="entry">
 <div class="date">22 August 2026</div>
-<h2>Billing mail and content mail can now go to different inboxes</h2>
-<p>Two subscribers pay from one address and read their alerts at another, so a sign-in email went somewhere neither of them opens. Receipts and content now have separate fields, each with its own form, so changing one cannot move the other.</p>
-<p>Limits: with no preference set, billing still copies both addresses. Neither person has signed in yet.</p>
+<h2>Separate address fields for billing mail and content mail</h2>
+<p>Receipts and content each have their own field and their own form, so changing one cannot move the other.</p><p>One address per person assumes the payer and the reader are the same inbox. Two subscribers pay from one address and read their alerts at another, which sends every sign-in email somewhere neither of them opens.</p>
+<p>Limit: with no preference set, billing copies both addresses.</p>
 <p class="proof">Proof: each account resolving to a different address per message type.</p>
 </div>
 <div class="entry">
 <div class="date">22 August 2026</div>
-<h2>A mailing list that reports its own drift</h2>
-<p>Adding a signup to my campaign audience is best effort, so a failure was possible by design and invisible by accident. Each failure path now logs who it dropped, and a daily check reads both sides and writes the difference into the run record.</p>
-<p>Limits: it reports drift, it does not repair it. Both sides currently hold one address.</p>
+<h2>A mailing list that reports its own drift every day</h2>
+<p>Every failure path logs who it dropped, and a daily check reads both sides and writes the difference into the run record.</p><p>Adding a signup to a campaign audience is best effort, so a failure is possible by design and silent by default. A daily count of both sides is what turns a silent drop into a number someone can see.</p>
+<p>Limit: it reports drift. It does not repair it.</p>
 <p class="proof">Proof: the audit returning one in each, in sync, against live data.</p>
 </div>
+
 <div class="entry">
 <div class="date">22 August 2026</div>
-<h2>Password links that work from any browser</h2>
-<p>My reset links carried a code that only completed in the browser that asked for it, so one opened from webmail did nothing. Links now carry a token the server verifies, and a dead link says whether it expired or was already used.</p>
-<p>Limits: links already sent use the old form, so both are handled. The sender change needs a dashboard.</p>
-<p class="proof">Proof: a bad token now redirects to a login page that explains it.</p>
-</div>
-<div class="entry">
-<div class="date">22 August 2026</div>
-<h2>A calendar that holds a vendor's date until a human ticks it</h2>
-<p>Automatic dates now reach a members-only calendar after review. A fetched earnings date is written unconfirmed and a row-level rule keeps it out of every member read. Published central bank dates are seeded and shown straight away.</p>
-<p>Limits: two release schedules are missing, the agency blocks this machine. The seeded list runs out in 2027.</p>
+<h2>A calendar that will not show a vendor's date until a human ticks it</h2>
+<p>A fetched earnings date is written unconfirmed and a row-level rule keeps it out of every member read until someone confirms it. Published central bank dates are seeded and shown straight away.</p><p>The gate sits on the row, not on the page. A query written later that never heard of the rule still cannot return an unconfirmed date.</p>
+<p>Limit: two vendors publish no schedule this machine can reach.</p>
 <p class="proof">Proof: the member page shows the confirmed dates and none of the unconfirmed ones.</p>
 </div>
 <div class="entry">
 <div class="date">22 August 2026</div>
-<h2>A weekly note now arrives three quarters written</h2>
-<p>A publishing tool I built sat unused for a month because every week started from an empty form. A Friday job now assembles the week into a draft: what was published, what closed with real numbers, what is still open. The author writes only the judgement.</p>
-<p>Limits: the market view stays a human field on purpose. First live run is next Friday.</p>
+<h2>A Friday job that assembles the week into a draft note</h2>
+<p>The research-draft cron reads what was published, what closed with real numbers and what is still open, then writes them into the standard note. The author adds the judgement.</p><p>An empty form is the reason a weekly note gets skipped. Assembling the facts from production data leaves only the part a person has to write.</p>
+<p>Limit: the market view stays a human field on purpose.</p>
 <p class="proof">Proof: the draft built from production data, wins and losses in the same list.</p>
 </div>
 <div class="entry">
 <div class="date">22 August 2026</div>
-<h2>My dispatch layer now fans work out to background scouts on both assistants</h2>
-<p>Switched on with the worker pinned to one chosen provider, so I know where background task text goes. A substantive prompt now plans eight read-only lanes; trivial ones get none, by design.</p>
-<p>The flip also explained the tool's failing tests: 36 fell to 19 once the switches were on, so that family was my kill switch, not the code.</p>
-<p>Limits: one machine. 19 remain, unchanged by the flags.</p>
-<p class="proof">Proof: the route plan naming eight lanes, and the two test counts.</p>
+<h2>A dispatch tool that fans work to background scouts on both assistants</h2>
+<p>It runs with the worker pinned to one chosen provider, so I know where background task text goes. A substantive prompt plans eight read-only lanes. Trivial prompts get none, by design.</p><p>Work sent to a lane is still my text, and an unpinned worker chooses where it lands. Switching it on also explained the tool's own failing tests: 36 fell to 19 once the flags were set.</p>
+
+<p>Limit: one machine.</p>
+<p class="proof">Proof: the route plan naming eight lanes, and the two test counts. Built on <a href="https://github.com/josephtandle/myos-dispatch" target="_blank" rel="noopener">myos-dispatch</a>.</p>
 </div>
 <div class="entry">
 <div class="date">22 August 2026</div>
-<h2>A one-command fix for hooks my second assistant silently drops</h2>
-<p>The tool disables any edited hook until a stored hash is renewed, with no error shown. My script asks the tool itself for each hook's current hash over its own API and writes trust back.</p>
-<p>Proven by breaking it first: 15 logged routes, one harmless edit, still 15. After the script, 16.</p>
-<p>Limits: one machine. The hash algorithm is internal, so the script reads it, never computes it.</p>
+<h2>One command that re-trusts hooks my second assistant silently drops</h2>
+<p>codex-retrust asks the tool itself for each hook's current hash over its own config API and writes trust back. A --check run reports status and changes nothing.</p><p>The tool disables an edited hook until its stored hash is renewed, and shows no error when it does. Proven by breaking it first: 15 logged routes, one harmless edit, still 15. After the script, 16.</p>
+
+<p>Limit: one machine. The hash algorithm is internal, so the script reads it, never computes it.</p>
 <p class="proof">Proof: the route counts across the break and the fix.</p>
 </div>
 <div class="entry">
 <div class="date">22 August 2026</div>
-<h2>My routing layer now briefs both of my terminal assistants</h2>
-<p>The same dispatch hook that routes my first assistant now fires in my second, with six tool servers and 21 skills carried across as links. The first probe looked dead because untrusted hooks are skipped silently; trust is a hash written through its own config API.</p>
-<p>Limits: one machine. The servers are configured, not yet exercised. A hook edit breaks the hash and it goes silent.</p>
-<p class="proof">Proof: the route log naming both surfaces, and the doctor check listing seven servers.</p>
+<h2>One routing layer that briefs both of my terminal assistants</h2>
+<p>The same dispatch hook that routes my first assistant fires in my second, with seven tool servers and 21 skills carried across as links.</p><p>Carrying them as links rather than copies means one edit reaches both surfaces. Trust is a hash written through the tool's own config API, so a configured server is not a reachable one until that is set.</p>
+<p>Limit: one machine.</p>
+<p class="proof">Proof: the route log naming both surfaces, and the doctor check listing seven servers. Built on <a href="https://github.com/josephtandle/myos-dispatch" target="_blank" rel="noopener">myos-dispatch</a>.</p>
 </div>
 <div class="entry">
 <div class="date">22 August 2026</div>
-<h2>My two assistants read one standing brief instead of two</h2>
-<p>I made one file with two names, a symlink, so both tools open with it. The private lines came out first, duplicated where only one tool reads, so nothing was lost.</p>
-<p>Asked in an empty folder where my notes live, it answered from the brief in 1,357 tokens and confirmed the private lines were absent.</p>
-<p>Limits: one machine, two tools. An installer writing to the linked name would follow the link.</p>
+<h2>One standing brief under two names, so both assistants read the same file</h2>
+<p>A symlink gives the brief the name each tool looks for, so both open the same bytes. Asked in an empty folder where my notes live, it answered from the brief in 1,357 tokens.</p><p>The private lines came out of the shared file first and live on in the file only one tool reads. A brief that two tools share cannot hold anything only one of them should see.</p>
+
+<p>Limit: one machine, two tools.</p><p>Limit: an installer writing to the linked name would follow the link.</p>
 <p class="proof">Proof: both names, identical checksum, and the two answers.</p>
 </div>
 <div class="entry">
 <div class="date">22 August 2026</div>
-<h2>I measure an AI rewrite before anyone reviews it</h2>
-<p>An automated pass rewrote 191 passages of a product I build with two others. I scored each by the share of words that moved. 143 were light edits, 46 real rewrites, so the review became 46 decisions. Counting the deletions showed the light edits struck my own filler list.</p>
-<p>Limits: word overlap measures text moved, not meaning. A two word change that flips the sense hides in the bulk group.</p>
+<h2>A rewrite scorer that turns 191 passages into 46 decisions</h2>
+<p>build-doc.mjs scores each rewritten passage by the share of words that moved, then builds a review page opening on the ones that changed most. Of 191 passages an automated pass produced, 143 scored as light edits and 46 as real rewrites.</p><p>A reviewer reading 191 passages in order gives the same attention to a comma as to a rewritten paragraph. Ranking by words moved puts the decisions first. Counting the deletions separately showed the light edits were striking my own filler list.</p>
+<p>Limit: word overlap measures text moved, not meaning. A two-word change that flips the sense sits in the bulk group.</p>
 <p class="proof">Proof: the review page, opening on the 46 with changed words marked in both versions.</p>
 </div>
 <div class="entry">
 <div class="date">22 August 2026</div>
-<h2>My team can rewrite their own comments on our shared review tool</h2>
-<p>A teammate could not edit hers. The server had always allowed it. The page had never grown a button. I wired one, and froze the comment rail while someone types, because it rebuilds every five seconds and would have eaten the edit.</p>
-<p>Limits: the existing suites run the page with no server, so this path needs its own check.</p>
+<h2>Comment editing on our review tool, with the rail frozen while you type</h2>
+<p>The review Worker had always allowed a teammate to edit her own comment; the page had no button for it. I wired one, and froze the comment rail while someone is typing.</p><p>The rail rebuilds every five seconds. A live-refreshing list will eat an in-progress edit, so any surface that polls has to stop polling while a field is open.</p>
+<p>Limit: it edits a comment's text. It cannot recover what the comment said before.</p>
 <p class="proof">Proof: live, with the same comment count before and after the deploy.</p>
 </div>
 <div class="entry">
 <div class="date">22 August 2026</div>
-<h2>My automation windows come back signed in after a restart</h2>
-<p>Eight browser windows drive the channels with no usable API. A scheduled job reopens any that are down, at login and every ten minutes, and reads a signed-in signal off each page so the session is confirmed rather than assumed. I proved it by killing a window outright: it came back logged in, no prompt.</p>
-<p>Limits: one window is held closed on purpose. A site redesign can break a signal.</p>
-<p class="proof">Proof: the agent log listing sign-in state for every window.</p>
+<h2>Automation windows that come back signed in after a restart</h2>
+<p>Eight browser windows drive the channels with no usable API. A launchd job reopens any that are down, at login and every 45 minutes. It reads a signed-in signal off each page, so a session is confirmed rather than assumed.</p><p>I proved it by killing a window outright. It came back logged in, with no prompt. A recovery path nobody has triggered on purpose is a guess.</p>
+<p>Limit: a site redesign can break the signal it reads.</p>
+<p class="proof">Proof: the launchd log listing sign-in state for every window.</p>
 </div>
 <div class="entry">
 <div class="date">22 August 2026</div>
-<h2>My scheduler presses Post in my own browser now</h2>
-<p>Two of my channels have no publishing API I can use, so due posts became hand-post reminders. The browser lane runs from the scheduler now: it finds a due pack, drives my logged-in window, and marks the desk done only once the post shows on the public profile. One went out on its own tonight, unattended.</p>
-<p>Limits: one channel proven, a second wired and not yet cast. The window has to be open.</p>
+<h2>A scheduler that presses Post in my own browser and checks the profile</h2>
+<p>The browser lane runs from the scheduler. It finds a due pack, drives my logged-in window, and marks the desk done only once the post shows on the public profile. One went out on its own, unattended.</p><p>Two of my channels have no publishing API I can use. Driving the browser is the only path, and the public profile is the only honest confirmation that the press worked.</p>
+<p>Limit: the browser window has to be open for a lane to run.</p>
 <p class="proof">Proof: the post the scheduler sent, live on my public profile.</p>
 </div>
 <div class="entry">
 <div class="date">22 August 2026</div>
-<h2>A membership site I built paints its member area while the data loads</h2>
-<p>A loading boundary on the member routes streams a skeleton while the data comes, so the page answers immediately instead of holding a frozen button. Live, three warm runs measure 2.4 seconds against 8.8 before.</p>
-<p>Limits: one pre-change measurement, so I cannot split that gain from a warm start. A cold start still takes 34 seconds.</p>
+<h2>A member area that paints while its data loads</h2>
+<p>A loading boundary on the member routes streams a skeleton while the data resolves. Three warm runs on the live site measure 2.4 seconds against 8.8 before.</p><p>Streaming a skeleton puts the wait behind something a person can read, and the route answers on the first byte rather than the last.</p>
+<p>Limit: the skeleton covers the warm route. A cold start still waits 34 seconds.</p>
 <p class="proof">Proof: both button states and the skeleton, driven on the live site.</p>
 </div>
 <div class="entry">
 <div class="date">21 August 2026</div>
-<h2>My dispatch tool can route work to a model on my own machine</h2>
-<p>I added a local provider to a dispatch tool I run. A call routed by task class, naming no model, came back correct in 37 seconds on a 30B model on my laptop.</p>
-<p>An upgrade of the tool reverts my files, so the re-apply is a script with apply, check and revert. I proved it by reverting them: the check named all four missing edits and restored them.</p>
-<p>Limits: one machine. Two of the four files belong to someone else's repository. Token usage comes back empty.</p>
-<p class="proof">Proof: the routed call returning MYOS LOCAL PROVIDER OK with no model named in the request.</p>
+<h2>A dispatch tool routing work to a model on my own machine</h2>
+<p>I added a local provider to the dispatch tool I run. A call routed by task class, naming no model, came back correct in 37 seconds on a 30B model on my laptop.</p><p>Routing by task class rather than by model name is what lets a local provider take work without every caller being changed. The call names what the job is, and the router decides where it goes.</p>
+
+<p>Limit: one machine.</p><p>Limit: a tool upgrade reverts two of the four edited files.</p><p>Limit: the local provider reports no token usage.</p>
+<p class="proof">Proof: the routed call returning MYOS LOCAL PROVIDER OK with no model named in the request. Built on <a href="https://github.com/josephtandle/myos-dispatch" target="_blank" rel="noopener">myos-dispatch</a>.</p>
 </div>
 <div class="entry">
 <div class="date">21 August 2026</div>
-<h2>My lead engine now emails me what its unattended runs found</h2>
-<p>My scheduler runs saved searches overnight, dedupes, enriches and pushes the results to a CRM. It now emails the account owner a digest of what changed. It stays silent when nothing is new, so a run that finds the same businesses as yesterday sends nothing at all. Change detection against the previous run is what decides.</p>
-<p>Limits: the opt-out is separate from the prospect unsubscribe list, so turning it off cannot change who may be contacted. It sends through the operator's own mail provider. Nobody has received one in production yet.</p>
+<h2>An operator digest that shares nothing with the outreach layer</h2>
+<p>The overnight worker runs saved searches, dedupes, enriches and pushes results to a CRM, then emails the account owner what changed. It carries its own signed token and its own opt-out, sharing nothing with outreach but the transport.</p><p>An operator's own address must never land on the list that decides who can be emailed as a prospect. Running an account email through the lawful-basis floor and the suppression list would be a category error. It touches neither.</p>
+<p>Limit: it reports change against a stored baseline, so a first run has no news to report.</p>
 <p class="proof">Proof: 32 checks, including a first run that reports no news because it has no baseline to compare against.</p>
 </div>
 <div class="entry">
 <div class="date">21 August 2026</div>
-<h2>A 1,544 page site moved hosts without dropping mail or a URL</h2>
-<p>I rebuilt the DNS zone by API, moved the nameservers, then repointed the site to a new stack. Mail records stayed identical throughout and I checked them after every change.</p>
-<p>The command line tool created two settings empty and reported success. Reading every setting back caught it before deploy.</p>
-<p>Limits: redirects sampled at 40 of 1,544. A human still sends the real email.</p>
+<h2>A host move that kept 1,544 URLs and every mail record</h2>
+<p>I rebuilt the DNS zone through the API, moved the nameservers, then repointed the site to a new stack, checking the mail records after every change. verify-legacy-redirects.mjs drives every branch of the redirect resolver and fetches each destination live.</p><p>The command line tool created two settings empty and reported success. Reading every setting back beats trusting an exit code, and it caught them before deploy.</p>
+
+<p>Limit: it proves every rule resolves and every destination is alive. Whether a given old URL went to the most topical page was a judgement made when the rule was written.</p>
 <p class="proof">Proof: old member bookmarks 301 into the new member area, mail records unchanged.</p>
 </div>
 <div class="entry">
 <div class="date">21 August 2026</div>
-<h2>My model routing check now runs the route, not just the config</h2>
-<p>I wrote a check that resolves my eight task classes across three auth lanes, validates each candidate the way the executor would, then calls it for real.</p>
-<p>Validating alone had passed everything. Executing found that only one of my three providers can authenticate, and that the one local route I had just configured dies on a script the tool never shipped.</p>
-<p>Limits: one machine. It tests routing and auth, not answer quality.</p>
+<h2>A routing check that calls the route instead of reading the config</h2>
+<p>It resolves eight task classes across three auth lanes, validates each candidate the way the executor would, then calls it for real.</p><p>Validation alone passed everything. Executing found that only one of three providers can authenticate, and that a route configured minutes earlier dies on a script the tool never included. A config a machine agrees with is not a route that answers.</p>
+
+<p>Limit: it tests routing and auth, never answer quality.</p>
 <p class="proof">Proof: the resolve, validate and execute pass across 22 lanes.</p>
 </div>
 <div class="entry">
 <div class="date">21 August 2026</div>
-<h2>Reach diagnosis by grouping my own posts</h2>
-<p>I grouped 108 of my AI influencer's published posts by source media. Images had a median of 6 views and never passed 11 in 28 attempts. Video had a median of 64 and held every spike.</p>
-<p>I built a converter that turns a still into a vertical video with a slow push and a music bed, matched to my own best performer, then converted 31 scheduled posts. The first two published at 23 and 124 views.</p>
-<p>Limits: two posts so far. One account. The converter makes a still move, it does not make it better.</p>
+<h2>A converter that turns a still into a vertical video</h2>
+<p>still-to-reel.mjs applies a slow push and a music bed, matched to my own best performer. I converted 31 scheduled posts, and the first two published at 23 and 124 views.</p><p>I grouped 108 of my AI influencer's published posts by source media before building anything. Images ran a median of 6 views and never passed 11 in 28 attempts. Video ran a median of 64 and held every spike.</p>
+
+<p>Limit: one account.</p><p>Limit: the converter makes a still move. It cannot make a weak still worth watching.</p>
 <p class="proof">Proof: the before and after view counts on the first two converted posts.</p>
 </div>
 <div class="entry">
 <div class="date">21 August 2026</div>
-<h2>Sandboxed safety test for a git checkpointing tool</h2>
-<p>I reviewed a local Git checkpointing tool before letting it near real work. The source had no external dependencies, no network path, no scheduler, and every destructive command behind a full typed confirmation phrase. Then I tested the safety claim in a container against four decoy repositories.</p>
-<p>Before running the real tool, I ran a deliberately destructive fake version to prove my comparison would catch damage. It did: four failures, one for each decoy. The real tool then produced no working-tree changes.</p>
-<p>Limits: four small decoy repositories, one run, inside a container rather than on the machine it is meant to protect.</p>
+<h2>A sandboxed test that proves its own instrument before it trusts a tool</h2>
+<p>I read the checkpointing tool's source first: no external dependencies, no network path, no scheduler, and every destructive command behind a full typed confirmation phrase. Then I tested it in a container against four decoy repositories.</p><p>I ran a deliberately destructive fake version first, to prove the comparison would catch damage. It did, with four failures, one per decoy. The real tool then produced no working-tree changes.</p>
+
+<p>Limit: it runs in a container against four small decoy repositories, not on the machine it is meant to protect.</p>
 <p class="proof">Proof: before/after comparisons showing four failures on the fake and none on the real tool.</p>
 </div>
 
 <div class="entry">
 <div class="date">21 August 2026</div>
-<h2>Backup verification by host state, not push output</h2>
-<p>A finished iPhone app had one starter-template commit while nearly eight thousand lines of screens and app state were still untracked. I swept for secrets, committed the work, made the remote private, and verified the backup by asking GitHub what it actually held rather than trusting the local push.</p>
-<p>That changed the test I use for my project estate. A backup is not "git push succeeded." A backup is: the host reports the repo private when it should be private, the remote branch matches the local branch, there is nothing unpushed, and the files I care about are present on the host.</p>
-<p>Limits: some repositories in the scan are scratch work, and private repositories cannot be used as public proof.</p>
+<h2>A backup test that asks the host what it holds</h2>
+<p>Four conditions, all read from the host rather than from local push output. The repository is private when it should be private. The remote branch matches the local branch. Nothing sits unpushed. The files I care about are present on the host.</p><p>A successful push is a claim about what left the machine, not about what arrived. Asking the host found a finished iPhone app carrying one starter-template commit, with nearly eight thousand lines of screens untracked.</p>
+
+<p>Limit: a private repository cannot be shown as public proof.</p>
 <p class="proof">Proof: GitHub's own report: private repo, matching branch, no unpushed commits, and the app screens listed remotely.</p>
 </div>
 
 <div class="entry">
 <div class="date">21 August 2026</div>
-<h2>Android build verification beyond a green build</h2>
-<p>PulseMerge built as an Android app, but I checked what the build produced rather than stopping at "build succeeded." The debug APK existed and the game bundle was byte-identical inside it, but the launcher icon was 9,441 bytes while the iPhone source icon was 544,839 bytes. Capacitor had generated placeholder art, and the build system had no reason to care.</p>
-<p>I regenerated the Android icon and splash from the game's own visual system, not from a separate design file that could drift from the product. Then I rebuilt and checked the package again. The APK moved from 4.0MB to 6.7MB, with the real branded assets present.</p>
-<p>Limits: built and inspected, but not yet run as a played session on an Android phone.</p>
-<p class="proof">Proof: Android debug APK built and inspected; the game files inside matched the source, and the placeholder launcher art was replaced with regenerated PulseMerge assets.</p>
+<h2>My Android build check opens the package and reads what is inside</h2>
+<p>It goes past "build succeeded" to the artefact itself. On an Android build it confirmed the debug APK existed and the game bundle was byte-identical inside it. It then measured the launcher icon at 9,441 bytes against a source icon of 544,839 bytes. Capacitor had generated placeholder art.</p><p>I regenerated the icon and splash from the game's own visual system, so they cannot drift from the product. The rebuilt APK moved from 4.0MB to 6.7MB with the real branded assets present.</p>
+
+<p>Limit: it inspects the package, never a played session on an Android phone.</p>
+<p class="proof">Proof: Android debug APK built and inspected; the game files inside matched the source, and the placeholder launcher art was replaced with regenerated branded assets.</p>
 </div>
 
 <div class="entry">
 <div class="date">21 August 2026</div>
-<h2>Browser interaction test for pages that returned 200 but were dead</h2>
-<p>Four new web pages returned 200, passed type checks and lint, and looked correct in screenshots. They still did not work. I had served the site on one local hostname and opened it on its twin, so the framework refused to serve the scripts to that origin. A screenshot could not catch it because the static page still rendered.</p>
-<p>The useful test was not "does the page load?" It was "can a user action change state?" I added a browser walk that clicked a control and asserted that the page responded. That caught the dead JavaScript immediately and gave me a repeatable check for this class of failure.</p>
-<p>Limits: dev-mode origin issue only; production builds do not carry the same local-hostname behavior.</p>
+<h2>A page test that clicks a control and asserts the page answered</h2>
+<p>It drives each page and requires a user action to change state. It caught four pages that returned 200, passed type checks and lint, and rendered correctly in screenshots while their JavaScript was dead.</p><p>The site was served on one local hostname and opened on its twin, so the framework refused the scripts to that origin. A static page still paints without them. Only a click reaches that failure.</p>
+
+<p>Limit: the origin fault is dev-mode only, and production builds do not carry that behaviour.</p>
 <p class="proof">Proof: dev-server log naming the disallowed origin, plus before/after browser-walk transcripts.</p>
 </div>
 
 <div class="entry">
 <div class="date">21 August 2026</div>
-<h2>Multi-agent product strategy audit</h2>
-<p>Ten product concepts came out of a chat. Instead of picking by taste, I used agents as reviewers and adversaries. Five checked claims against my repositories, two drafted rival strategies, one merged the strongest plan, and three attacked the result for weak assumptions, already-built work, and missing proof.</p>
-<p>The useful result was not the number of agents. It was that the process treated my own machine as the source of truth. Three of the ten ideas were already built locally and unpublished, which would have been missed by a normal brainstorming pass. The run turned a loose list into a checked strategy in eighteen minutes.</p>
-<p>Limits: one run, private live strategy, and the reviewers use the same family of models as the builders.</p>
+<h2>A strategy audit that checks every claim against my own disk</h2>
+<p>Eleven agents took a list of ten product concepts. Five checked each claim against my repositories. Two drafted rival strategies. One merged the strongest. Three attacked the result for weak assumptions, already-built work and missing proof.</p><p>Treating the machine as the source of truth is what a brainstorm cannot do. It found three of the ten already built locally and unpublished, in eighteen minutes.</p>
+
+<p>Limit: the reviewers use the same family of models as the builders.</p><p>Limit: the output is current strategy, so the forty findings stay private.</p>
 <p class="proof">Proof: forty findings held privately because the output contains current strategy.</p>
 </div>
 
 <div class="entry">
 <div class="date">21 August 2026</div>
-<h2>Full-corpus parser audit across six years of research pages</h2>
-<p>A script pulled write-ups out of six years of weekly research documents. It appeared to work because I kept testing the same page shape. When I ran it across the full archive, 21 pages parsed as empty. The problem was human consistency: one person had written the same line four different ways over the years, and the parser only recognized one.</p>
-<p>I changed the verification from a sample page to all 695 pages, added the missing variants, and used the archive's weekday pattern to resolve ambiguous dates where that was safe. Coverage moved from 86% to 95%.</p>
-<p>Limits: the weekday rule is archive-specific and should not be reused as a general date parser.</p>
+<h2>A parser that reads six years of one person's changing habits</h2>
+<p>match-reports.py pulls write-ups out of weekly research documents. It recognises the four different ways one person wrote the same line over six years. It uses the archive's weekday pattern to resolve ambiguous dates where that is safe.</p><p>I moved its verification from a sample page to all 695 pages. Coverage went from 86% to 95%, and 21 pages that had parsed as empty now read.</p>
+
+<p>Limit: matching is exact, never fuzzy. A block whose wording drifted past the known variants stays unattached.</p><p>Limit: the weekday rule is specific to this archive and is not a general date parser.</p>
 <p class="proof">Proof: before/after diff over all 695 pages, re-run from the committed script.</p>
 </div>
 
 <div class="entry">
 <div class="date">21 August 2026</div>
-<h2>Incentive regression test for PulseMerge</h2>
-<p>PulseMerge is meant to reward bold play more than careful play. It had passed 31 checks while doing the opposite. Three separate faults combined into one bad incentive: a multiplier was read after the move resolved, pressure paid out without effort, and the difficulty curve advanced in a way that gave cautious play the easier path.</p>
-<p>The fix was to test the incentive as a relationship, not as isolated mechanics. I simulated a bold player and a timid player against the same rules and required the bold strategy to win. That comparison found the failure pattern that ordinary feature checks missed.</p>
-<p>Limits: simulated players only, and the Android version has not yet been play-tested on a phone.</p>
-<p class="proof">Proof: live PulseMerge build at <a href="https://muplu.com/pulsemerge/">muplu.com/pulsemerge</a>, with 53 checks against the live site.</p>
+<h2>A verification battery whose checks were locked before the code existed</h2>
+<p>verify-pulsemerge.mjs runs against the minified build, never the source. Its header records that the checks were quoted from the concept sheet before a line of the game was written. The builder may fix the game and never the gates.</p><p>Checks written after the code tend to describe what the code does. Locking them to the sheet first is what let this battery gate a build that had passed 31 of its own.</p>
+
+<p>Limit: the gates are mechanical, so none of them can tell whether a human enjoys the result.</p>
+<p class="proof">Proof: the live build at <a href="https://muplu.com/pulsemerge/" target="_blank" rel="noopener">muplu.com/pulsemerge</a>, with 53 checks against the live site.</p>
 </div>
 
 <div class="entry">
 <div class="date">20 August 2026</div>
-<h2>Offline verification for a retiring site archive</h2>
-<p>A twenty-year-old site was being retired, so I archived 1,561 pages. The important check was not whether the archive looked fine while the old site still answered. I tested it as if the original host were already gone.</p>
-<p>That exposed the failures a casual check would miss: lazy-loaded images saving as blanks, internal links still pointing at the old host, and a filename-shortening rule that removed the extension from the main stylesheet. That last bug would have left 673 pages rendering bare after the source disappeared.</p>
-<p>Limits: a machine verified the structure and links; nobody manually read all 1,561 archived pages.</p>
+<h2>My archive check tests a site as if its host were already gone</h2>
+<p>It verified 1,561 pages of a twenty-year-old site being retired, with the original host treated as already dead.</p><p>That caught lazy-loaded images saving as blanks and internal links still pointing at the old host. It also caught a filename-shortening rule that stripped the extension from the main stylesheet. That one bug would have left 673 pages rendering bare once the source disappeared.</p>
+
+<p>Limit: it verifies structure and links, never whether a page still reads correctly.</p>
 <p class="proof">Proof: 35,218 internal links resolve locally and nothing points back to the old host.</p>
 </div>
 
 <div class="entry">
 <div class="date">20 August 2026</div>
-<h2>Gentle daily app for Maya Foxten's audience</h2>
-<p>I built a small app for Maya Foxten's audience around one minute a day with a dog. The interaction is intentionally low-pressure: walk, press a paw into the sand, and receive one short lesson that washes up for the day. The app keeps a thirty-day shelf of finds, including seven lessons in Maya's cloned voice.</p>
-<p>The product decision matters as much as the build. There is no punishment loop: no streak loss, no missed-day scolding, and no declining count. For this audience, the assurance work is not only technical. It is making sure the app's mechanics do not contradict the calm practice it teaches.</p>
-<p>Limits: the audience is small, so this is still a product bet.</p>
+<h2>A daily app with no punishment loop</h2>
+<p>An installable web app with a service worker, so it opens from the home screen and works offline. One minute a day: you walk, press a paw into the sand, and one short lesson washes up. It keeps a thirty-day shelf of finds, and seven lessons are in a cloned voice.</p><p>The mechanics carry the same decision as the content. No streak to lose, no scolding for a missed day, no declining count.</p>
+
+<p>Limit: it keeps a thirty-day shelf. A find older than that is gone.</p>
 <img src="walk-ritual-app.png" alt="Two phone screens over a night beach photograph: the left offers today's practice above a circular paw button, the right shows a lesson card with a photographed spiral shell" width="788" height="570">
 <p class="proof">Proof: live app screen over the night beach, with today's practice and saved lesson card.</p>
 </div>
 
 <div class="entry">
 <div class="date">20 August 2026</div>
-<h2>Build-log freshness check from commit history</h2>
-<p>I had written the rule to keep this build log current in three places, and it still fell twelve days behind. That proved the rule was not a system. I added a check that reads two factual sources: commit history across project folders, and the dates already present in the build-log page.</p>
-<p>The check reports work days with commits and no ledger entry, and it separately reports if the ledger itself is dirty or unpushed. It includes a waiver list, because a check that complains about work I have deliberately decided not to write up will become noise and get ignored.</p>
-<p>Limits: it only sees work that touched a tracked folder.</p>
+<h2>A ledger check that reads commit history and names what went unwritten</h2>
+<p>It compares commits across project folders against the dates already on this page, then reports work days with commits and no entry. It reports separately when the ledger is dirty or unpushed. A waiver list covers work I decided not to write up.</p><p>It reads two factual sources: the commits, and the dates on the page. Neither can be argued with.</p>
+
+<p>Limit: it only sees work that touched a tracked folder.</p>
 <p class="proof">Proof: this page, plus the checker in <code>~/.claude/hooks/build-log-check.py</code>.</p>
 </div>
 
 <div class="entry">
 <div class="date">19 August 2026</div>
-<h2>Medium publishing bridge with human and public-feed gates</h2>
-<p>Medium retired its publishing API, so I built a browser bridge driven over the Chrome DevTools Protocol. One command stages a complete story: title, cover image, formatted body, and draft state. It uses a dedicated browser profile, screenshots each step, and never handles credentials. If the profile is not signed in, it stops and asks for a human login.</p>
-<p>The bridge later gained a controlled publish path: it can add topics and press publish when I explicitly schedule that, but it refuses to call the job done until the story appears in the public Medium feed. A click is not a post.</p>
-<p>Limits: it depends on Medium's browser UI, so it is monitored and falls back to a reminder rather than silently losing a story.</p>
-<p class="proof">Proof: <a href="https://medium.com/@nicolakharvey/the-48-characters-i-could-not-see-d6c8316c1643">the first essay it staged</a> and the bridge code in Social Command.</p>
+<h2>A publishing bridge that checks the public feed before reporting success</h2>
+<p>medium-bridge.mjs stages a complete story over the Chrome DevTools Protocol in one command: title, cover image, formatted body and draft state. It runs a dedicated browser profile, screenshots each step and never handles credentials.</p><p>The platform retired its publishing API, so a browser lane is the only path. A click is not a post, so it checks the public feed before reporting success. An unsigned-in profile stops it and asks for a human login.</p>
+
+<p>Limit: it drives the platform browser UI, so a redesign of that UI breaks it.</p>
+<p class="proof">Proof: <a href="https://medium.com/@nicolakharvey/the-48-characters-i-could-not-see-d6c8316c1643" target="_blank" rel="noopener">the first essay it staged</a> and the bridge code in my publishing desk.</p>
 </div>
 
 <div class="entry">
 <div class="date">18 August 2026</div>
-<h2>A nightly reader for my own WhatsApp</h2>
-<p>My laptop reads my own WhatsApp each night and writes one page: what came in, and what is still waiting on me. Voice notes are transcribed locally. No conversation leaves the machine. The first unattended run captured 33 messages.</p>
-<p>Scheduling it took three attempts. macOS blocks a scheduled job, ignores a grant given to a shell script, and hangs silently on a compiled launcher run directly. Starting the app with open works.</p>
-<p>Limits: one Mac. Fourteen of 563 conversations are switched on. What is waiting on me is computed, not summarised.</p>
-<p class="proof">Proof: the workshop, with the code I run, at workshops.herfrontier.com/whatsapp-reader</p>
+<h2>A nightly reader that turns my own messages into one page</h2>
+<p>It reports what came in and what is still waiting on me. Voice notes are transcribed locally and no conversation leaves the machine. The first unattended run captured 33 messages.</p><p>macOS grants file access to the application, not the script. A scheduled job is blocked, a grant given to a shell script is ignored, and a compiled launcher run directly hangs without an error. Starting the app with open is the path that carries the grant.</p>
+
+<p>Limit: one Mac.</p><p>Limit: what is waiting on me is computed, not summarised.</p>
+<p class="proof">Proof: the workshop, with the code I run, at <a href="https://workshops.herfrontier.com/whatsapp-reader" target="_blank" rel="noopener">workshops.herfrontier.com/whatsapp-reader</a></p>
 </div>
 
 <div class="entry">
 <div class="date">18 August 2026</div>
-<h2>Provenance sweep on my own published assets</h2>
-<p>I pointed my own checker at my own website and found four published images carrying the full generation recipe in their metadata: prompts, model, settings, and other details that were invisible on the page. I cleaned and redeployed the same night.</p>
-<p>The useful part was treating my own site as the target. AI provenance risk is easy to describe in the abstract and easy to miss in your own files. The sweep separated three different layers that people often collapse together: invisible text characters, image metadata, and marks or patterns in the pixels themselves.</p>
-<p>Limits: metadata stripping does not remove visible watermarks or pixel-level generator marks.</p>
-<p class="proof">Proof: the write-up <a href="https://medium.com/@nicolakharvey/the-48-characters-i-could-not-see-d6c8316c1643">The 48 characters I could not see</a>.</p>
+<h2>A provenance checker that separates three layers people collapse</h2>
+<p>Invisible text characters, image metadata, and marks in the pixels are three different problems. The checker reports them separately rather than as one score.</p><p>Pointed at my own website it found four published images carrying the full generation recipe in their metadata. Prompts, model and settings, none of it visible on the page. I cleaned and redeployed the same night.</p>
+
+<p>Limit: stripping metadata does not remove visible watermarks or pixel-level generator marks.</p>
+<p class="proof">Proof: the write-up <a href="https://medium.com/@nicolakharvey/the-48-characters-i-could-not-see-d6c8316c1643" target="_blank" rel="noopener">The 48 characters I could not see</a>.</p>
 </div>
 
 <div class="entry">
 <div class="date">18 August 2026</div>
-<h2>Clearing 1.0</h2>
-<p>Clearing is an open-source local tool for checking what goes out under your name. It finds invisible Unicode carriers in text and generation metadata in images, then removes only the parts it can honestly remove. It does not rewrite words, change pixels, or claim to defeat AI detectors.</p>
-<p>The assurance work is in the exemptions. It leaves emoji joiners intact, preserves joiners that are spelling in Persian, Arabic, Hindi and related scripts, keeps leading byte-order marks when they are doing an encoding job, and refuses to clean verbatim archives or evidence folders. The CLI and browser page share the same core, with tests proving they do not drift apart.</p>
-<p>Limits: image metadata checks depend on local tooling, and visible or pixel-level marks are out of scope.</p>
-<p class="proof">Proof: <a href="https://github.com/nicolakharvey/clearing">github.com/nicolakharvey/clearing</a> under MIT, with 54 zero-dependency tests.</p>
+<h2>An open-source tool that checks what goes out under your name</h2>
+<p>It runs locally. It finds invisible Unicode carriers in text and generation metadata in images, then removes only the parts it can prove are safe to remove.</p><p>The exemptions carry the work. It leaves emoji joiners intact. It preserves joiners that are spelling in Persian, Arabic, Hindi and related scripts. It keeps leading byte-order marks doing an encoding job. It refuses verbatim archives and evidence folders. The command line and browser page share one tested core.</p>
+
+<p>Limit: it does not rewrite words, change pixels, or claim to defeat AI detectors.</p><p>Limit: image metadata checks depend on local tooling.</p><p>Limit: visible and pixel-level marks are out of scope.</p>
+<p class="proof">Proof: <a href="https://github.com/nicolakharvey/clearing" target="_blank" rel="noopener">github.com/nicolakharvey/clearing</a> under MIT, with 54 zero-dependency tests.</p>
+</div>
+
+<div class="entry">
+<div class="date">13 August 2026</div>
+<h2>A continuity checker where every new check must match the last</h2>
+<p>manuscript_qa.py runs the mechanical half of a copy editor's style sheet across a manuscript: hard assertions, phrase-anchored eye and hair checks, timeline-aware ages. It runs on every assemble and never passes silently.</p><p>Its module docstring carries the tuning history, from five false positives and no real findings down to none of either. That history is the standard every check added since has to meet, so a noisy check cannot join the suite unnoticed.</p>
+
+<p>Limit: it checks what a style sheet can state, never whether a scene works.</p>
+<p class="proof">Proof: the QA runs on every assemble, and the tuning history sits in the module docstring where the next check has to match it.</p>
+</div>
+
+<div class="entry">
+<div class="date">11 August 2026</div>
+<h2>A scanner that reads every frame of a recording for private text</h2>
+<p>check-recording.py reads the text in every frame of a screen recording and reports any of your listed private terms. It runs before a demo goes to a platform review, a client, or anyone else.</p>
+<p>A recording made inside a tool holding several brands will contain the others. A sidebar footer, a list you scrolled past, a dropdown open for a second. Two careful visual passes on the first recording both said clean. The scanner found 22 exposed frames.</p>
+<p>Limit: it finds the terms you listed. A private thing you did not name is not looked for.</p>
+<p class="proof">Proof: 22 exposed frames on a recording two human passes had cleared.</p>
+</div>
+
+<div class="entry">
+<div class="date">6 August 2026</div>
+<h2>A game whose verification checklist was locked before the build</h2>
+<p>The checks were written and committed first, then the game was built to pass them, then it went to production. Fourteen end-to-end checks, all passing.</p>
+<p>Writing the checklist first is what stops it describing whatever the code happened to do. The order is the whole method: a check authored after the build is a description, not a gate.</p>
+<p>Limit: fourteen checks cover the flows I could name in advance.</p>
+<p class="proof">Proof: the checklist committed before the first build commit, and 14 of 14 end-to-end checks passing on the deployed site.</p>
 </div>
 
 <div class="entry">
 <div class="date">4 August 2026</div>
-<h2>Cloud publisher for a local-first scheduler</h2>
-<p>Social Command is local-first, which means a sleeping Mac used to be a scheduling risk. I added a small Cloudflare Worker that holds only due all-auto posts inside a short horizon and publishes them at the right time. Manual and reminder posts stay local because they need a person.</p>
-<p>The main safety rule is one writer per post. The Mac claims or withdraws a delegated job by version; while the cloud claim stands, the Mac will not publish that post. Any edit breaks the claim. "Publish now" cancels the worker's copy before publishing locally. If the worker is late, the app warns instead of racing it, because a late post is better than a duplicate post.</p>
-<p>Limits: delegated jobs temporarily place encrypted platform tokens and media copies inside my Cloudflare account.</p>
+<h2>A cloud publisher with one writer per post</h2>
+<p>A Cloudflare Worker holds only due all-auto posts inside a short horizon and publishes them at the right time. Manual and reminder posts stay local because they need a person.</p><p>The Mac claims or withdraws a delegated job by version, and while the cloud claim stands the Mac will not publish that post. Any edit breaks the claim, and "publish now" cancels the worker's copy first. A late worker makes the app warn rather than race it.</p>
+
+<p>Limit: a delegated job places encrypted platform tokens and media copies inside my Cloudflare account for as long as it runs.</p>
 <p class="proof">Proof: scheduled posts publish on time whether the Mac is awake or asleep.</p>
 </div>
 
 <div class="entry">
+<div class="date">4 August 2026</div>
+<h2>Licensing a build to a client without handing over the asset</h2>
+<p>A publish script builds, then mirrors only the packaged output into a separate private distribution repository on my own account, and pushes. The licensee gets upgrades without an email and can point their own agent at the desk.</p>
+<p>The source history holds my brands, my handles and every credential decision I have made, so it can never be shared. Keeping the distribution repo under my account licenses a copy. Handing over the repository would hand over the asset.</p>
+<p>Limit: it distributes the packaged output. What the licensee then runs on their own machine is theirs.</p>
+<p class="proof">Proof: a private distribution repo holding only cleaned package output, and an operating brief shipped beside it.</p>
+</div>
+
+<div class="entry">
+<div class="date">4 August 2026</div>
+<h2>A mirror that removes what it stopped shipping</h2>
+<p>The push mirrors with delete, so an extension pulled from the package is pulled from the licensee's machine on their next upgrade. It also switches the publishing account for the push and puts the previous one back.</p><p>A mirror that only adds leaves withdrawn code running on someone else's machine forever. The credential helper follows whichever account is signed in, so the switch is what keeps a push under the right identity.</p>
+
+
+<p>Limit: the delete reaches the distribution repository. A copy the licensee has already taken out of it is beyond its reach.</p><p class="proof">Proof: the publish script restores the previous account after the push, and the distribution repo matches the staged output.</p>
+</div>
+
+<div class="entry">
+<div class="date">1 August 2026</div>
+<h2>A repetition instrument with a ceiling the writer cannot move</h2>
+<p>qa.mjs counts repeated four-word runs across a manuscript and flags phrasing borrowed between characters. The ceiling is eight. A 25-chapter, 68,032-word book came in at or under it everywhere except one compliance date phrase at nine, kept on a stated allowance.</p>
+<p>A writer cannot hear their own repetitions after the fourth pass. Counting them puts a number on a thing taste stops noticing, and a written exception is the only honest way past the gate.</p>
+<p>Limit: it counts repetition. It cannot tell whether a repeated phrase is doing deliberate work.</p>
+<p class="proof">Proof: five batched passes, 44 rewords, and every repeated four-gram at or under the ceiling bar the one filed exception.</p>
+</div>
+
+<div class="entry">
+<div class="date">29 July 2026</div>
+<h2>A gate that keeps a research assistant paused until it stops inventing</h2>
+<p>check-assistant-fabrication.mjs asks the assistant questions whose answers are already known from the row, then checks every reply for claims nobody supplied. The assistant stays switched off until it runs clean and a human has read real answers on real alerts.</p>
+<p>Guardrails stopped the model advising and nothing stopped it embellishing. It answered an expiry question correctly, then added a reason for the date that was invented outright.</p>
+<p>Limit: it tests questions whose answers it holds. A fabrication about anything outside the row would pass.</p>
+<p class="proof">Proof: the assistant is paused, and the gate names each invented claim beside the row that contradicts it.</p>
+</div>
+
+<div class="entry">
+<div class="date">29 July 2026</div>
+<h2>A freshness check so a dead price feed cannot render as a live price</h2>
+<p>quote-freshness.js answers one question for every surface that shows a tracked price: is this stored quote still worth showing? When the answer is stale, the surface says the quote is unavailable and shows when the last one arrived.</p>
+<p>The quote source can stop answering without warning. The last mark then sits in the table and every member page keeps rendering it as current. That is a silent failure, and it puts a false number in front of someone paying for it.</p>
+<p>Limit: it judges the age of a quote, never whether the source was wrong when it answered.</p>
+<p class="proof">Proof: every surface that renders a mark calls the module first, and a stale mark renders as unavailable with its timestamp.</p>
+</div>
+
+<div class="entry">
+<div class="date">26 July 2026</div>
+<h2>Site checks moved into the repo so they survive the session</h2>
+<p>check-site.mjs, check-dns.mjs and check-email-matches-site.mjs live in the repository and run from it. A browser walk sits beside them.</p>
+<p>A check that exists only in the session that wrote it runs once. Committing it makes the next person able to run it. It also makes a failing check something a reader can reproduce rather than take on trust.</p>
+<p>Limit: they check this site's own surfaces, not the platforms it publishes to.</p>
+<p class="proof">Proof: the checks run from the repository on a clean clone.</p>
+</div>
+
+<div class="entry">
+<div class="date">20 July 2026</div>
+<h2>A backup that refuses to call a corrupt backup a backup</h2>
+<p>kv-backup.py copies every user, lead, setting and suppression entry out of a single key-value namespace to a timestamped folder. It verifies what it wrote before reporting success.</p><p>It runs on the operator's own credentials rather than as an in-app route. An export-everything endpoint would be one URL that dumps every tenant's data. A script exposes nothing over HTTP.</p>
+
+<p>Limit: it backs up the namespace. Restoring is a separate deliberate step.</p>
+<p class="proof">Proof: a timestamped folder holding the namespace, with a verification pass that fails rather than reports success on a short read.</p>
+</div>
+
+<div class="entry">
+<div class="date">20 July 2026</div>
+<h2>Token rotation that checks which scopes were granted</h2>
+<p>The rotation script verifies the new token before it writes it, and refuses when a required scope is missing. A separate checker reads back the scopes the platform issued.</p><p>A platform can grant a subset of what you asked for and return success. A token that looks valid then fails on one call in ten. The check reads what was granted, not what was requested.</p>
+
+<p>Limit: it reads the scopes the platform reports, so a granted but unenforced scope still reads as present.</p>
+<p class="proof">Proof: the rotation refuses on a missing scope, and the checker lists the granted set beside the requested one.</p>
+</div>
+
+<div class="entry">
 <div class="date">18 July 2026</div>
-<h2>Scoped team portal on a local app</h2>
-<p>Social Command grew member logins without turning into a rented SaaS product. Teammates sign in over my domains, see only the brands they work on, and publish from the same calendar while the application and data stay on my machine.</p>
-<p>The important part is that brand scope is enforced server-side, not by hiding buttons in the interface. Member sessions carry explicit brand IDs. Server routes filter brands, accounts, posts, inbox, analytics, insights, and activity before returning data. Settings, user management, and owner-only controls stay outside the member surface.</p>
-<p>Limits: it is built for a small working team, not as a general multi-tenant SaaS platform.</p>
+<h2>Brand-scoped logins enforced on the server, not in the interface</h2>
+<p>Teammates sign in over my domains, see only the brands they work on, and publish from the same calendar. The application and its data stay on my machine.</p><p>Member sessions carry explicit brand IDs, and server routes filter brands, accounts, posts, inbox, analytics, insights and activity before returning data. Hiding a button changes what a person sees. Filtering on the route changes what exists.</p>
+
+<p>Limit: it is built for a small working team, not as a general multi-tenant SaaS platform.</p>
 <p class="proof">Proof: in daily use by a working team across two ventures.</p>
 </div>
 
 <div class="entry">
+<div class="date">10 July 2026</div>
+<h2>A compliance evidence pack that can be filed, not just claimed</h2>
+<p>The lead engine produces an artifact a regulator or a client can read. It records the basis held for each contact, where the data came from, and what was sent when. Enrichment is gated on that basis rather than run first and justified after.</p><p>Most tools in this category enrich everything they can reach and leave the compliance question to the operator. Gating the enrichment means the evidence exists because the system could not have run without it.</p>
+
+<p>Limit: the pack records what the system did, never data entered before the system held it.</p>
+<p class="proof">Proof: the evidence pack renders per campaign, with provenance on every field it carries.</p>
+</div>
+
+<div class="entry">
+<div class="date">10 July 2026</div>
+<h2>An independent grader on my own work before it merged</h2>
+<p>Five build stages went to a grader that had not built them, and all came back confirmed before the merge. The grade sits in the project ledger beside the work it covers.</p><p>A builder grading their own work marks against what they meant. A grader given only the finished thing marks against what is there. That is the reading a user gets.</p>
+
+<p>Limit: the grader reads the built result, so a requirement nobody wrote down cannot be found missing.</p>
+<p class="proof">Proof: the recorded grade of stages P0.1 to P0.3, all confirmed, dated before the merge commit.</p>
+</div>
+
+<div class="entry">
+<div class="date">8 July 2026</div>
+<h2>A compliance posture applied across three live products in a day</h2>
+<p>Education-only framing across one product. A cycle projection reframed as history rather than a forecast on another. Publisher posture enforced on every surface of a third. The owning entity and its address now appear in the emails.</p><p>A forecast and a history of the same numbers look identical on the page. They are not the same claim, and which one you are making decides what licence the work needs.</p>
+
+<p>Limit: it fixes what the surfaces say, never what a reader infers from a chart.</p>
+<p class="proof">Proof: the framing pass ran across every public surface of all three, with the owning entity named in outgoing mail.</p>
+</div>
+
+<div class="entry">
+<div class="date">7 July 2026</div>
+<h2>A native app that draws a model's own uncertainty as a constellation</h2>
+<p>It captures token probabilities as they stream and projects them down to three dimensions. The result is a navigable constellation, with fork branches where the model nearly chose otherwise. Built native, with a zoom and pan camera.</p><p>Long answers crashed it. The geometry was being serialised per frame rather than held in buffers on the graphics device. That is the difference between a demo and something you can steer.</p>
+
+<p>Limit: it shows where the model was uncertain, never why.</p>
+<p class="proof">Proof: the app runs on device with long answers, verified against a live streaming capture.</p>
+</div>
+
+<div class="entry">
+<div class="date">6 July 2026</div>
+<h2>A lawful-basis floor the outreach path cannot be talked past</h2>
+<p>The send path enforces two tiers of lawful basis on the server, so a weak basis cannot be upgraded by anything a caller passes in. Unsubscribe tokens are HMAC-SHA256 signed with the server secret.</p><p>A compliance rule that lives in the interface is a suggestion. On the server it is a rule, and a signed unsubscribe cannot be forged or guessed.</p>
+
+<p>Limit: it enforces the basis recorded against a contact, so a basis recorded wrongly upstream passes the floor.</p>
+<p class="proof">Proof: the floor is a server function on the send path, and every unsubscribe token carries an HMAC signature.</p>
+</div>
+
+<div class="entry">
+<div class="date">6 July 2026</div>
+<h2>Sixteen projects brought under version control in one pass</h2>
+<p>Sixteen repositories took their first commit the same day, each a baseline of what was running rather than an idealised state. Personal references were scrubbed before publication, one repository was rebuilt after a key rotation, and a plaintext access code moved to a server-side check.</p><p>Work that exists on one disk has no history to read and no way back. A baseline of the running state beats a tidy one, because it is the version that was true.</p>
+
+<p>Limit: a baseline records the state on that day, so what happened before it is not recoverable.</p>
+<p class="proof">Proof: sixteen first commits dated the same day, each labelled as a baseline of the running state.</p>
+</div>
+
+<div class="entry">
+<div class="date">5 July 2026</div>
+<h2>A lesson kit that verifies its own licence key per buyer</h2>
+<p>The kit carries a per-buyer licence key, checked live against the store on first use and daily after that. It installs locally from the zip, so the lesson runs on the buyer's own machine.</p><p>A downloadable kit is a file that can be forwarded. Checking the key at the point of use, not the point of download, keeps the licence attached to the buyer instead of the file.</p>
+
+<p>Limit: the check needs the network. A machine that is offline runs on its last good answer.</p>
+<p class="proof">Proof: a live key verification on first use, repeated daily, against the store's own records.</p>
+</div>
+
+<div class="entry">
+<div class="date">4 July 2026</div>
+<h2>A personality instrument that runs its AI on free models</h2>
+<p>A 120-item public-domain question bank with its own scoring engine, and the readings generated by a local model with a free hosted one behind it. No paid tokens anywhere in the loop. Generated readings are cached per session so a re-view costs nothing.</p>
+<p>Per-reading inference cost is what stops a free tier being free. Pinning the whole loop to open models makes the free experience the real one rather than a trimmed demo.</p>
+<p>Limit: a free hosted model can change its terms or its limits without notice.</p>
+<p class="proof">Proof: the full free loop running end to end with no paid token spend, readings cached per session.</p>
+</div>
+
+<div class="entry">
+<div class="date">3 July 2026</div>
+<h2>A scaffolder that turns a written spec into a running project</h2>
+<p>One command reads a product spec and lays down a working project: structure, build, and a first pass at the surfaces. Six projects came out of it in a day, each from its own spec.</p>
+<p>Starting from a blank repository is where a good spec goes to die, because the first hour goes on plumbing rather than the thing. Handing the plumbing to a generator keeps the spec the subject.</p>
+<p>Limit: it produces a first pass. Every one of the six needed a human before it was worth showing.</p>
+<p class="proof">Proof: six projects scaffolded from six specs in one day, each committed with the spec it came from.</p>
+</div>
+
+<div class="entry">
 <div class="date">2 July 2026</div>
-<h2>Social Command</h2>
-<p>Social Command is my own replacement for subscription social scheduling desks: multi-brand calendar, per-platform composer, media library, analytics, engagement inbox, team access, cloud delegation, and publishing across fourteen channels. It runs on my machine, stores data in my files, and starts every account in a manual or reviewed mode until the platform setup is ready.</p>
-<p>The value is not only that it publishes. It carries the operational checks I need: per-platform setup notes, character-limit gates, brand-crossing warnings, account-scope controls, daily backups, manual/reminder/auto modes, and a first-post visibility check because some platforms will confirm a post that only app-role users can see.</p>
-<p>Limits: platform APIs differ, some channels require developer approval, and the local-first model means cloud publishing is deliberately narrow.</p>
+<h2>A publishing desk that reaches fourteen channels from my own machine</h2>
+<p>My replacement for a subscription scheduling desk: multi-brand calendar, per-platform composer, media library, analytics, engagement inbox, team access and cloud delegation. Data stays in my files. Every account starts in a manual or reviewed mode until its platform setup is ready.</p><p>It carries the operational checks. Per-platform setup notes, character-limit gates, brand-crossing warnings, account-scope controls, daily backups, and manual, reminder and auto modes. A first-post visibility check runs too, because some platforms confirm a post that only app-role users can see.</p>
+
+<p>Limit: platform APIs differ and some channels require developer approval.</p><p>Limit: the local-first model keeps cloud publishing deliberately narrow.</p>
 <p class="proof">Proof: the posts and essays in this log are scheduled and published through it.</p>
 </div>
 
