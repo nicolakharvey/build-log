@@ -42,6 +42,24 @@
 </div>
 
 <div class="entry">
+<div class="date">27 August 2026</div>
+<h2>A site builder where the owner's approval is a database rule</h2>
+<p>Each contributor edits their own copy. Master is the site of record, and the database refuses a write to it from anyone but the owner. It records who published, defaulting to the caller and refusing an insert that names someone else.</p><p>The convention held while three people all knew each other. It stops holding the moment a contributor is added, so the rule has to move out of the working agreement and into the schema.</p>
+
+<p>Limit: it governs who may publish, never what a contributor writes in their own copy before they submit it.</p>
+<p class="proof">Proof: a Master write from a non-owner is refused by the database, and every publish carries the caller's own identity.</p>
+</div>
+
+<div class="entry">
+<div class="date">27 August 2026</div>
+<h2>An approve step that carries the styling and the deletions too</h2>
+<p>Approving a contributor's section now brings its styling across and applies what they removed. Their edits live in their own copy's stylesheet, and the markup alone does not carry them.</p><p>A partial merge is worse than a rejected one, because it lands and looks finished. An approve step has to carry everything the change was, including the parts that are absences.</p>
+
+<p>Limit: it carries what the contributor's copy holds, so a change made outside the editor is not part of the approval.</p>
+<p class="proof">Proof: an approved section arrives on Master with its styling intact and its removals applied.</p>
+</div>
+
+<div class="entry">
 <div class="date">25 August 2026</div>
 <h2>A scheduled queue check that catches a year written as words</h2>
 <p>check-spelled-years.mjs reads my publishing queue twice a day and files an alert. Seven patterns cover century years, the 2000s, spoken twenty-twenties, round centuries and the long form, so "in seventeen hundred" and "nineteen hundred and six" both land.</p><p>A count and a year are the same words. "Seventeen hundred people" is correct and "in seventeen hundred" is a year, so the grammar around the number decides, not the number. Every pattern is written to stay silent where a count would sit.</p>
