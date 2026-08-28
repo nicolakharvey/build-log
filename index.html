@@ -44,7 +44,7 @@
 <div class="entry">
 <div class="date">27 August 2026</div>
 <h2>A site builder where the owner's approval is a database rule</h2>
-<p>Each contributor writes freely in their own copy, and the gate sits at publishing. Master is the site of record, and the database refuses a write to it from anyone but the owner. It records who published, defaulting to the caller and refusing an insert that names someone else.</p><p>The convention held while three people all knew each other. It stops holding the moment a contributor is added, so the rule has to move out of the working agreement and into the schema.</p>
+<p>promote_section refuses a write to Master from anyone but the project owner, and a publish takes its author from the caller, refusing an insert that names anyone else.</p><p>Testing the gate with a real contributor account found nobody could write to Master, the owner included. copies.owner is NULL on the Master row, so the ownership comparison returned NULL rather than false, and the guard beneath it read that as not a member. Master had been unwritable for three days.</p>
 
 <p class="proof">Proof: a Master write from a non-owner is refused by the database, and every publish carries the caller's own identity.</p>
 </div>
@@ -52,9 +52,8 @@
 <div class="entry">
 <div class="date">27 August 2026</div>
 <h2>An approve step that carries the styling and the deletions too</h2>
-<p>Approving a contributor's section now brings its styling across and applies what they removed. Their edits live in their own copy's stylesheet, and the markup alone does not carry them.</p><p>A partial merge is worse than a rejected one, because it lands and looks finished. An approve step has to carry everything the change was, including the parts that are absences.</p>
+<p>Approving a section carries its styling and its deletions. The contributor's CSS rules travel under a marker keyed by page and sync id, so approving the same section again replaces its rules instead of stacking another copy.</p><p>Approving a whole page now removes what the contributor removed, rather than leaving a deleted section on Master to publish. Both fixes sit in the database rather than the app, because the app is one client and the database is the rule.</p>
 
-<p>Limit: it carries what the contributor's copy holds, so a change made outside the editor is not part of the approval.</p>
 <p class="proof">Proof: an approved section arrives on Master with its styling intact and its removals applied.</p>
 </div>
 
