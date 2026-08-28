@@ -95,9 +95,9 @@
 <div class="entry">
 <div class="date">23 August 2026</div>
 <h2>A publishing scheduler that sleeps until the next post is due</h2>
-<p>x-post-scheduler.mjs reads when the next post falls due and sleeps to that minute. lane-watchdog.mjs covers the process itself and restarts a wedged one.</p><p>Polling on a fixed interval buys accuracy with wasted work, and this one was waking 144 times a day for a single yes. Sleeping to the due time trades a poll loop for a long-lived process. The watchdog covers that trade.</p>
+<p>x-post-scheduler.mjs reads when the next post falls due and sleeps to that minute. lane-watchdog.mjs covers the process itself and restarts a wedged one.</p><p>Polling on a fixed interval buys accuracy with wasted work. Sleeping to the due time took the X lane from 144 wakeups a day to one per due post, trading a poll loop for a long-lived process. The watchdog covers that trade.</p>
 
-<p>Limit: it decides when the poster runs. It posts nothing itself.</p><p>Limit: it schedules the X lane. Other channels keep their own timing.</p>
+<p>Limit: it schedules the X lane. Other channels keep their own timing.</p>
 <p class="proof">Proof: the log reads "next look in 240 min (next post at 22:00Z)."</p>
 </div>
 <div class="entry">
@@ -144,7 +144,7 @@
 <h2>A game forge where an unmarked rule is an unmade decision</h2>
 <p>The game-forge skill holds a spine of rules every build obeys. A style pack per genre marks each rule applies, inverts, adapts or not applicable, and gives a reason. One safety rule forbade a whole genre. That pack inverts it and says why.</p><p>Forcing a mark on every rule is what stops a genre skipping one. verify-ambient-toy.mjs is the runnable instrument for that style, gating responsiveness, aliveness and a performance soak. Its first run found one toy at 12fps and another throwing a 404.</p>
 
-<p>Limit: every instrument in the skill gates mechanics. None of them can tell whether a game is fun, and each pack names that blind spot in its own words.</p>
+<p>Limit: none of the instruments can tell whether a game is fun.</p>
 <p class="proof">Proof: a 35-phrase sweep against the old version found one lost rule and I restored it, and every cross-reference across nineteen files resolves.</p>
 </div>
 <div class="entry">
@@ -168,7 +168,7 @@
 <h2>An X poster that drives my own browser and proves the post landed</h2>
 <p>x-post-worker.mjs drives my logged-in Chrome, because the X API answers payment required on every write. It checks the handle and reads the composer back against the approved text. It carries up to four images and posts the first comment. It finds the post on my profile before marking it done.</p><p>A browser lane can report success at four points where nothing was sent. Reading the composer back, then finding the post on the public profile, are the two checks that close them.</p>
 
-<p>Limit: it never composes. It sends only posts already written and approved at the desk.</p><p>Limit: images only, so a video attachment is dropped and logged rather than sent.</p>
+<p>Limit: it never composes.</p><p>Limit: images only, so a video attachment is dropped and logged rather than sent.</p>
 <p class="proof">Proof: <a href="https://x.com/nicolakharvey/status/2091167889172930837" target="_blank" rel="noopener">the post it sent</a></p>
 </div>
 <div class="entry">
@@ -184,7 +184,7 @@
 <h2>A scheduler rule that mirrors a post to a second board on its own</h2>
 <p>The rule runs on the scheduler tick and picks the destination board by matching the post text against my content pillars. It skips posts with no image and posts I label to opt out. I backfilled twenty already-published posts the same way.</p><p>On an account holding drafts, the publish button moves out of the header into the drafts sidebar as a bulk action. The poster ticks only the draft it made, so a bulk control cannot publish anything it did not create.</p>
 
-<p>Limit: it mirrors posts carrying an image. Text-only posts are skipped by design.</p><p>Limit: video takes a slower path than a still.</p><p class="proof">Proof: a throwaway post gained its second target, on the right board, twelve seconds after I created it.</p>
+<p>Limit: text-only posts are not mirrored.</p><p>Limit: video takes a slower path than a still.</p><p class="proof">Proof: a throwaway post gained its second target, on the right board, twelve seconds after I created it.</p>
 </div>
 
 <div class="entry">
@@ -192,15 +192,15 @@
 <h2>A Pinterest worker that reads which account the window is holding</h2>
 <p>pinterest-post-worker.mjs reads the signed-in handle from the page's own bootstrap state before it creates anything, and refuses on a mismatch or an unreadable answer. I added it while splitting the lane across a second brand's account.</p><p>A resource endpoint answers 403 against a live signed-in window, so the page's bootstrap state is the readable source. A browser lane driving two brands has no other way to know whose account it is about to post to.</p>
 
-<p>Limit: it never writes a description, picks a board or chooses a moment. Every pin it creates was written and scheduled elsewhere.</p><p>Limit: it reads the handle the page reports, not whether that account should be posting.</p><p class="proof">Proof: the shipped function lifted from the file and run against a live window, returning the right handle.</p>
+<p>Limit: it never writes a description, picks a board or chooses a moment.</p><p>Limit: it reads the handle the page reports, not whether that account should be posting.</p><p class="proof">Proof: the shipped function lifted from the file and run against a live window, returning the right handle.</p>
 </div>
 
 <div class="entry">
 <div class="date">22 August 2026</div>
 <h2>A quiz that refuses to give a reading the answers cannot support</h2>
-<p>Four statistics run over a personality instrument's raw answers and can withhold the result, saying which pattern in the answering stopped it. Agreeing with every line used to return a confident named type.</p><p>Every threshold sits outside the 99th percentile of 15,000 simulated honest respondents. Setting the cut from a simulated distribution is what lets a cautious answerer through while a careless one is caught.</p>
+<p>Four statistics run over a personality instrument's raw answers and can withhold the result, saying which pattern in the answering stopped it. Agreeing with every line now returns a withheld result rather than a confident named type.</p><p>Every threshold sits outside the 99th percentile of 15,000 simulated honest respondents. Setting the cut from a simulated distribution is what lets a cautious answerer through while a careless one is caught.</p>
 
-<p>Limit: the honest respondents are simulated, not sampled.</p><p>Limit: the checks gate the reading. They change no score.</p>
+<p>Limit: the honest respondents are simulated, not sampled.</p><p>Limit: the checks change no score.</p>
 <p class="proof">Proof: 233 tests passing, and both cases side by side in the browser.</p>
 </div>
 <div class="entry">
@@ -229,7 +229,6 @@
 <div class="date">22 August 2026</div>
 <h2>A Friday job that assembles the week into a draft note</h2>
 <p>The research-draft cron reads what was published, what closed with real numbers and what is still open, then writes them into the standard note. The author adds the judgement.</p><p>An empty form is the reason a weekly note gets skipped. Assembling the facts from production data leaves only the part a person has to write.</p>
-<p>Limit: the market view stays a human field on purpose.</p>
 <p class="proof">Proof: the draft built from production data, wins and losses in the same list.</p>
 </div>
 <div class="entry">
@@ -349,7 +348,7 @@
 <div class="entry">
 <div class="date">21 August 2026</div>
 <h2>A backup test that asks the host what it holds</h2>
-<p>Four conditions, all read from the host rather than from local push output. The repository is private when it should be private. The remote branch matches the local branch. Nothing sits unpushed. The files I care about are present on the host.</p><p>A successful push is a claim about what left the machine, not about what arrived. Asking the host found a finished iPhone app carrying one starter-template commit, with nearly eight thousand lines of screens untracked.</p>
+<p>Four conditions, all read from the host rather than from local push output. The repository is private when it should be private. The remote branch matches the local branch. Nothing sits unpushed. The files I care about are present on the host.</p><p>Asking the host found a finished iPhone app carrying one starter-template commit, with nearly eight thousand lines of screens untracked.</p>
 
 <p>Limit: a private repository cannot be shown as public proof.</p>
 <p class="proof">Proof: GitHub's own report: private repo, matching branch, no unpushed commits, and the app screens listed remotely.</p>
@@ -506,7 +505,7 @@
 <h2>Licensing a build to a client without handing over the asset</h2>
 <p>A publish script builds, then mirrors only the packaged output into a separate private distribution repository on my own account, and pushes. The licensee gets upgrades without an email and can point their own agent at the desk.</p>
 <p>The source history holds my brands, my handles and every credential decision I have made, so it can never be shared. Keeping the distribution repo under my account licenses a copy. Handing over the repository would hand over the asset.</p>
-<p>Limit: it distributes the packaged output. What the licensee then runs on their own machine is theirs.</p>
+<p>Limit: what the licensee then runs on their own machine is beyond its reach.</p>
 <p class="proof">Proof: a private distribution repo holding only cleaned package output, and an operating brief shipped beside it.</p>
 </div>
 
@@ -667,7 +666,7 @@
 <h2>A publishing desk that reaches fourteen channels from my own machine</h2>
 <p>My replacement for a subscription scheduling desk: multi-brand calendar, per-platform composer, media library, analytics, engagement inbox, team access and cloud delegation. Data stays in my files. Every account starts in a manual or reviewed mode until its platform setup is ready.</p><p>It carries the operational checks. Per-platform setup notes, character-limit gates, brand-crossing warnings, account-scope controls, daily backups, and manual, reminder and auto modes. A first-post visibility check runs too, because some platforms confirm a post that only app-role users can see.</p>
 
-<p>Limit: platform APIs differ and some channels require developer approval.</p><p>Limit: the local-first model keeps cloud publishing deliberately narrow.</p>
+<p>Limit: platform APIs differ and some channels require developer approval.</p><p>Limit: cloud publishing stays narrow.</p>
 <p class="proof">Proof: the posts and essays in this log are scheduled and published through it.</p>
 </div>
 
