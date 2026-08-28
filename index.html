@@ -36,7 +36,7 @@
 <div class="date">27 August 2026</div>
 <h2>An adversarial test that assumes the model was fooled</h2>
 <p>test_injection.py feeds an agent a deliberately hostile feed and checks that nothing harmful can leave. Server instructions are stripped, hidden characters removed, invented post ids dropped, and an outbound firewall refuses anything sensitive.</p>
-<p>The claim it tests is not that the model resists injection. Small models often do not. It tests that the deterministic layers around the model make a fooled one harmless. That is the only claim that holds when the model is the part you cannot audit.</p>
+<p>The claim it tests is not that the model resists injection. Small models often do not. It tests that the deterministic layers around the model make a fooled one harmless.</p>
 <p>Limit: it proves the layers hold against the hostile inputs it carries. A payload shaped unlike any of them is untested.</p>
 <p class="proof">Proof: twelve hostile scenarios, run without the model at all, then again against the real model call.</p>
 </div>
@@ -110,7 +110,7 @@
 <div class="entry">
 <div class="date">23 August 2026</div>
 <h2>A reply engine that reads the video, not just the caption</h2>
-<p>Videos carry a transcript into tiktok-comment-worker.mjs, and it reaches the model before the caption. A figure in a comment counts as substance, so the reply takes the full branch instead of the short one.</p><p>A comment answers the video. An engine reading only the caption answers a different question and sounds certain doing it. The persona is held to asserting no competing number.</p>
+<p>Videos carry a transcript into tiktok-comment-worker.mjs, and it reaches the model before the caption. A figure in a comment counts as substance, so the reply takes the full branch instead of the short one.</p><p>A comment answers the video, so an engine reading only the caption answers a different question. The persona is held to asserting no competing number.</p>
 
 <p>Limit: the transcript carries the spoken line. A figure shown on screen and never said is not read.</p>
 <p class="proof">Proof: the stored transcript reads "He has tens of times the scent receptors you do."</p>
@@ -126,7 +126,7 @@
 <div class="entry">
 <div class="date">23 August 2026</div>
 <h2>An X poster that asks the desk what is due before it opens a browser</h2>
-<p>x-post-worker.mjs queries the desk first, so on a quiet day the browser window is never opened. The identity check still runs before anything is typed.</p><p>An identity check costs a page load. Running it before the cheap question means paying that cost to prove something the run then uses for nothing. All four browser lanes now ask what is due first.</p>
+<p>x-post-worker.mjs queries the desk first, so on a quiet day the browser window is never opened. The identity check still runs before anything is typed.</p><p>An identity check costs a page load, so asking the desk first means a quiet day never pays it. All four browser lanes now ask what is due before they open a window.</p>
 
 <p>Limit: it answers for the X lane. Each browser lane holds its own schedule.</p><p class="proof">Proof: the log now reads "nothing due for X, so the window was left alone."</p>
 </div>
@@ -220,14 +220,14 @@
 <div class="entry">
 <div class="date">22 August 2026</div>
 <h2>A calendar that will not show a vendor's date until a human ticks it</h2>
-<p>A fetched earnings date is written unconfirmed and a row-level rule keeps it out of every member read until someone confirms it. Published central bank dates are seeded and shown straight away.</p><p>The gate sits on the row, not on the page. A query written later that never heard of the rule still cannot return an unconfirmed date.</p>
+<p>A fetched earnings date is written unconfirmed and a row-level rule keeps it out of every member read until someone confirms it. Published central bank dates are seeded and shown straight away.</p><p>The gate sits on the row. A query written later that never heard of the rule still cannot return an unconfirmed date.</p>
 <p>Limit: two vendors publish no schedule this machine can reach.</p>
 <p class="proof">Proof: the member page shows the confirmed dates and none of the unconfirmed ones.</p>
 </div>
 <div class="entry">
 <div class="date">22 August 2026</div>
 <h2>A Friday job that assembles the week into a draft note</h2>
-<p>The research-draft cron reads what was published, what closed with real numbers and what is still open, then writes them into the standard note. The author adds the judgement.</p><p>An empty form is the reason a weekly note gets skipped. Assembling the facts from production data leaves only the part a person has to write.</p>
+<p>The research-draft cron reads what was published, what closed with real numbers and what is still open, then writes them into the standard note. The author adds the judgement.</p><p>Assembling the facts from production data leaves only the part a person has to write.</p>
 <p class="proof">Proof: the draft built from production data, wins and losses in the same list.</p>
 </div>
 <div class="entry">
@@ -256,7 +256,7 @@
 <div class="entry">
 <div class="date">22 August 2026</div>
 <h2>One standing brief under two names, so both assistants read the same file</h2>
-<p>A symlink gives the brief the name each tool looks for, so both open the same bytes. Asked in an empty folder where my notes live, it answered from the brief in 1,357 tokens.</p><p>The private lines came out of the shared file first and live on in the file only one tool reads. A brief that two tools share cannot hold anything only one of them should see.</p>
+<p>A symlink gives the brief the name each tool looks for, so both open the same bytes. Asked in an empty folder where my notes live, it answered from the brief in 1,357 tokens.</p><p>The private lines came out of the shared file first and live on in the file only one tool reads.</p>
 
 <p>Limit: one machine, two tools.</p><p>Limit: an installer writing to the linked name would follow the link.</p>
 <p class="proof">Proof: both names, identical checksum, and the two answers.</p>
@@ -278,7 +278,7 @@
 <div class="entry">
 <div class="date">22 August 2026</div>
 <h2>Automation windows that come back signed in after a restart</h2>
-<p>Eight browser windows drive the channels with no usable API. A launchd job reopens any that are down, at login and every 45 minutes. It reads a signed-in signal off each page, so a session is confirmed rather than assumed.</p><p>I proved it by killing a window outright. It came back logged in, with no prompt. A recovery path nobody has triggered on purpose is a guess.</p>
+<p>Eight browser windows drive the channels with no usable API. A launchd job reopens any that are down, at login and every 45 minutes. It reads a signed-in signal off each page, so a session is confirmed rather than assumed.</p><p>I proved it by killing a window outright. It came back logged in, with no prompt.</p>
 <p>Limit: a site redesign can break the signal it reads.</p>
 <p class="proof">Proof: the launchd log listing sign-in state for every window.</p>
 </div>
@@ -322,7 +322,7 @@
 <div class="entry">
 <div class="date">21 August 2026</div>
 <h2>A routing check that calls the route instead of reading the config</h2>
-<p>It resolves eight task classes across three auth lanes, validates each candidate the way the executor would, then calls it for real.</p><p>Validation alone passed everything. Executing found that only one of three providers can authenticate, and that a route configured minutes earlier dies on a script the tool never included. A config a machine agrees with is not a route that answers.</p>
+<p>It resolves eight task classes across three auth lanes, validates each candidate the way the executor would, then calls it for real.</p><p>Validation alone passed everything. Executing found that only one of three providers can authenticate, and that a route configured minutes earlier dies on a script the tool never included.</p>
 
 <p>Limit: it tests routing and auth, never answer quality.</p>
 <p class="proof">Proof: the resolve, validate and execute pass across 22 lanes.</p>
@@ -420,7 +420,7 @@
 <div class="entry">
 <div class="date">20 August 2026</div>
 <h2>A ledger check that reads commit history and names what went unwritten</h2>
-<p>It compares commits across project folders against the dates already on this page, then reports work days with commits and no entry. It reports separately when the ledger is dirty or unpushed. A waiver list covers work I decided not to write up.</p><p>It reads two factual sources: the commits, and the dates on the page. Neither can be argued with.</p>
+<p>It compares commits across project folders against the dates already on this page, then reports work days with commits and no entry. It reports separately when the ledger is dirty or unpushed. A waiver list covers work I decided not to write up.</p><p>It reads two factual sources: the commits, and the dates on the page.</p>
 
 <p>Limit: it only sees work that touched a tracked folder.</p>
 <p class="proof">Proof: this page, plus the checker in <code>~/.claude/hooks/build-log-check.py</code>.</p>
@@ -485,7 +485,7 @@
 <div class="date">6 August 2026</div>
 <h2>A game whose verification checklist was locked before the build</h2>
 <p>The checks were written and committed first, then the game was built to pass them, then it went to production. Fourteen end-to-end checks, all passing.</p>
-<p>Writing the checklist first is what stops it describing whatever the code happened to do. The order is the whole method: a check authored after the build is a description, not a gate.</p>
+<p>Writing the checklist first is what stops it describing whatever the code happened to do.</p>
 <p>Limit: fourteen checks cover the flows I could name in advance.</p>
 <p class="proof">Proof: the checklist committed before the first build commit, and 14 of 14 end-to-end checks passing on the deployed site.</p>
 </div>
@@ -520,7 +520,7 @@
 <div class="date">1 August 2026</div>
 <h2>A repetition instrument with a ceiling the writer cannot move</h2>
 <p>qa.mjs counts repeated four-word runs across a manuscript and flags phrasing borrowed between characters. The ceiling is eight. A 25-chapter, 68,032-word book came in at or under it everywhere except one compliance date phrase at nine, kept on a stated allowance.</p>
-<p>A writer cannot hear their own repetitions after the fourth pass. Counting them puts a number on a thing taste stops noticing, and a written exception is the only honest way past the gate.</p>
+<p>A writer cannot hear their own repetitions after the fourth pass.</p>
 <p>Limit: it counts repetition. It cannot tell whether a repeated phrase is doing deliberate work.</p>
 <p class="proof">Proof: five batched passes, 44 rewords, and every repeated four-gram at or under the ceiling bar the one filed exception.</p>
 </div>
@@ -538,7 +538,7 @@
 <div class="date">29 July 2026</div>
 <h2>A freshness check so a dead price feed cannot render as a live price</h2>
 <p>quote-freshness.js answers one question for every surface that shows a tracked price: is this stored quote still worth showing? When the answer is stale, the surface says the quote is unavailable and shows when the last one arrived.</p>
-<p>The quote source can stop answering without warning. The last mark then sits in the table and every member page keeps rendering it as current. That is a silent failure, and it puts a false number in front of someone paying for it.</p>
+<p>The quote source can stop answering without warning. The last mark then sits in the table and every member page keeps rendering it as current. That puts a false number in front of someone paying for it.</p>
 <p>Limit: it judges the age of a quote, never whether the source was wrong when it answered.</p>
 <p class="proof">Proof: every surface that renders a mark calls the module first, and a stale mark renders as unavailable with its timestamp.</p>
 </div>
@@ -547,7 +547,7 @@
 <div class="date">26 July 2026</div>
 <h2>Site checks moved into the repo so they survive the session</h2>
 <p>check-site.mjs, check-dns.mjs and check-email-matches-site.mjs live in the repository and run from it. A browser walk sits beside them.</p>
-<p>A check that exists only in the session that wrote it runs once. Committing it makes the next person able to run it. It also makes a failing check something a reader can reproduce rather than take on trust.</p>
+<p>A check that exists only in the session that wrote it runs once. Committing it makes the next person able to run it.</p>
 <p>Limit: they check this site's own surfaces, not the platforms it publishes to.</p>
 <p class="proof">Proof: the checks run from the repository on a clean clone.</p>
 </div>
@@ -573,7 +573,7 @@
 <div class="entry">
 <div class="date">18 July 2026</div>
 <h2>Brand-scoped logins enforced on the server, not in the interface</h2>
-<p>Teammates sign in over my domains, see only the brands they work on, and publish from the same calendar. The application and its data stay on my machine.</p><p>Member sessions carry explicit brand IDs, and server routes filter brands, accounts, posts, inbox, analytics, insights and activity before returning data. Hiding a button changes what a person sees. Filtering on the route changes what exists.</p>
+<p>Teammates sign in over my domains, see only the brands they work on, and publish from the same calendar. The application and its data stay on my machine.</p><p>Member sessions carry explicit brand IDs, and server routes filter brands, accounts, posts, inbox, analytics, insights and activity before returning data.</p>
 
 <p>Limit: it is built for a small working team, not as a general multi-tenant SaaS platform.</p>
 <p class="proof">Proof: in daily use by a working team across two ventures.</p>
@@ -582,7 +582,7 @@
 <div class="entry">
 <div class="date">10 July 2026</div>
 <h2>A compliance evidence pack that can be filed, not just claimed</h2>
-<p>The lead engine produces an artifact a regulator or a client can read. It records the basis held for each contact, where the data came from, and what was sent when. Enrichment is gated on that basis rather than run first and justified after.</p><p>Most tools in this category enrich everything they can reach and leave the compliance question to the operator. Gating the enrichment means the evidence exists because the system could not have run without it.</p>
+<p>The lead engine produces an artifact a regulator or a client can read. It records the basis held for each contact, where the data came from, and what was sent when. Enrichment is gated on that basis rather than run first and justified after.</p><p>Gating the enrichment means the evidence exists because the system could not have run without it.</p>
 
 <p>Limit: the pack records what the system did, never data entered before the system held it.</p>
 <p class="proof">Proof: the evidence pack renders per campaign, with provenance on every field it carries.</p>
@@ -591,7 +591,7 @@
 <div class="entry">
 <div class="date">10 July 2026</div>
 <h2>An independent grader on my own work before it merged</h2>
-<p>Five build stages went to a grader that had not built them, and all came back confirmed before the merge. The grade sits in the project ledger beside the work it covers.</p><p>A builder grading their own work marks against what they meant. A grader given only the finished thing marks against what is there. That is the reading a user gets.</p>
+<p>Five build stages went to a grader that had not built them, and all came back confirmed before the merge. The grade sits in the project ledger beside the work it covers.</p><p>A builder grading their own work marks against what they meant. A grader given only the finished thing marks against what is there.</p>
 
 <p>Limit: the grader reads the built result, so a requirement nobody wrote down cannot be found missing.</p>
 <p class="proof">Proof: the recorded grade of stages P0.1 to P0.3, all confirmed, dated before the merge commit.</p>
@@ -609,7 +609,7 @@
 <div class="entry">
 <div class="date">7 July 2026</div>
 <h2>A native app that draws a model's own uncertainty as a constellation</h2>
-<p>It captures token probabilities as they stream and projects them down to three dimensions. The result is a navigable constellation, with fork branches where the model nearly chose otherwise. Built native, with a zoom and pan camera.</p><p>Long answers crashed it. The geometry was being serialised per frame rather than held in buffers on the graphics device. That is the difference between a demo and something you can steer.</p>
+<p>It captures token probabilities as they stream and projects them down to three dimensions. The result is a navigable constellation, with fork branches where the model nearly chose otherwise. Built native, with a zoom and pan camera.</p><p>Long answers crashed it. The geometry was being serialised per frame rather than held in buffers on the graphics device.</p>
 
 <p>Limit: it shows where the model was uncertain, never why.</p>
 <p class="proof">Proof: the app runs on device with long answers, verified against a live streaming capture.</p>
@@ -618,7 +618,7 @@
 <div class="entry">
 <div class="date">6 July 2026</div>
 <h2>A lawful-basis floor the outreach path cannot be talked past</h2>
-<p>The send path enforces two tiers of lawful basis on the server, so a weak basis cannot be upgraded by anything a caller passes in. Unsubscribe tokens are HMAC-SHA256 signed with the server secret.</p><p>A compliance rule that lives in the interface is a suggestion. On the server it is a rule, and a signed unsubscribe cannot be forged or guessed.</p>
+<p>The send path enforces two tiers of lawful basis on the server, so a weak basis cannot be upgraded by anything a caller passes in. Unsubscribe tokens are HMAC-SHA256 signed with the server secret.</p><p>A signed unsubscribe cannot be forged or guessed.</p>
 
 <p>Limit: it enforces the basis recorded against a contact, so a basis recorded wrongly upstream passes the floor.</p>
 <p class="proof">Proof: the floor is a server function on the send path, and every unsubscribe token carries an HMAC signature.</p>
@@ -627,7 +627,7 @@
 <div class="entry">
 <div class="date">6 July 2026</div>
 <h2>Sixteen projects brought under version control in one pass</h2>
-<p>Sixteen repositories took their first commit the same day, each a baseline of what was running rather than an idealised state. Personal references were scrubbed before publication, one repository was rebuilt after a key rotation, and a plaintext access code moved to a server-side check.</p><p>Work that exists on one disk has no history to read and no way back. A baseline of the running state beats a tidy one, because it is the version that was true.</p>
+<p>Sixteen repositories took their first commit the same day, each a baseline of what was running rather than an idealised state. Personal references were scrubbed before publication, one repository was rebuilt after a key rotation, and a plaintext access code moved to a server-side check.</p><p>Work that exists on one disk has no history to read and no way back.</p>
 
 <p>Limit: a baseline records the state on that day, so what happened before it is not recoverable.</p>
 <p class="proof">Proof: sixteen first commits dated the same day, each labelled as a baseline of the running state.</p>
@@ -655,7 +655,7 @@
 <div class="date">3 July 2026</div>
 <h2>A scaffolder that turns a written spec into a running project</h2>
 <p>One command reads a product spec and lays down a working project: structure, build, and a first pass at the surfaces. Six projects came out of it in a day, each from its own spec.</p>
-<p>Starting from a blank repository is where a good spec goes to die, because the first hour goes on plumbing rather than the thing. Handing the plumbing to a generator keeps the spec the subject.</p>
+<p>Handing the plumbing to a generator keeps the spec the subject.</p>
 <p>Limit: it produces a first pass. Every one of the six needed a human before it was worth showing.</p>
 <p class="proof">Proof: six projects scaffolded from six specs in one day, each committed with the spec it came from.</p>
 </div>
