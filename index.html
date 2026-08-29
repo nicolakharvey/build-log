@@ -52,7 +52,7 @@
 <div class="entry">
 <div class="date">27 August 2026</div>
 <h2>An approve step that carries the styling and the deletions too</h2>
-<p>Approving a section carries its styling and its deletions. The contributor's CSS rules travel under a marker keyed by page and sync id, so approving the same section again replaces its rules instead of stacking another copy.</p><p>Approving a whole page now removes what the contributor removed, rather than leaving a deleted section on Master to publish. Both fixes sit in the database rather than the app, because the app is one client and the database is the rule.</p>
+<p>Approving a section carries its styling and its deletions. The contributor's CSS rules travel under a marker keyed by page and sync id, so approving the same section again replaces its rules instead of stacking another copy.</p><p>Approving a whole page now removes what the contributor removed, rather than leaving a deleted section on Master to publish. Both fixes sit in the database rather than the app, because the app is one way in and the database is the rule.</p>
 
 <p class="proof">Proof: an approved section arrives on Master with its styling intact and its removals applied.</p>
 </div>
@@ -148,7 +148,7 @@
 </div>
 <div class="entry">
 <div class="date">23 August 2026</div>
-<h2>An App Store client that signs its own Apple token</h2>
+<h2>An App Store tool that signs its own Apple token</h2>
 <p>asc.py mints a short-lived App Store Connect JWT from my own key and carries four commands: doctor, state, builds and upload. upload_shots.py pushed sixteen screenshots, and Apple validated all sixteen and reported their dimensions back.</p><p>Signing the token locally keeps the key on my machine and out of any third-party dashboard. What's New is rejected on a first release, and the privacy label is not on the public API at all.</p>
 
 <p>Limit: it moves builds and screenshots. Listing text, categories, price and age rating are not on the path it drives.</p>
@@ -475,7 +475,7 @@
 <div class="entry">
 <div class="date">11 August 2026</div>
 <h2>A scanner that reads every frame of a recording for private text</h2>
-<p>check-recording.py reads the text in every frame of a screen recording and reports any of your listed private terms. It runs before a demo goes to a platform review, a client, or anyone else.</p>
+<p>check-recording.py reads the text in every frame of a screen recording and reports any of your listed private terms. It runs before a demo goes to a platform review or anywhere else.</p>
 <p>A recording made inside a tool holding several brands will contain the others. A sidebar footer, a list you scrolled past, a dropdown open for a second. Two careful visual passes on the first recording both said clean. The scanner found 22 exposed frames.</p>
 <p>Limit: it finds the terms you listed. A private thing you did not name is not looked for.</p>
 <p class="proof">Proof: 22 exposed frames on a recording two human passes had cleared.</p>
@@ -501,7 +501,7 @@
 
 <div class="entry">
 <div class="date">4 August 2026</div>
-<h2>Licensing a build to a client without handing over the asset</h2>
+<h2>Licensing a build without handing over the asset</h2>
 <p>A publish script builds, then mirrors only the packaged output into a separate private distribution repository on my own account, and pushes. The licensee gets upgrades without an email and can point their own agent at the desk.</p>
 <p>The source history holds my brands, my handles and every credential decision I have made, so it can never be shared. Keeping the distribution repo under my account licenses a copy. Handing over the repository would hand over the asset.</p>
 <p>Limit: what the licensee then runs on their own machine is beyond its reach.</p>
@@ -582,7 +582,7 @@
 <div class="entry">
 <div class="date">10 July 2026</div>
 <h2>A compliance evidence pack that can be filed, not just claimed</h2>
-<p>The lead engine produces an artifact a regulator or a client can read. It records the basis held for each contact, where the data came from, and what was sent when. Enrichment is gated on that basis rather than run first and justified after.</p><p>Gating the enrichment means the evidence exists because the system could not have run without it.</p>
+<p>The lead engine produces an artifact a regulator can read. It records the basis held for each contact, where the data came from, and what was sent when. Enrichment is gated on that basis rather than run first and justified after.</p><p>Gating the enrichment means the evidence exists because the system could not have run without it.</p>
 
 <p>Limit: the pack records what the system did, never data entered before the system held it.</p>
 <p class="proof">Proof: the evidence pack renders per campaign, with provenance on every field it carries.</p>
