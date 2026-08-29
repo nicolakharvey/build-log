@@ -392,7 +392,7 @@
 <div class="entry">
 <div class="date">21 August 2026</div>
 <h2>A verification battery whose checks were locked before the code existed</h2>
-<p>verify-pulsemerge.mjs runs against the minified build, never the source. Its header records that the checks were quoted from the concept sheet before a line of the game was written. The builder may fix the game and never the gates.</p><p>Checks written after the code tend to describe what the code does. Locking them to the sheet first is what let this battery gate a build that had passed 31 of its own.</p>
+<p>verify-pulsemerge.mjs runs against the minified build, never the source. Its header records that the checks were quoted from the concept sheet before a line of the game was written. The builder may fix the game and never the gates.</p><p>Checks written after the code tend to describe what the code does. A flawed check is fixed openly with a comment rather than re-rolled.</p>
 
 <p>Limit: the gates are mechanical, so none of them can tell whether a human enjoys the result.</p>
 <p class="proof">Proof: the live build at <a href="https://muplu.com/pulsemerge/" target="_blank" rel="noopener">muplu.com/pulsemerge</a>, with 53 checks against the live site.</p>
@@ -518,11 +518,11 @@
 
 <div class="entry">
 <div class="date">1 August 2026</div>
-<h2>A repetition instrument with a ceiling the writer cannot move</h2>
-<p>qa.mjs counts repeated four-word runs across a manuscript and flags phrasing borrowed between characters. The ceiling is eight. A 25-chapter, 68,032-word book came in at or under it everywhere except one compliance date phrase at nine, kept on a stated allowance.</p>
-<p>A writer cannot hear their own repetitions after the fourth pass.</p>
-<p>Limit: it counts repetition. It cannot tell whether a repeated phrase is doing deliberate work.</p>
-<p class="proof">Proof: five batched passes, 44 rewords, and every repeated four-gram at or under the ceiling bar the one filed exception.</p>
+<h2>A manuscript check that holds a writing rule to zero</h2>
+<p>qa.mjs runs mechanical checks over an assembled manuscript: word count, em dashes, seventeen AI-tell phrases, repeated four-word runs appearing three times or more, overused content words and chapter balance.</p>
+<p>The negation pivot check carries three patterns: the single sentence, the same pivot split across a full stop, and the comma form. Its pass condition is zero rather than a threshold.</p>
+<p>Limit: it cannot tell whether a repeated phrase is doing deliberate work.</p>
+<p class="proof">Proof: the three negation-pivot patterns and the zero pass condition, in scripts/qa.mjs.</p>
 </div>
 
 <div class="entry">
