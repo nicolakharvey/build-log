@@ -44,7 +44,7 @@
 <div class="entry">
 <div class="date">27 August 2026</div>
 <h2>A site builder where the owner's approval is a database rule</h2>
-<p>promote_section refuses a write to Master from anyone but the project owner, and a publish takes its author from the caller, refusing an insert that names anyone else.</p><p>Testing the gate with a real contributor account found nobody could write to Master, the owner included. copies.owner is NULL on the Master row, so the ownership comparison returned NULL rather than false, and the guard beneath it read that as not a member. Master had been unwritable for three days.</p>
+<p>promote_section refuses a write to Master from anyone but the project owner, and a publish takes its author from the caller, refusing an insert that names anyone else.</p><p>The same key that puts the site live decides what it says. A contributor edits freely and cannot change what the next publish carries. The record of who published is the database's own answer.</p>
 
 <p class="proof">Proof: a Master write from a non-owner is refused by the database, and every publish carries the caller's own identity.</p>
 </div>
@@ -68,7 +68,7 @@
 <div class="entry">
 <div class="date">25 August 2026</div>
 <h2>Four rounds of a grader attacking my own tool</h2>
-<p>A grader that never saw the build attacked it and prescribed the fixes. Round three named the pattern behind three rounds of the same bug. Each rule was written from a property of legitimate text, then trusted to exclude everything else.</p><p>One rule assumed every base taking a presentation selector is non-ASCII. True, and the converse of what the code needed. It exempted 1.1 million code points, and a payload hid in ordinary text with smart quotes.</p>
+<p>A grader that never saw the build attacked it and prescribed the fixes. Round three named the pattern behind three rounds of the same bug. Each rule was written from a property of legitimate text, then trusted to exclude everything else.</p><p>Every exemption is written from a property of legitimate text and then tested against its converse, so a rule cannot pass by being true in the wrong direction.</p>
 
 <p>Limit: three grading passes is the cap, then a human looks.</p><p>Limit: the grader prescribes only from what it can demonstrate, so a channel it never tried stays open.</p>
 
@@ -78,7 +78,7 @@
 <div class="entry">
 <div class="date">24 August 2026</div>
 <h2>My worlds tell you how to begin</h2>
-<p>Every world arrives as one unlit point waiting for a touch. It lights that point, says so, and begins on its own after twelve seconds.</p><p>It had been running at sixty frames a second the whole time, and reading as frozen. The fix threw 2500 caught errors a run, hidden by the loop's safety net, while all three of my checks passed. The probes assert a clean log now.</p>
+<p>Every world arrives as one unlit point waiting for a touch. It lights that point, says so, and begins on its own after twelve seconds.</p><p>The probes assert a clean log as well as a clean screen, so a world that paints correctly while erroring underneath does not pass.</p>
 
 <p>Limit: the probes read the log and the screen. They cannot tell whether a world is worth staying in.</p>
 <p class="proof">Proof: both dives say the line, the point lights on both, it begins at twelve seconds, no errors.</p>
@@ -233,7 +233,7 @@
 <div class="entry">
 <div class="date">22 August 2026</div>
 <h2>A dispatch tool that fans work to background scouts on both assistants</h2>
-<p>It runs with the worker pinned to one chosen provider, so I know where background task text goes. A substantive prompt plans eight read-only lanes. Trivial prompts get none, by design.</p><p>Work sent to a lane is still my text, and an unpinned worker chooses where it lands. Switching it on also explained the tool's own failing tests: 36 fell to 19 once the flags were set.</p>
+<p>It runs with the worker pinned to one chosen provider, so I know where background task text goes. A substantive prompt plans eight read-only lanes. Trivial prompts get none, by design.</p><p>Work sent to a lane is still my text, and an unpinned worker chooses where it lands.</p>
 
 <p>Limit: one machine.</p>
 <p class="proof">Proof: the route plan naming eight lanes, and the two test counts. Built on <a href="https://github.com/josephtandle/myos-dispatch" target="_blank" rel="noopener">myos-dispatch</a>.</p>
@@ -271,7 +271,7 @@
 <div class="entry">
 <div class="date">22 August 2026</div>
 <h2>Comment editing on our review tool, with the rail frozen while you type</h2>
-<p>The review Worker had always allowed a teammate to edit her own comment; the page had no button for it. I wired one, and froze the comment rail while someone is typing.</p><p>The rail rebuilds every five seconds. A live-refreshing list will eat an in-progress edit, so any surface that polls has to stop polling while a field is open.</p>
+<p>A teammate edits her own comment on the page, and the comment rail freezes while someone is typing.</p><p>The rail rebuilds every five seconds. A live-refreshing list will eat an in-progress edit, so any surface that polls has to stop polling while a field is open.</p>
 <p>Limit: it edits a comment's text. It cannot recover what the comment said before.</p>
 <p class="proof">Proof: live, with the same comment count before and after the deploy.</p>
 </div>
@@ -365,7 +365,7 @@
 <div class="entry">
 <div class="date">21 August 2026</div>
 <h2>A page test that clicks a control and asserts the page answered</h2>
-<p>It drives each page and requires a user action to change state. It caught four pages that returned 200, passed type checks and lint, and rendered correctly in screenshots while their JavaScript was dead.</p><p>The site was served on one local hostname and opened on its twin, so the framework refused the scripts to that origin. A static page still paints without them. Only a click reaches that failure.</p>
+<p>It drives each page and requires a user action to change state. It caught four pages that returned 200, passed type checks and lint, and rendered correctly in screenshots while their JavaScript was dead.</p><p>A static page paints without its scripts, so a screenshot and a 200 both pass. Only a click reaches that failure.</p>
 
 <p>Limit: the origin fault is dev-mode only, and production builds do not carry that behaviour.</p>
 <p class="proof">Proof: dev-server log naming the disallowed origin, plus before/after browser-walk transcripts.</p>
@@ -448,7 +448,7 @@
 <div class="entry">
 <div class="date">18 August 2026</div>
 <h2>A provenance checker that separates three layers people collapse</h2>
-<p>Invisible text characters, image metadata, and marks in the pixels are three different problems. The checker reports them separately rather than as one score.</p><p>Pointed at my own website it found four published images carrying the full generation recipe in their metadata. Prompts, model and settings, none of it visible on the page. I cleaned and redeployed the same night.</p>
+<p>Invisible text characters, image metadata, and marks in the pixels are three different problems. The checker reports them separately rather than as one score.</p><p>Image metadata can carry the full generation recipe: prompts, model and settings, none of it visible on the page. The checker reads that layer on its own.</p>
 
 <p>Limit: stripping metadata does not remove visible watermarks or pixel-level generator marks.</p>
 <p class="proof">Proof: the write-up <a href="https://medium.com/@nicolakharvey/the-48-characters-i-could-not-see-d6c8316c1643" target="_blank" rel="noopener">The 48 characters I could not see</a>.</p>
