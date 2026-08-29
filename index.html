@@ -58,6 +58,15 @@
 </div>
 
 <div class="entry">
+<div class="date">27 August 2026</div>
+<h2>An approve step that will not run without a restore point</h2>
+<p>snapshot_master stores Master's sections and stylesheet for a page before every approval, and Undo last approval puts the most recent one back. An approve that cannot write its restore point stops and says so rather than going ahead.</p><p>Restoring takes a snapshot of where Master is first, so stepping back is itself undoable. A page holding no sections stores nothing, so a failed load cannot become the version that comes back.</p>
+
+<p>Limit: twenty restore points a page, and it puts one page back.</p>
+<p class="proof">Proof: the approve path returns "could not save a restore point first" and stops when the snapshot fails.</p>
+</div>
+
+<div class="entry">
 <div class="date">25 August 2026</div>
 <h2>A scheduled queue check that catches a year written as words</h2>
 <p>check-spelled-years.mjs reads my publishing queue twice a day and files an alert. Seven patterns cover century years, the 2000s, spoken twenty-twenties, round centuries and the long form, so "in seventeen hundred" and "nineteen hundred and six" both land.</p><p>A count and a year are the same words. "Seventeen hundred people" is correct and "in seventeen hundred" is a year, so the grammar around the number decides, not the number. Every pattern is written to stay silent where a count would sit.</p>
@@ -609,7 +618,7 @@
 <div class="entry">
 <div class="date">7 July 2026</div>
 <h2>A native app that draws a model's own uncertainty as a constellation</h2>
-<p>It captures token probabilities as they stream and projects them down to three dimensions. The result is a navigable constellation, with fork branches where the model nearly chose otherwise. Built native, with a zoom and pan camera.</p><p>Long answers crashed it. The geometry was being serialised per frame rather than held in buffers on the graphics device.</p>
+<p>It captures token probabilities as they stream and projects them down to three dimensions. The result is a navigable constellation, with fork branches where the model nearly chose otherwise. Built native, with a zoom and pan camera.</p><p>The geometry is held in buffers on the graphics device rather than serialised per frame, so a long answer stays navigable.</p>
 
 <p>Limit: it shows where the model was uncertain, never why.</p>
 <p class="proof">Proof: the app runs on device with long answers, verified against a live streaming capture.</p>
