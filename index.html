@@ -33,6 +33,51 @@
 <p class="rule">Every entry here was working before it was written up. Each one names the build, the assurance check, the proof, and the limit. Dates are the dates things ran; nothing here is a plan or roadmap.</p>
 
 <div class="entry">
+<div class="date">30 August 2026</div>
+<h2>A nightly job that reports a fault instead of falling quiet</h2>
+<p>It reads the ledger's own history for the last commit that added an entry, then lists work committed after that moment, so nothing falls into the gap between two nights.</p>
+<p>Silence means no new work. An input it cannot read is a fault, and it says so, in a log of its own and a notification.</p>
+<p>Limit: it reads committed history. Uncommitted work is listed separately and never triggers the notification.</p>
+<p class="proof">Proof: run under the scheduler it produced sixty-seven candidates across nine repositories, with an empty error log.</p>
+</div>
+
+<div class="entry">
+<div class="date">29 August 2026</div>
+<h2>A build that will not ship a toy without its share button</h2>
+<p>check-share.mjs walks every toy and shelf page and build.sh runs it, beside the catalogue gate and the wing gate. A toy that lost its button still renders and still plays, so the only other way to catch it is to open all of them and look.</p>
+<p>The installer beside it writes no backup next to the file it edits. Everything in that folder is served to the internet, so git is the revert path.</p>
+<p>Limit: a page carrying no home pill is skipped.</p>
+<p class="proof">Proof: the gate reports forty-five toys and seven shelf pages, every one carrying it.</p>
+</div>
+
+<div class="entry">
+<div class="date">29 August 2026</div>
+<h2>A tuning constant set by measurement, not by preference</h2>
+<p>The gap a ranking must clear now scales with the error of the estimate it is drawn from, instead of sitting flat at every length.</p>
+<p>A simulated pilot scores four thousand people on both lengths from one set of answers, and the sweep sits in the file beside the number. At the old value, eighteen readers in a hundred were named one series on the short form and a different one on the long. At the chosen value, three.</p>
+<p>Limit: the people are synthetic, drawn from the distribution the norms already assume. It measures the machinery, not the norms.</p>
+<p class="proof">Proof: the file asserts now instead of writing JSON and passing. Set the constant, re-run it, and the sweep reproduces.</p>
+</div>
+
+<div class="entry">
+<div class="date">29 August 2026</div>
+<h2>Seventy-two promises turned into something a reader can start</h2>
+<p>Every facet named a tool that does not exist yet. The name stays, and the line beneath it is now a practice built from the facet's own verb and the outcome clause its description already carried, so nothing was invented.</p>
+<p>A test holds each practice to the line it came from, and holds the working copy of the writing byte for byte against the copy the app reads.</p>
+<p>Limit: it checks that the two stay in step, not that the practice works.</p>
+<p class="proof">Proof: fourteen tests pass, including both guards.</p>
+</div>
+
+<div class="entry">
+<div class="date">29 August 2026</div>
+<h2>An expired contract recorded at what it settled for</h2>
+<p>A contract past expiry is worth the underlying against the strike, floored at zero. The feed can still be carrying a quote from after it settled, and that quote is no longer what gets stored.</p>
+<p>Calls and puts are computed the same way and rounded to cents. Where a strike or an underlying is missing, it returns nothing rather than a guess.</p>
+<p>Limit: it needs the underlying at expiry. Without one, nothing is recorded.</p>
+<p class="proof">Proof: fifteen cases pass, in and out of the money, at the money at zero, and every missing input returning null.</p>
+</div>
+
+<div class="entry">
 <div class="date">27 August 2026</div>
 <h2>An adversarial test that assumes the model was fooled</h2>
 <p>test_injection.py feeds an agent a deliberately hostile feed and checks that nothing harmful can leave. Server instructions are stripped, hidden characters removed, invented post ids dropped, and an outbound firewall refuses anything sensitive.</p>
