@@ -38,6 +38,15 @@
 <p class="standfirst">A dated record of the AI systems I direct, the guardrails I set, and what I proved worked.</p>
 <p class="rule">Every entry was working before it was written up. Each one names the build, the decision I made, the proof, and the limit. Dates are the dates things ran.</p>
 
+<div class="entry" id="six-unattended-reports-that-refuse-to-say-clean-when-they-co">
+<div class="date">17 September 2026</div>
+<h2>Six unattended reports that refuse to say clean when they could not look</h2>
+<p>Six read-only scripts check my own systems and write one report each. Three run on a schedule and none of them sends, publishes or deploys. Three refuse rather than report a clean result they could not produce.</p>
+<p>The credential sweep exits 4 when ripgrep is missing, because a clean sweep nobody could run is a lie. One launchctl command will stop a job.</p>
+<p>Limit: three of the six run only when I run them.</p>
+<p class="proof">Proof: each run writes a dated report, and the refusing three exit non-zero instead. The reports read my own machine, so they are held privately.</p>
+</div>
+
 <div class="entry" id="a-pendant-that-hands-my-phone-the-audio-and-the-phone-writes">
 <div class="date">16 September 2026</div>
 <h2>A pendant that hands my phone the audio, and the phone writes the notes</h2>
@@ -45,6 +54,78 @@
 <p>It measures itself: a sample recording comes with the app, and Check accuracy reports the word error rate on the phone in your hand.</p>
 <p>Limit: the notes need a phone that runs Apple Intelligence.</p>
 <p class="proof">Proof: two notes the phone wrote from a recording the board sent.</p>
+</div>
+
+<div class="entry" id="a-verification-skill-that-drives-the-real-desk-in-a-throwawa">
+<div class="date">16 September 2026</div>
+<h2>A verification skill that drives the real desk in a throwaway copy</h2>
+<p>A skill that proves a change to my publishing desk before I trust it. It runs against a git worktree copy under a sandbox profile, so my readers never see an untested change. Launch tears the copy down itself when the doctor check fails.</p>
+<p>I required both sides to be breakable, so one switch makes the doctor fail and another the drive checks. The outbound drive asserts the sandbox refused the call on all three legs.</p>
+<p>Limit: it proves the copy, never the desk itself.</p>
+<p class="proof">Proof: a dated evidence folder holds 26 doctor checks passed and 10 drive checks ok. It cannot be shown off this machine.</p>
+</div>
+
+<div class="entry" id="a-send-gate-that-will-not-offer-a-note-holding-the-raw-trans">
+<div class="date">16 September 2026</div>
+<h2>A send gate that will not offer a note holding the raw transcript</h2>
+<p>A send gate on my notes app decides which notes may leave. I made a note sendable only when the on-device model produced it. When that model cannot run, the fallback note holds the whole transcript, so it is withheld.</p>
+<p>Nobody else's words travel in a note I did not approve. Before any send, a screen shows the handling line and waits for me to confirm. The register behind it marks four of its eight citations unverified.</p>
+<p>Limit: the register is reference data and never legal advice.</p>
+<p class="proof">Proof: a Swift suite of eight sendable cases. A mutation letting any note through is caught by three. The repo cannot be shown.</p>
+</div>
+
+<div class="entry" id="a-gate-that-stops-a-publish-chained-after-an-unchecked-step">
+<div class="date">15 September 2026</div>
+<h2>A gate that stops a publish chained after an unchecked step</h2>
+<p>A PreToolUse hook on Bash blocks a publish before it runs. It refuses a deploy joined to a step whose failure would not stop it. I made a web deploy need my word in the session that runs it, so no agent publishes to my readers on its own.</p>
+<p>Its harness pairs real incidents with safe shapes that must pass. The harness builds its own fixtures in a temp directory, never on the live file.</p>
+<p>Limit: it sees only the commands run through the tool.</p>
+<p class="proof">Proof: 36 of 36 harness cases pass, 14 of them blocking and 22 allowing. The hook is local and cannot be shown.</p>
+</div>
+
+<div class="entry" id="a-privacy-firewall-on-every-brief-handed-to-a-subagent">
+<div class="date">15 September 2026</div>
+<h2>A privacy firewall on every brief handed to a subagent</h2>
+<p>A hook on the Agent tool reads every brief before a subagent is spawned. A brief matching my client-health or dispute patterns is refused, and the subagent never runs. I drew the line at the delegation boundary, so two scripts and this hook read one pattern file.</p>
+<p>Text that only states the rule is stripped first, measured against 388 past briefs. An override exists and every use of it is logged.</p>
+<p>Limit: it matches patterns in the brief, never a file the subagent opens later.</p>
+<p class="proof">Proof: the shared log holds 28 timestamped decisions, 14 of them this hook's. They are real refusals from my work, so it is held privately.</p>
+</div>
+
+<div class="entry" id="a-rights-filter-that-caught-43-325-restricted-images-before">
+<div class="date">13 September 2026</div>
+<h2>A rights filter that caught 43,325 restricted images before publication</h2>
+<p>A filter inside the ingest script reads the source's per-image permission column. I read the museum's own licence terms rather than the headline. The open waiver covers the dataset and says images are not included.</p>
+<p>Filtering on that column took the first run's 92,453 works down to 49,128. The 43,325 difference stays out of the build, and with the people who hold those rights. The deploy script stops on the file and size caps.</p>
+<p>Limit: it trusts the column the source sets for each image.</p>
+<p class="proof">Proof: every harvest run prints what it kept and what it skipped. The kept file holds 49,128 works. The gallery cannot be shown.</p>
+</div>
+
+<div class="entry" id="a-shelf-gate-that-holds-every-toy-to-one-floor">
+<div class="date">10 September 2026</div>
+<h2>A shelf gate that holds every toy to one floor</h2>
+<p>A script that opens all 46 toys in a real browser at phone size. I wrote one floor every toy must clear, because the gates before it each checked one thing. Five checks are hard: console errors, overflow, an external request, the head fields, an em dash.</p>
+<p>Nobody playing a toy is tracked, and the third check proves it. Seven more are advisory, and those calls stayed mine. Its first pass caught toys that had cleared their own tests.</p>
+<p>Limit: it drives Chromium only.</p>
+<p class="proof">Proof: 46 of 46 toys clear the floor, with the shelf served from muplu.com.</p>
+</div>
+
+<div class="entry" id="a-refusal-that-lands-before-the-model">
+<div class="date">9 September 2026</div>
+<h2>A refusal that lands before the model</h2>
+<p>An in-browser Web3 sandbox has an assistant that answers about a price, a balance, a pool or an NFT. A question asking for a decision instead gets one fixed string. The refusal sits in the module and never reaches a model or a template.</p>
+<p>I put it there so it cannot be talked out of by anyone. Nothing leaves the page unless the person using it switches on her own local model.</p>
+<p>Limit: the refusal fires on the phrasings in its own pattern.</p>
+<p class="proof">Proof: 82 of 82 Node tests pass, including 15 adversarial cases, 6 named for the defect they reproduce. The app is unreleased and cannot be shown.</p>
+</div>
+
+<div class="entry" id="a-drawdown-rule-read-as-a-position-size">
+<div class="date">4 September 2026</div>
+<h2>A drawdown rule read as a position size</h2>
+<p>An unattended loop ran 57 iterations, each spawning an agent to write a strategy. The gates are fixed in code and the loop cannot edit them. I read the 20% drawdown rule as a position size, because no strategy met it at full exposure.</p>
+<p>The gate measures drawdown from the wallet curve, not from closed trades alone. It stays in dry run, so nobody's money is in it, and a checklist gates going live.</p>
+<p>Limit: the out-of-sample window is a single bear market.</p>
+<p class="proof">Proof: the loop's journal holds 60 attempts from those iterations, 18 passed and 42 failed. It cannot be shown off my machine.</p>
 </div>
 
 <div class="entry" id="a-nightly-job-that-reports-a-fault-instead-of-falling-quiet">
@@ -539,6 +620,15 @@
 <p>A recording made inside a tool holding several brands will contain the others. A sidebar footer, a list you scrolled past, a dropdown open for a second. Two careful visual passes on the first recording both said clean. The scanner found 22 exposed frames.</p>
 <p>Limit: it finds the terms you listed. A private thing you did not name is not looked for.</p>
 <p class="proof">Proof: 22 exposed frames on a recording two human passes had cleared.</p>
+</div>
+
+<div class="entry" id="two-gate-rules-measured-against-19-072-commands-before-eithe">
+<div class="date">7 August 2026</div>
+<h2>Two gate rules measured against 19,072 commands before either could block</h2>
+<p>A hook on Bash catches two shell shapes that hand someone a pass nobody ran. I measured both rules against 19,072 of my own past commands before either could block anything. The firing rates are recorded in the file: 0.17%, 0.063%, and 0.23% combined.</p>
+<p>Three further rules were measured and refused: one would have fired on up to 38% of commands. The rule I set: measure the collateral, not only the catch.</p>
+<p>Limit: it reads the command text, and never what the command did.</p>
+<p class="proof">Proof: both firing rates sit in the gate's header, with the dated incident behind each rule. It cannot be shown off my machine.</p>
 </div>
 
 <div class="entry" id="a-game-whose-verification-checklist-was-locked-before-the-bu">
