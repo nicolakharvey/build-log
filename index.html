@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Build Log · Nicola Harvey</title>
+<meta name="description" content="A dated record of the AI systems Nicola Harvey directs, the guardrails she sets, and what she proved worked. Every entry was working before it was written up.">
+<meta property="og:title" content="The Build Log · Nicola Harvey">
+<meta property="og:description" content="A dated record of the AI systems I direct, the guardrails I set, and what I proved worked.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nicolakharvey.github.io/build-log/">
+<meta name="twitter:card" content="summary">
 <style>
   :root { --ink:#16212a; --paper:#faf8f5; --soft:#6b7a86; --line:#e5e0d8; --accent:#0d4d56; }
   * { box-sizing:border-box; }
@@ -29,10 +35,10 @@
 
 <h1>The Build Log</h1>
 <p class="byline">Nicola Harvey</p>
-<p class="standfirst">A dated record of what I build and how I prove it worked.</p>
-<p class="rule">Every entry here was working before it was written up. Each one names the build, the assurance check, the proof, and the limit. Dates are the dates things ran; nothing here is a plan or roadmap.</p>
+<p class="standfirst">A dated record of the AI systems I direct, the guardrails I set, and what I proved worked.</p>
+<p class="rule">Every entry was working before it was written up. Each one names the build, the decision I made, the proof, and the limit. Dates are the dates things ran.</p>
 
-<div class="entry">
+<div class="entry" id="a-pendant-that-hands-my-phone-the-audio-and-the-phone-writes">
 <div class="date">16 September 2026</div>
 <h2>A pendant that hands my phone the audio, and the phone writes the notes</h2>
 <p>I flashed a coin-sized board and paired it to an iPhone app I wrote. It streams audio over Bluetooth; the phone decodes, transcribes and writes the notes. Nothing is uploaded.</p>
@@ -41,7 +47,7 @@
 <p class="proof">Proof: two notes the phone wrote from a recording the board sent.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-nightly-job-that-reports-a-fault-instead-of-falling-quiet">
 <div class="date">30 August 2026</div>
 <h2>A nightly job that reports a fault instead of falling quiet</h2>
 <p>It reads the ledger's own history for the last commit that added an entry, then lists work committed after that moment, so nothing falls into the gap between two nights.</p>
@@ -50,7 +56,7 @@
 <p class="proof">Proof: run under the scheduler it produced sixty-seven candidates across nine repositories, with an empty error log.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-build-that-will-not-ship-a-toy-without-its-share-button">
 <div class="date">29 August 2026</div>
 <h2>A build that will not ship a toy without its share button</h2>
 <p>check-share.mjs walks every toy and shelf page and build.sh runs it, beside the catalogue gate and the wing gate. A toy that lost its button still renders and still plays, so the only other way to catch it is to open all of them and look.</p>
@@ -59,7 +65,7 @@
 <p class="proof">Proof: the gate reports forty-five toys and seven shelf pages, every one carrying it.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-tuning-constant-set-by-measurement-not-by-preference">
 <div class="date">29 August 2026</div>
 <h2>A tuning constant set by measurement, not by preference</h2>
 <p>The gap a ranking must clear now scales with the error of the estimate it is drawn from, instead of sitting flat at every length.</p>
@@ -68,7 +74,7 @@
 <p class="proof">Proof: the file asserts now instead of writing JSON and passing. Set the constant, re-run it, and the sweep reproduces.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="seventy-two-promises-turned-into-something-a-reader-can-star">
 <div class="date">29 August 2026</div>
 <h2>Seventy-two promises turned into something a reader can start</h2>
 <p>Every facet named a tool that does not exist yet. The name stays, and the line beneath it is now a practice built from the facet's own verb and the outcome clause its description already carried, so nothing was invented.</p>
@@ -77,7 +83,7 @@
 <p class="proof">Proof: fourteen tests pass, including both guards.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="an-expired-contract-recorded-at-what-it-settled-for">
 <div class="date">29 August 2026</div>
 <h2>An expired contract recorded at what it settled for</h2>
 <p>A contract past expiry is worth the underlying against the strike, floored at zero. The feed can still be carrying a quote from after it settled, and that quote is no longer what gets stored.</p>
@@ -86,7 +92,7 @@
 <p class="proof">Proof: fifteen cases pass, in and out of the money, at the money at zero, and every missing input returning null.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="an-adversarial-test-that-assumes-the-model-was-fooled">
 <div class="date">27 August 2026</div>
 <h2>An adversarial test that assumes the model was fooled</h2>
 <p>test_injection.py feeds an agent a deliberately hostile feed and checks that nothing harmful can leave. Server instructions are stripped, hidden characters removed, invented post ids dropped, and an outbound firewall refuses anything sensitive.</p>
@@ -95,7 +101,7 @@
 <p class="proof">Proof: twelve hostile scenarios, run without the model at all, then again against the real model call.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-site-builder-where-the-owner-s-approval-is-a-database-rule">
 <div class="date">27 August 2026</div>
 <h2>A site builder where the owner's approval is a database rule</h2>
 <p>promote_section refuses a write to Master from anyone but the project owner, and a publish takes its author from the caller, refusing an insert that names anyone else.</p><p>The same key that puts the site live decides what it says. A contributor edits freely and cannot change what the next publish carries. The record of who published is the database's own answer.</p>
@@ -103,7 +109,7 @@
 <p class="proof">Proof: a Master write from a non-owner is refused by the database, and every publish carries the caller's own identity.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="an-approve-step-that-carries-the-styling-and-the-deletions-t">
 <div class="date">27 August 2026</div>
 <h2>An approve step that carries the styling and the deletions too</h2>
 <p>Approving a section carries its styling and its deletions. The contributor's CSS rules travel under a marker keyed by page and sync id, so approving the same section again replaces its rules instead of stacking another copy.</p><p>Approving a whole page now removes what the contributor removed, rather than leaving a deleted section on Master to publish. Both fixes sit in the database rather than the app, because the app is one client and the database is the rule.</p>
@@ -111,7 +117,7 @@
 <p class="proof">Proof: an approved section arrives on Master with its styling intact and its removals applied.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-scheduled-queue-check-that-catches-a-year-written-as-words">
 <div class="date">25 August 2026</div>
 <h2>A scheduled queue check that catches a year written as words</h2>
 <p>check-spelled-years.mjs reads my publishing queue twice a day and files an alert. Seven patterns cover century years, the 2000s, spoken twenty-twenties, round centuries and the long form, so "in seventeen hundred" and "nineteen hundred and six" both land.</p><p>A count and a year are the same words. "Seventeen hundred people" is correct and "in seventeen hundred" is a year, so the grammar around the number decides, not the number. Every pattern is written to stay silent where a count would sit.</p>
@@ -119,7 +125,7 @@
 
 <p class="proof">Proof: the scheduled run logs "Scanned 170 posts (queued only). No years spelled as words."</p>
 </div>
-<div class="entry">
+<div class="entry" id="four-rounds-of-a-grader-attacking-my-own-tool">
 <div class="date">25 August 2026</div>
 <h2>Four rounds of a grader attacking my own tool</h2>
 <p>A grader that never saw the build attacked it and prescribed the fixes. Round three named the pattern behind three rounds of the same bug. Each rule was written from a property of legitimate text, then trusted to exclude everything else.</p><p>Every exemption is written from a property of legitimate text and then tested against its converse, so a rule cannot pass by being true in the wrong direction.</p>
@@ -129,7 +135,7 @@
 <p class="proof">Proof: 213 tests, and every change in the last round is the grader's own prescription rather than mine.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="my-worlds-tell-you-how-to-begin">
 <div class="date">24 August 2026</div>
 <h2>My worlds tell you how to begin</h2>
 <p>Every world arrives as one unlit point waiting for a touch. It lights that point, says so, and begins on its own after twelve seconds.</p><p>The probes assert a clean log as well as a clean screen, so a world that paints correctly while erroring underneath does not pass.</p>
@@ -137,7 +143,7 @@
 <p>Limit: the probes read the log and the screen. They cannot tell whether a world is worth staying in.</p>
 <p class="proof">Proof: both dives say the line, the point lights on both, it begins at twelve seconds, no errors.</p>
 </div>
-<div class="entry">
+<div class="entry" id="a-sign-in-check-that-reads-positive-evidence-proved-in-both-">
 <div class="date">23 August 2026</div>
 <h2>A sign-in check that reads positive evidence, proved in both directions</h2>
 <p>check-bridge-logins.mjs opens a fresh tab on each automation window and looks for evidence the session is live. It reads a signed-in signal rather than the absence of a signed-out one.</p><p>I pointed it at a clean browser with no session and required it to report LOGGED OUT. An absent warning proves nothing on its own, so the check only counts positive evidence.</p>
@@ -145,7 +151,7 @@
 <p>Limit: it proves a session exists. It cannot prove the account behind it is the right one.</p>
 <p class="proof">Proof: a clean no-session browser still reads LOGGED OUT while all nine real windows read logged in.</p>
 </div>
-<div class="entry">
+<div class="entry" id="a-publishing-scheduler-that-sleeps-until-the-next-post-is-du">
 <div class="date">23 August 2026</div>
 <h2>A publishing scheduler that sleeps until the next post is due</h2>
 <p>x-post-scheduler.mjs reads when the next post falls due and sleeps to that minute. lane-watchdog.mjs covers the process itself and restarts a wedged one.</p><p>Polling on a fixed interval buys accuracy with wasted work. Sleeping to the due time took the X lane from 144 wakeups a day to one per due post, trading a poll loop for a long-lived process. The watchdog covers that trade.</p>
@@ -153,7 +159,7 @@
 <p>Limit: it schedules the X lane. Other channels keep their own timing.</p>
 <p class="proof">Proof: the log reads "next look in 240 min (next post at 22:00Z)."</p>
 </div>
-<div class="entry">
+<div class="entry" id="a-reply-worker-that-confirms-a-send-by-counting-not-by-looki">
 <div class="date">23 August 2026</div>
 <h2>A reply worker that confirms a send by counting, not by looking</h2>
 <p>tiktok-comment-worker.mjs counts the replies under a comment before and after it posts, so a send is confirmed by a number that moved. It refuses any reply over 150 characters at approval, because the platform truncates those in silence and still reports success.</p><p>A presence check cannot verify a send on a comment that already has replies. Counting holds whatever state the target was already in. The worker confirms every action it takes that way.</p>
@@ -161,7 +167,7 @@
 <p>Limit: it confirms the reply appeared. It does not confirm the text survived.</p>
 <p class="proof">Proof: the reply is live under the comment and the queue is empty.</p>
 </div>
-<div class="entry">
+<div class="entry" id="a-reply-engine-that-reads-the-video-not-just-the-caption">
 <div class="date">23 August 2026</div>
 <h2>A reply engine that reads the video, not just the caption</h2>
 <p>Videos carry a transcript into tiktok-comment-worker.mjs, and it reaches the model before the caption. A figure in a comment counts as substance, so the reply takes the full branch instead of the short one.</p><p>A comment answers the video, so an engine reading only the caption answers a different question. The persona is held to asserting no competing number.</p>
@@ -169,7 +175,7 @@
 <p>Limit: the transcript carries the spoken line. A figure shown on screen and never said is not read.</p>
 <p class="proof">Proof: the stored transcript reads "He has tens of times the scent receptors you do."</p>
 </div>
-<div class="entry">
+<div class="entry" id="a-comment-reader-for-a-channel-whose-api-returns-nothing">
 <div class="date">23 August 2026</div>
 <h2>A comment reader for a channel whose API returns nothing</h2>
 <p>tiktok-comment-worker.mjs reads comments through a browser already signed in, capturing the JSON the page requests rather than scraping the markup. It types back replies I approve, matching each on the commenter's name and exact words.</p><p>Capturing the request gives the same data the platform gives its own front end, which survives a redesign that breaks a scraper. The page exposes no comment id. Matching on name and exact words is what lands a reply on the right thread.</p>
@@ -177,14 +183,14 @@
 <p>Limit: it reads top-level comments. Nested replies are not read.</p><p>Limit: it works only while that browser window is open.</p>
 <p class="proof">Proof: ~/Library/Logs/tiktok-comments.log, five comments filed on the first run and none on the second.</p>
 </div>
-<div class="entry">
+<div class="entry" id="an-x-poster-that-asks-the-desk-what-is-due-before-it-opens-a">
 <div class="date">23 August 2026</div>
 <h2>An X poster that asks the desk what is due before it opens a browser</h2>
 <p>x-post-worker.mjs queries the desk first, so on a quiet day the browser window is never opened. The identity check still runs before anything is typed.</p><p>An identity check costs a page load, so asking the desk first means a quiet day never pays it. All four browser lanes now ask what is due before they open a window.</p>
 
 <p>Limit: it answers for the X lane. Each browser lane holds its own schedule.</p><p class="proof">Proof: the log now reads "nothing due for X, so the window was left alone."</p>
 </div>
-<div class="entry">
+<div class="entry" id="a-build-loop-that-writes-drives-and-looks-at-ten-prototypes">
 <div class="date">23 August 2026</div>
 <h2>A build loop that writes, drives and looks at ten prototypes</h2>
 <p>Ten premises in, ten playable files out from one run. All ten parse and nine boot clean. A local coder model writes each one, a headless browser drives it, and a local vision model reads the screenshot.</p><p>The vision pass judges what the code cannot assert. It disagreed with all ten builds on the same point, and it caught five that ignore their own keys.</p>
@@ -192,7 +198,7 @@
 <p>Limit: the loop cannot tell whether any of them are fun.</p>
 <p class="proof">Proof: one report page carrying twenty screenshots, three per prototype for the ones that booted.</p>
 </div>
-<div class="entry">
+<div class="entry" id="a-game-forge-where-an-unmarked-rule-is-an-unmade-decision">
 <div class="date">23 August 2026</div>
 <h2>A game forge where an unmarked rule is an unmade decision</h2>
 <p>The game-forge skill holds a spine of rules every build obeys. A style pack per genre marks each rule applies, inverts, adapts or not applicable, and gives a reason. One safety rule forbade a whole genre. That pack inverts it and says why.</p><p>Forcing a mark on every rule is what stops a genre skipping one. verify-ambient-toy.mjs is the runnable instrument for that style, gating responsiveness, aliveness and a performance soak. Its first run found one toy at 12fps and another throwing a 404.</p>
@@ -200,7 +206,7 @@
 <p>Limit: none of the instruments can tell whether a game is fun.</p>
 <p class="proof">Proof: a 35-phrase sweep against the old version found one lost rule and I restored it, and every cross-reference across nineteen files resolves.</p>
 </div>
-<div class="entry">
+<div class="entry" id="an-app-store-client-that-signs-its-own-apple-token">
 <div class="date">23 August 2026</div>
 <h2>An App Store client that signs its own Apple token</h2>
 <p>asc.py mints a short-lived App Store Connect JWT from my own key and carries four commands: doctor, state, builds and upload. upload_shots.py pushed sixteen screenshots, and Apple validated all sixteen and reported their dimensions back.</p><p>Signing the token locally keeps the key on my machine and out of any third-party dashboard. What's New is rejected on a first release, and the privacy label is not on the public API at all.</p>
@@ -208,7 +214,7 @@
 <p>Limit: it moves builds and screenshots. Listing text, categories, price and age rating are not on the path it drives.</p>
 <p class="proof">Proof: <a href="https://www.fluidfrontier.app" target="_blank" rel="noopener">fluidfrontier.app</a></p>
 </div>
-<div class="entry">
+<div class="entry" id="one-share-file-that-gives-fifty-one-toy-pages-a-matching-but">
 <div class="date">23 August 2026</div>
 <h2>One share file that gives fifty-one toy pages a matching button</h2>
 <p>share.js carries the button across all fifty-one pages of the playground, and add-share.mjs installs it. On a toy it reads the computed style of that toy's own corner pill, so every palette matches with nothing written per toy.</p><p>It places itself by measuring. It scores candidate slots along the pill's own row against every visible control. It slides sideways, then nudges within the row, and takes the first slot that collides with nothing.</p>
@@ -216,7 +222,7 @@
 <p>Limit: it measures the DOM, so a control a toy paints inside its canvas is invisible to it.</p>
 <p class="proof">Proof: <a href="https://muplu.com/scurry/" target="_blank" rel="noopener">muplu.com/scurry</a></p>
 </div>
-<div class="entry">
+<div class="entry" id="an-x-poster-that-drives-my-own-browser-and-proves-the-post-l">
 <div class="date">23 August 2026</div>
 <h2>An X poster that drives my own browser and proves the post landed</h2>
 <p>x-post-worker.mjs drives my logged-in Chrome, because the X API answers payment required on every write. It checks the handle and reads the composer back against the approved text. It carries up to four images and posts the first comment. It finds the post on my profile before marking it done.</p><p>A browser lane can report success at four points where nothing was sent. Reading the composer back, then finding the post on the public profile, are the two checks that close them.</p>
@@ -224,7 +230,7 @@
 <p>Limit: it never composes.</p><p>Limit: images only, so a video attachment is dropped and logged rather than sent.</p>
 <p class="proof">Proof: <a href="https://x.com/nicolakharvey/status/2091167889172930837" target="_blank" rel="noopener">the post it sent</a></p>
 </div>
-<div class="entry">
+<div class="entry" id="a-model-size-bench-that-cut-a-note-job-from-three-minutes-to">
 <div class="date">22 August 2026</div>
 <h2>A model-size bench that cut a note job from three minutes to fifty seconds</h2>
 <p>I ran sync.py's real prompt against two model sizes rather than a synthetic one. The large model took 145 seconds and 1480 tokens to produce 228 characters. A model a third of the size took 33 seconds and 101 tokens to produce 430. The job now finishes in 50 seconds.</p><p>The large model was a reasoning model, so it deliberated before writing bullets. Benching the job's own prompt is what surfaces that; a generic benchmark would have shown the bigger model ahead.</p>
@@ -232,7 +238,7 @@
 <p>Limit: one prompt shape on one machine, measured for speed and length rather than quality.</p>
 <p class="proof">Proof: 145.3s against 33.0s on the same prompt, and a live run finishing in 50 seconds.</p>
 </div>
-<div class="entry">
+<div class="entry" id="a-scheduler-rule-that-mirrors-a-post-to-a-second-board-on-it">
 <div class="date">22 August 2026</div>
 <h2>A scheduler rule that mirrors a post to a second board on its own</h2>
 <p>The rule runs on the scheduler tick and picks the destination board by matching the post text against my content pillars. It skips posts with no image and posts I label to opt out. I backfilled twenty already-published posts the same way.</p><p>On an account holding drafts, the publish button moves out of the header into the drafts sidebar as a bulk action. The poster ticks only the draft it made, so a bulk control cannot publish anything it did not create.</p>
@@ -240,7 +246,7 @@
 <p>Limit: text-only posts are not mirrored.</p><p>Limit: video takes a slower path than a still.</p><p class="proof">Proof: a throwaway post gained its second target, on the right board, twelve seconds after I created it.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-pinterest-worker-that-reads-which-account-the-window-is-ho">
 <div class="date">22 August 2026</div>
 <h2>A Pinterest worker that reads which account the window is holding</h2>
 <p>pinterest-post-worker.mjs reads the signed-in handle from the page's own bootstrap state before it creates anything, and refuses on a mismatch or an unreadable answer. I added it while splitting the lane across a second brand's account.</p><p>A resource endpoint answers 403 against a live signed-in window, so the page's bootstrap state is the readable source. A browser lane driving two brands has no other way to know whose account it is about to post to.</p>
@@ -248,7 +254,7 @@
 <p>Limit: it never writes a description, picks a board or chooses a moment.</p><p>Limit: it reads the handle the page reports, not whether that account should be posting.</p><p class="proof">Proof: the shipped function lifted from the file and run against a live window, returning the right handle.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-quiz-that-refuses-to-give-a-reading-the-answers-cannot-sup">
 <div class="date">22 August 2026</div>
 <h2>A quiz that refuses to give a reading the answers cannot support</h2>
 <p>Four statistics run over a personality instrument's raw answers and can withhold the result, saying which pattern in the answering stopped it. Agreeing with every line now returns a withheld result rather than a confident named type.</p><p>Every threshold sits outside the 99th percentile of 15,000 simulated honest respondents. Setting the cut from a simulated distribution is what lets a cautious answerer through while a careless one is caught.</p>
@@ -256,14 +262,14 @@
 <p>Limit: the honest respondents are simulated, not sampled.</p><p>Limit: the checks change no score.</p>
 <p class="proof">Proof: 233 tests passing, and both cases side by side in the browser.</p>
 </div>
-<div class="entry">
+<div class="entry" id="separate-address-fields-for-billing-mail-and-content-mail">
 <div class="date">22 August 2026</div>
 <h2>Separate address fields for billing mail and content mail</h2>
 <p>Receipts and content each have their own field and their own form, so changing one cannot move the other.</p><p>One address per person assumes the payer and the reader are the same inbox. Two subscribers pay from one address and read their alerts at another, which sends every sign-in email somewhere neither of them opens.</p>
 <p>Limit: with no preference set, billing copies both addresses.</p>
 <p class="proof">Proof: each account resolving to a different address per message type.</p>
 </div>
-<div class="entry">
+<div class="entry" id="a-mailing-list-that-reports-its-own-drift-every-day">
 <div class="date">22 August 2026</div>
 <h2>A mailing list that reports its own drift every day</h2>
 <p>Every failure path logs who it dropped, and a daily check reads both sides and writes the difference into the run record.</p><p>Adding a signup to a campaign audience is best effort, so a failure is possible by design and silent by default. A daily count of both sides is what turns a silent drop into a number someone can see.</p>
@@ -271,20 +277,20 @@
 <p class="proof">Proof: the audit returning one in each, in sync, against live data.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-calendar-that-will-not-show-a-vendor-s-date-until-a-human-">
 <div class="date">22 August 2026</div>
 <h2>A calendar that will not show a vendor's date until a human ticks it</h2>
 <p>A fetched earnings date is written unconfirmed and a row-level rule keeps it out of every member read until someone confirms it. Published central bank dates are seeded and shown straight away.</p><p>The gate sits on the row. A query written later that never heard of the rule still cannot return an unconfirmed date.</p>
 <p>Limit: two vendors publish no schedule this machine can reach.</p>
 <p class="proof">Proof: the member page shows the confirmed dates and none of the unconfirmed ones.</p>
 </div>
-<div class="entry">
+<div class="entry" id="a-friday-job-that-assembles-the-week-into-a-draft-note">
 <div class="date">22 August 2026</div>
 <h2>A Friday job that assembles the week into a draft note</h2>
 <p>The research-draft cron reads what was published, what closed with real numbers and what is still open, then writes them into the standard note. The author adds the judgement.</p><p>Assembling the facts from production data leaves only the part a person has to write.</p>
 <p class="proof">Proof: the draft built from production data, wins and losses in the same list.</p>
 </div>
-<div class="entry">
+<div class="entry" id="a-dispatch-tool-that-fans-work-to-background-scouts-on-both-">
 <div class="date">22 August 2026</div>
 <h2>A dispatch tool that fans work to background scouts on both assistants</h2>
 <p>It runs with the worker pinned to one chosen provider, so I know where background task text goes. A substantive prompt plans eight read-only lanes. Trivial prompts get none, by design.</p><p>Work sent to a lane is still my text, and an unpinned worker chooses where it lands.</p>
@@ -292,7 +298,7 @@
 <p>Limit: one machine.</p>
 <p class="proof">Proof: the route plan naming eight lanes, and the two test counts. Built on <a href="https://github.com/josephtandle/myos-dispatch" target="_blank" rel="noopener">myos-dispatch</a>.</p>
 </div>
-<div class="entry">
+<div class="entry" id="one-command-that-re-trusts-hooks-my-second-assistant-silentl">
 <div class="date">22 August 2026</div>
 <h2>One command that re-trusts hooks my second assistant silently drops</h2>
 <p>codex-retrust asks the tool itself for each hook's current hash over its own config API and writes trust back. A --check run reports status and changes nothing.</p><p>The tool disables an edited hook until its stored hash is renewed, and shows no error when it does. Proven by breaking it first: 15 logged routes, one harmless edit, still 15. After the script, 16.</p>
@@ -300,14 +306,14 @@
 <p>Limit: one machine. The hash algorithm is internal, so the script reads it, never computes it.</p>
 <p class="proof">Proof: the route counts across the break and the fix.</p>
 </div>
-<div class="entry">
+<div class="entry" id="one-routing-layer-that-briefs-both-of-my-terminal-assistants">
 <div class="date">22 August 2026</div>
 <h2>One routing layer that briefs both of my terminal assistants</h2>
 <p>The same dispatch hook that routes my first assistant fires in my second, with seven tool servers and 21 skills carried across as links.</p><p>Carrying them as links rather than copies means one edit reaches both surfaces. Trust is a hash written through the tool's own config API, so a configured server is not a reachable one until that is set.</p>
 <p>Limit: one machine.</p>
 <p class="proof">Proof: the route log naming both surfaces, and the doctor check listing seven servers. Built on <a href="https://github.com/josephtandle/myos-dispatch" target="_blank" rel="noopener">myos-dispatch</a>.</p>
 </div>
-<div class="entry">
+<div class="entry" id="one-standing-brief-under-two-names-so-both-assistants-read-t">
 <div class="date">22 August 2026</div>
 <h2>One standing brief under two names, so both assistants read the same file</h2>
 <p>A symlink gives the brief the name each tool looks for, so both open the same bytes. Asked in an empty folder where my notes live, it answered from the brief in 1,357 tokens.</p><p>The private lines came out of the shared file first and live on in the file only one tool reads.</p>
@@ -315,42 +321,42 @@
 <p>Limit: one machine, two tools.</p><p>Limit: an installer writing to the linked name would follow the link.</p>
 <p class="proof">Proof: both names, identical checksum, and the two answers.</p>
 </div>
-<div class="entry">
+<div class="entry" id="a-rewrite-scorer-that-turns-191-passages-into-46-decisions">
 <div class="date">22 August 2026</div>
 <h2>A rewrite scorer that turns 191 passages into 46 decisions</h2>
 <p>build-doc.mjs scores each rewritten passage by the share of words that moved, then builds a review page opening on the ones that changed most. Of 191 passages an automated pass produced, 143 scored as light edits and 46 as real rewrites.</p><p>A reviewer reading 191 passages in order gives the same attention to a comma as to a rewritten paragraph. Ranking by words moved puts the decisions first. Counting the deletions separately showed the light edits were striking my own filler list.</p>
 <p>Limit: word overlap measures text moved, not meaning. A two-word change that flips the sense sits in the bulk group.</p>
 <p class="proof">Proof: the review page, opening on the 46 with changed words marked in both versions.</p>
 </div>
-<div class="entry">
+<div class="entry" id="comment-editing-on-our-review-tool-with-the-rail-frozen-whil">
 <div class="date">22 August 2026</div>
 <h2>Comment editing on our review tool, with the rail frozen while you type</h2>
 <p>A teammate edits her own comment on the page, and the comment rail freezes while someone is typing.</p><p>The rail rebuilds every five seconds. A live-refreshing list will eat an in-progress edit, so any surface that polls has to stop polling while a field is open.</p>
 <p>Limit: it edits a comment's text. It cannot recover what the comment said before.</p>
 <p class="proof">Proof: live, with the same comment count before and after the deploy.</p>
 </div>
-<div class="entry">
+<div class="entry" id="automation-windows-that-come-back-signed-in-after-a-restart">
 <div class="date">22 August 2026</div>
 <h2>Automation windows that come back signed in after a restart</h2>
 <p>Eight browser windows drive the channels with no usable API. A launchd job reopens any that are down, at login and every 45 minutes. It reads a signed-in signal off each page, so a session is confirmed rather than assumed.</p><p>I proved it by killing a window outright. It came back logged in, with no prompt.</p>
 <p>Limit: a site redesign can break the signal it reads.</p>
 <p class="proof">Proof: the launchd log listing sign-in state for every window.</p>
 </div>
-<div class="entry">
+<div class="entry" id="a-scheduler-that-presses-post-in-my-own-browser-and-checks-t">
 <div class="date">22 August 2026</div>
 <h2>A scheduler that presses Post in my own browser and checks the profile</h2>
 <p>The browser lane runs from the scheduler. It finds a due pack, drives my logged-in window, and marks the desk done only once the post shows on the public profile. One went out on its own, unattended.</p><p>Two of my channels have no publishing API I can use. Driving the browser is the only path, and the public profile is the only honest confirmation that the press worked.</p>
 <p>Limit: the browser window has to be open for a lane to run.</p>
 <p class="proof">Proof: the post the scheduler sent, live on my public profile.</p>
 </div>
-<div class="entry">
+<div class="entry" id="a-member-area-that-paints-while-its-data-loads">
 <div class="date">22 August 2026</div>
 <h2>A member area that paints while its data loads</h2>
 <p>A loading boundary on the member routes streams a skeleton while the data resolves. Three warm runs on the live site measure 2.4 seconds against 8.8 before.</p><p>Streaming a skeleton puts the wait behind something a person can read, and the route answers on the first byte rather than the last.</p>
 <p>Limit: the skeleton covers the warm route. A cold start still waits 34 seconds.</p>
 <p class="proof">Proof: both button states and the skeleton, driven on the live site.</p>
 </div>
-<div class="entry">
+<div class="entry" id="a-dispatch-tool-routing-work-to-a-model-on-my-own-machine">
 <div class="date">21 August 2026</div>
 <h2>A dispatch tool routing work to a model on my own machine</h2>
 <p>I added a local provider to the dispatch tool I run. A call routed by task class, naming no model, came back correct in 37 seconds on a 30B model on my laptop.</p><p>Routing by task class rather than by model name is what lets a local provider take work without every caller being changed. The call names what the job is, and the router decides where it goes.</p>
@@ -358,14 +364,14 @@
 <p>Limit: one machine.</p><p>Limit: a tool upgrade reverts two of the four edited files.</p><p>Limit: the local provider reports no token usage.</p>
 <p class="proof">Proof: the routed call returning MYOS LOCAL PROVIDER OK with no model named in the request. Built on <a href="https://github.com/josephtandle/myos-dispatch" target="_blank" rel="noopener">myos-dispatch</a>.</p>
 </div>
-<div class="entry">
+<div class="entry" id="an-operator-digest-that-shares-nothing-with-the-outreach-lay">
 <div class="date">21 August 2026</div>
 <h2>An operator digest that shares nothing with the outreach layer</h2>
 <p>The overnight worker runs saved searches, dedupes, enriches and pushes results to a CRM, then emails the account owner what changed. It carries its own signed token and its own opt-out, sharing nothing with outreach but the transport.</p><p>An operator's own address must never land on the list that decides who can be emailed as a prospect. Running an account email through the lawful-basis floor and the suppression list would be a category error. It touches neither.</p>
 <p>Limit: it reports change against a stored baseline, so a first run has no news to report.</p>
 <p class="proof">Proof: 32 checks, including a first run that reports no news because it has no baseline to compare against.</p>
 </div>
-<div class="entry">
+<div class="entry" id="a-host-move-that-kept-1-544-urls-and-every-mail-record">
 <div class="date">21 August 2026</div>
 <h2>A host move that kept 1,544 URLs and every mail record</h2>
 <p>I rebuilt the DNS zone through the API, moved the nameservers, then repointed the site to a new stack, checking the mail records after every change. verify-legacy-redirects.mjs drives every branch of the redirect resolver and fetches each destination live.</p><p>The command line tool created two settings empty and reported success. Reading every setting back beats trusting an exit code, and it caught them before deploy.</p>
@@ -373,7 +379,7 @@
 <p>Limit: it proves every rule resolves and every destination is alive. Whether a given old URL went to the most topical page was a judgement made when the rule was written.</p>
 <p class="proof">Proof: old member bookmarks 301 into the new member area, mail records unchanged.</p>
 </div>
-<div class="entry">
+<div class="entry" id="a-routing-check-that-calls-the-route-instead-of-reading-the-">
 <div class="date">21 August 2026</div>
 <h2>A routing check that calls the route instead of reading the config</h2>
 <p>It resolves eight task classes across three auth lanes, validates each candidate the way the executor would, then calls it for real.</p><p>Validation alone passed everything. Executing found that only one of three providers can authenticate, and that a route configured minutes earlier dies on a script the tool never included.</p>
@@ -381,7 +387,7 @@
 <p>Limit: it tests routing and auth, never answer quality.</p>
 <p class="proof">Proof: the resolve, validate and execute pass across 22 lanes.</p>
 </div>
-<div class="entry">
+<div class="entry" id="a-converter-that-turns-a-still-into-a-vertical-video">
 <div class="date">21 August 2026</div>
 <h2>A converter that turns a still into a vertical video</h2>
 <p>still-to-reel.mjs applies a slow push and a music bed, matched to my own best performer. I converted 31 scheduled posts, and the first two published at 23 and 124 views.</p><p>I grouped 108 of my AI influencer's published posts by source media before building anything. Images ran a median of 6 views and never passed 11 in 28 attempts. Video ran a median of 64 and held every spike.</p>
@@ -389,7 +395,7 @@
 <p>Limit: one account.</p><p>Limit: the converter makes a still move. It cannot make a weak still worth watching.</p>
 <p class="proof">Proof: the before and after view counts on the first two converted posts.</p>
 </div>
-<div class="entry">
+<div class="entry" id="a-sandboxed-test-that-proves-its-own-instrument-before-it-tr">
 <div class="date">21 August 2026</div>
 <h2>A sandboxed test that proves its own instrument before it trusts a tool</h2>
 <p>I read the checkpointing tool's source first: no external dependencies, no network path, no scheduler, and every destructive command behind a full typed confirmation phrase. Then I tested it in a container against four decoy repositories.</p><p>I ran a deliberately destructive fake version first, to prove the comparison would catch damage. It did, with four failures, one per decoy. The real tool then produced no working-tree changes.</p>
@@ -398,7 +404,7 @@
 <p class="proof">Proof: before/after comparisons showing four failures on the fake and none on the real tool.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-backup-test-that-asks-the-host-what-it-holds">
 <div class="date">21 August 2026</div>
 <h2>A backup test that asks the host what it holds</h2>
 <p>Four conditions, all read from the host rather than from local push output. The repository is private when it should be private. The remote branch matches the local branch. Nothing sits unpushed. The files I care about are present on the host.</p><p>Asking the host found a finished iPhone app carrying one starter-template commit, with nearly eight thousand lines of screens untracked.</p>
@@ -407,7 +413,7 @@
 <p class="proof">Proof: GitHub's own report: private repo, matching branch, no unpushed commits, and the app screens listed remotely.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="my-android-build-check-opens-the-package-and-reads-what-is-i">
 <div class="date">21 August 2026</div>
 <h2>My Android build check opens the package and reads what is inside</h2>
 <p>It goes past "build succeeded" to the artefact itself. On an Android build it confirmed the debug APK existed and the game bundle was byte-identical inside it. It then measured the launcher icon at 9,441 bytes against a source icon of 544,839 bytes. Capacitor had generated placeholder art.</p><p>I regenerated the icon and splash from the game's own visual system, so they cannot drift from the product. The rebuilt APK moved from 4.0MB to 6.7MB with the real branded assets present.</p>
@@ -416,7 +422,7 @@
 <p class="proof">Proof: Android debug APK built and inspected; the game files inside matched the source, and the placeholder launcher art was replaced with regenerated branded assets.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-page-test-that-clicks-a-control-and-asserts-the-page-answe">
 <div class="date">21 August 2026</div>
 <h2>A page test that clicks a control and asserts the page answered</h2>
 <p>It drives each page and requires a user action to change state. It caught four pages that returned 200, passed type checks and lint, and rendered correctly in screenshots while their JavaScript was dead.</p><p>A static page paints without its scripts, so a screenshot and a 200 both pass. Only a click reaches that failure.</p>
@@ -425,7 +431,7 @@
 <p class="proof">Proof: dev-server log naming the disallowed origin, plus before/after browser-walk transcripts.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-strategy-audit-that-checks-every-claim-against-my-own-disk">
 <div class="date">21 August 2026</div>
 <h2>A strategy audit that checks every claim against my own disk</h2>
 <p>Eleven agents took a list of ten product concepts. Five checked each claim against my repositories. Two drafted rival strategies. One merged the strongest. Three attacked the result for weak assumptions, already-built work and missing proof.</p><p>Treating the machine as the source of truth is what a brainstorm cannot do. It found three of the ten already built locally and unpublished, in eighteen minutes.</p>
@@ -434,7 +440,7 @@
 <p class="proof">Proof: forty findings held privately because the output contains current strategy.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-parser-that-reads-six-years-of-one-person-s-changing-habit">
 <div class="date">21 August 2026</div>
 <h2>A parser that reads six years of one person's changing habits</h2>
 <p>match-reports.py pulls write-ups out of weekly research documents. It recognises the four different ways one person wrote the same line over six years. It uses the archive's weekday pattern to resolve ambiguous dates where that is safe.</p><p>I moved its verification from a sample page to all 695 pages. Coverage went from 86% to 95%, and 21 pages that had parsed as empty now read.</p>
@@ -443,7 +449,7 @@
 <p class="proof">Proof: before/after diff over all 695 pages, re-run from the committed script.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-verification-battery-whose-checks-were-locked-before-the-c">
 <div class="date">21 August 2026</div>
 <h2>A verification battery whose checks were locked before the code existed</h2>
 <p>verify-pulsemerge.mjs runs against the minified build, never the source. Its header records that the checks were quoted from the concept sheet before a line of the game was written. The builder may fix the game and never the gates.</p><p>Checks written after the code tend to describe what the code does. A flawed check is fixed openly with a comment rather than re-rolled.</p>
@@ -452,7 +458,7 @@
 <p class="proof">Proof: the live build at <a href="https://muplu.com/pulsemerge/" target="_blank" rel="noopener">muplu.com/pulsemerge</a>, with 53 checks against the live site.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="my-archive-check-tests-a-site-as-if-its-host-were-already-go">
 <div class="date">20 August 2026</div>
 <h2>My archive check tests a site as if its host were already gone</h2>
 <p>It verified 1,561 pages of a twenty-year-old site being retired, with the original host treated as already dead.</p><p>That caught lazy-loaded images saving as blanks and internal links still pointing at the old host. It also caught a filename-shortening rule that stripped the extension from the main stylesheet. That one bug would have left 673 pages rendering bare once the source disappeared.</p>
@@ -461,7 +467,7 @@
 <p class="proof">Proof: 35,218 internal links resolve locally and nothing points back to the old host.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-daily-app-with-no-punishment-loop">
 <div class="date">20 August 2026</div>
 <h2>A daily app with no punishment loop</h2>
 <p>An installable web app with a service worker, so it opens from the home screen and works offline. One minute a day: you walk, press a paw into the sand, and one short lesson washes up. It keeps a thirty-day shelf of finds, and seven lessons are in a cloned voice.</p><p>The mechanics carry the same decision as the content. No streak to lose, no scolding for a missed day, no declining count.</p>
@@ -471,7 +477,7 @@
 <p class="proof">Proof: live app screen over the night beach, with today's practice and saved lesson card.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-ledger-check-that-reads-commit-history-and-names-what-went">
 <div class="date">20 August 2026</div>
 <h2>A ledger check that reads commit history and names what went unwritten</h2>
 <p>It compares commits across project folders against the dates already on this page, then reports work days with commits and no entry. It reports separately when the ledger is dirty or unpushed. A waiver list covers work I decided not to write up.</p><p>It reads two factual sources: the commits, and the dates on the page.</p>
@@ -481,7 +487,7 @@
 </div>
 
 
-<div class="entry">
+<div class="entry" id="a-publishing-bridge-that-checks-the-public-feed-before-repor">
 <div class="date">19 August 2026</div>
 <h2>A publishing bridge that checks the public feed before reporting success</h2>
 <p>medium-bridge.mjs stages a complete story over the Chrome DevTools Protocol in one command: title, cover image, formatted body and draft state. It runs a dedicated browser profile, screenshots each step and never handles credentials.</p><p>The platform retired its publishing API, so a browser lane is the only path. A click is not a post, so it checks the public feed before reporting success. An unsigned-in profile stops it and asks for a human login.</p>
@@ -490,7 +496,7 @@
 <p class="proof">Proof: <a href="https://medium.com/@nicolakharvey/the-48-characters-i-could-not-see-d6c8316c1643" target="_blank" rel="noopener">the first essay it staged</a> and the bridge code in my publishing desk.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-nightly-reader-that-turns-my-own-messages-into-one-page">
 <div class="date">18 August 2026</div>
 <h2>A nightly reader that turns my own messages into one page</h2>
 <p>It reports what came in and what is still waiting on me. Voice notes are transcribed locally and no conversation leaves the machine. The first unattended run captured 33 messages.</p><p>macOS grants file access to the application, not the script. A scheduled job is blocked, a grant given to a shell script is ignored, and a compiled launcher run directly hangs without an error. Starting the app with open is the path that carries the grant.</p>
@@ -499,7 +505,7 @@
 <p class="proof">Proof: the workshop, with the code I run, at <a href="https://workshops.herfrontier.com/whatsapp-reader" target="_blank" rel="noopener">workshops.herfrontier.com/whatsapp-reader</a></p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-provenance-checker-that-separates-three-layers-people-coll">
 <div class="date">18 August 2026</div>
 <h2>A provenance checker that separates three layers people collapse</h2>
 <p>Invisible text characters, image metadata, and marks in the pixels are three different problems. The checker reports them separately rather than as one score.</p><p>Image metadata can carry the full generation recipe: prompts, model and settings, none of it visible on the page. The checker reads that layer on its own.</p>
@@ -508,7 +514,7 @@
 <p class="proof">Proof: the write-up <a href="https://medium.com/@nicolakharvey/the-48-characters-i-could-not-see-d6c8316c1643" target="_blank" rel="noopener">The 48 characters I could not see</a>.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="an-open-source-tool-that-checks-what-goes-out-under-your-nam">
 <div class="date">18 August 2026</div>
 <h2>An open-source tool that checks what goes out under your name</h2>
 <p>It runs locally. It finds invisible Unicode carriers in text and generation metadata in images, then removes only the parts it can prove are safe to remove.</p><p>The exemptions carry the work. It leaves emoji joiners intact. It preserves joiners that are spelling in Persian, Arabic, Hindi and related scripts. It keeps leading byte-order marks doing an encoding job. It refuses verbatim archives and evidence folders. The command line and browser page share one tested core.</p>
@@ -517,7 +523,7 @@
 <p class="proof">Proof: <a href="https://github.com/nicolakharvey/clearing" target="_blank" rel="noopener">github.com/nicolakharvey/clearing</a> under MIT, with 54 zero-dependency tests.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-continuity-checker-where-every-new-check-must-match-the-la">
 <div class="date">13 August 2026</div>
 <h2>A continuity checker where every new check must match the last</h2>
 <p>manuscript_qa.py runs the mechanical half of a copy editor's style sheet across a manuscript: hard assertions, phrase-anchored eye and hair checks, timeline-aware ages. It runs on every assemble and never passes silently.</p><p>Its module docstring carries the tuning history, from five false positives and no real findings down to none of either. That history is the standard every check added since has to meet, so a noisy check cannot join the suite unnoticed.</p>
@@ -526,7 +532,7 @@
 <p class="proof">Proof: the QA runs on every assemble, and the tuning history sits in the module docstring where the next check has to match it.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-scanner-that-reads-every-frame-of-a-recording-for-private-">
 <div class="date">11 August 2026</div>
 <h2>A scanner that reads every frame of a recording for private text</h2>
 <p>check-recording.py reads the text in every frame of a screen recording and reports any of your listed private terms. It runs before a demo goes to a platform review or anywhere else.</p>
@@ -535,7 +541,7 @@
 <p class="proof">Proof: 22 exposed frames on a recording two human passes had cleared.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-game-whose-verification-checklist-was-locked-before-the-bu">
 <div class="date">6 August 2026</div>
 <h2>A game whose verification checklist was locked before the build</h2>
 <p>The checks were written and committed first, then the game was built to pass them, then it went to production. Fourteen end-to-end checks, all passing.</p>
@@ -544,7 +550,7 @@
 <p class="proof">Proof: the checklist committed before the first build commit, and 14 of 14 end-to-end checks passing on the deployed site.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-cloud-publisher-with-one-writer-per-post">
 <div class="date">4 August 2026</div>
 <h2>A cloud publisher with one writer per post</h2>
 <p>A Cloudflare Worker holds only due all-auto posts inside a short horizon and publishes them at the right time. Manual and reminder posts stay local because they need a person.</p><p>The Mac claims or withdraws a delegated job by version, and while the cloud claim stands the Mac will not publish that post. Any edit breaks the claim, and "publish now" cancels the worker's copy first. A late worker makes the app warn rather than race it.</p>
@@ -553,7 +559,7 @@
 <p class="proof">Proof: scheduled posts publish on time whether the Mac is awake or asleep.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="licensing-a-build-without-handing-over-the-asset">
 <div class="date">4 August 2026</div>
 <h2>Licensing a build without handing over the asset</h2>
 <p>A publish script builds, then mirrors only the packaged output into a separate private distribution repository on my own account, and pushes. The licensee gets upgrades without an email and can point their own agent at the desk.</p>
@@ -562,7 +568,7 @@
 <p class="proof">Proof: a private distribution repo holding only cleaned package output, and an operating brief shipped beside it.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-mirror-that-removes-what-it-stopped-shipping">
 <div class="date">4 August 2026</div>
 <h2>A mirror that removes what it stopped shipping</h2>
 <p>The push mirrors with delete, so an extension pulled from the package is pulled from the licensee's machine on their next upgrade. It also switches the publishing account for the push and puts the previous one back.</p><p>A mirror that only adds leaves withdrawn code running on someone else's machine forever. The credential helper follows whichever account is signed in, so the switch is what keeps a push under the right identity.</p>
@@ -570,7 +576,7 @@
 <p>Limit: the delete reaches the distribution repository. A copy the licensee has already taken out of it is beyond its reach.</p><p class="proof">Proof: the publish script restores the previous account after the push, and the distribution repo matches the staged output.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-manuscript-check-that-holds-a-writing-rule-to-zero">
 <div class="date">1 August 2026</div>
 <h2>A manuscript check that holds a writing rule to zero</h2>
 <p>qa.mjs runs mechanical checks over an assembled manuscript: word count, em dashes, seventeen AI-tell phrases, repeated four-word runs appearing three times or more, overused content words and chapter balance.</p>
@@ -579,7 +585,7 @@
 <p class="proof">Proof: the three negation-pivot patterns and the zero pass condition, in scripts/qa.mjs.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-gate-that-keeps-a-research-assistant-paused-until-it-stops">
 <div class="date">29 July 2026</div>
 <h2>A gate that keeps a research assistant paused until it stops inventing</h2>
 <p>check-assistant-fabrication.mjs asks the assistant questions whose answers are already known from the row, then checks every reply for claims nobody supplied. The assistant stays switched off until it runs clean and a human has read real answers on real alerts.</p>
@@ -588,7 +594,7 @@
 <p class="proof">Proof: the assistant is paused, and the gate names each invented claim beside the row that contradicts it.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-freshness-check-so-a-dead-price-feed-cannot-render-as-a-li">
 <div class="date">29 July 2026</div>
 <h2>A freshness check so a dead price feed cannot render as a live price</h2>
 <p>quote-freshness.js answers one question for every surface that shows a tracked price: is this stored quote still worth showing? When the answer is stale, the surface says the quote is unavailable and shows when the last one arrived.</p>
@@ -597,7 +603,7 @@
 <p class="proof">Proof: every surface that renders a mark calls the module first, and a stale mark renders as unavailable with its timestamp.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="site-checks-moved-into-the-repo-so-they-survive-the-session">
 <div class="date">26 July 2026</div>
 <h2>Site checks moved into the repo so they survive the session</h2>
 <p>check-site.mjs, check-dns.mjs and check-email-matches-site.mjs live in the repository and run from it. A browser walk sits beside them.</p>
@@ -606,7 +612,7 @@
 <p class="proof">Proof: the checks run from the repository on a clean clone.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-backup-that-refuses-to-call-a-corrupt-backup-a-backup">
 <div class="date">20 July 2026</div>
 <h2>A backup that refuses to call a corrupt backup a backup</h2>
 <p>kv-backup.py copies every user, lead, setting and suppression entry out of a single key-value namespace to a timestamped folder. It verifies what it wrote before reporting success.</p><p>It runs on the operator's own credentials rather than as an in-app route. An export-everything endpoint would be one URL that dumps every tenant's data. A script exposes nothing over HTTP.</p>
@@ -615,7 +621,7 @@
 <p class="proof">Proof: a timestamped folder holding the namespace, with a verification pass that fails rather than reports success on a short read.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="token-rotation-that-checks-which-scopes-were-granted">
 <div class="date">20 July 2026</div>
 <h2>Token rotation that checks which scopes were granted</h2>
 <p>The rotation script verifies the new token before it writes it, and refuses when a required scope is missing. A separate checker reads back the scopes the platform issued.</p><p>A platform can grant a subset of what you asked for and return success. A token that looks valid then fails on one call in ten. The check reads what was granted, not what was requested.</p>
@@ -624,7 +630,7 @@
 <p class="proof">Proof: the rotation refuses on a missing scope, and the checker lists the granted set beside the requested one.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="brand-scoped-logins-enforced-on-the-server-not-in-the-interf">
 <div class="date">18 July 2026</div>
 <h2>Brand-scoped logins enforced on the server, not in the interface</h2>
 <p>Teammates sign in over my domains, see only the brands they work on, and publish from the same calendar. The application and its data stay on my machine.</p><p>Member sessions carry explicit brand IDs, and server routes filter brands, accounts, posts, inbox, analytics, insights and activity before returning data.</p>
@@ -633,7 +639,7 @@
 <p class="proof">Proof: in daily use by a working team across two ventures.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-compliance-evidence-pack-that-can-be-filed-not-just-claime">
 <div class="date">10 July 2026</div>
 <h2>A compliance evidence pack that can be filed, not just claimed</h2>
 <p>The lead engine produces an artifact a regulator can read. It records the basis held for each contact, where the data came from, and what was sent when. Enrichment is gated on that basis rather than run first and justified after.</p><p>Gating the enrichment means the evidence exists because the system could not have run without it.</p>
@@ -642,7 +648,7 @@
 <p class="proof">Proof: the evidence pack renders per campaign, with provenance on every field it carries.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="an-independent-grader-on-my-own-work-before-it-merged">
 <div class="date">10 July 2026</div>
 <h2>An independent grader on my own work before it merged</h2>
 <p>Five build stages went to a grader that had not built them, and all came back confirmed before the merge. The grade sits in the project ledger beside the work it covers.</p><p>A builder grading their own work marks against what they meant. A grader given only the finished thing marks against what is there.</p>
@@ -651,7 +657,7 @@
 <p class="proof">Proof: the recorded grade of stages P0.1 to P0.3, all confirmed, dated before the merge commit.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-compliance-posture-applied-across-three-live-products-in-a">
 <div class="date">8 July 2026</div>
 <h2>A compliance posture applied across three live products in a day</h2>
 <p>Education-only framing across one product. A cycle projection reframed as history rather than a forecast on another. Publisher posture enforced on every surface of a third. The owning entity and its address now appear in the emails.</p><p>A forecast and a history of the same numbers look identical on the page. They are not the same claim, and which one you are making decides what licence the work needs.</p>
@@ -660,7 +666,7 @@
 <p class="proof">Proof: the framing pass ran across every public surface of all three, with the owning entity named in outgoing mail.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-native-app-that-draws-a-model-s-own-uncertainty-as-a-const">
 <div class="date">7 July 2026</div>
 <h2>A native app that draws a model's own uncertainty as a constellation</h2>
 <p>It captures token probabilities as they stream and projects them down to three dimensions. The result is a navigable constellation, with fork branches where the model nearly chose otherwise. Built native, with a zoom and pan camera.</p><p>The geometry is held in buffers on the graphics device rather than serialised per frame, so a long answer stays navigable.</p>
@@ -669,7 +675,7 @@
 <p class="proof">Proof: the app runs on device with long answers, verified against a live streaming capture.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-lawful-basis-floor-the-outreach-path-cannot-be-talked-past">
 <div class="date">6 July 2026</div>
 <h2>A lawful-basis floor the outreach path cannot be talked past</h2>
 <p>The send path enforces two tiers of lawful basis on the server, so a weak basis cannot be upgraded by anything a caller passes in. Unsubscribe tokens are HMAC-SHA256 signed with the server secret.</p><p>A signed unsubscribe cannot be forged or guessed.</p>
@@ -678,7 +684,7 @@
 <p class="proof">Proof: the floor is a server function on the send path, and every unsubscribe token carries an HMAC signature.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="sixteen-projects-brought-under-version-control-in-one-pass">
 <div class="date">6 July 2026</div>
 <h2>Sixteen projects brought under version control in one pass</h2>
 <p>Sixteen repositories took their first commit the same day, each a baseline of what was running rather than an idealised state. Personal references were scrubbed before publication, one repository was rebuilt after a key rotation, and a plaintext access code moved to a server-side check.</p><p>Work that exists on one disk has no history to read and no way back.</p>
@@ -687,7 +693,7 @@
 <p class="proof">Proof: sixteen first commits dated the same day, each labelled as a baseline of the running state.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-lesson-kit-that-verifies-its-own-licence-key-per-buyer">
 <div class="date">5 July 2026</div>
 <h2>A lesson kit that verifies its own licence key per buyer</h2>
 <p>The kit carries a per-buyer licence key, checked live against the store on first use and daily after that. It installs locally from the zip, so the lesson runs on the buyer's own machine.</p><p>A downloadable kit is a file that can be forwarded. Checking the key at the point of use, not the point of download, keeps the licence attached to the buyer instead of the file.</p>
@@ -696,7 +702,7 @@
 <p class="proof">Proof: a live key verification on first use, repeated daily, against the store's own records.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-personality-instrument-that-runs-its-ai-on-free-models">
 <div class="date">4 July 2026</div>
 <h2>A personality instrument that runs its AI on free models</h2>
 <p>A 120-item public-domain question bank with its own scoring engine, and the readings generated by a local model with a free hosted one behind it. No paid tokens anywhere in the loop. Generated readings are cached per session so a re-view costs nothing.</p>
@@ -705,7 +711,7 @@
 <p class="proof">Proof: the full free loop running end to end with no paid token spend, readings cached per session.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-scaffolder-that-turns-a-written-spec-into-a-running-projec">
 <div class="date">3 July 2026</div>
 <h2>A scaffolder that turns a written spec into a running project</h2>
 <p>One command reads a product spec and lays down a working project: structure, build, and a first pass at the surfaces. Six projects came out of it in a day, each from its own spec.</p>
@@ -714,7 +720,7 @@
 <p class="proof">Proof: six projects scaffolded from six specs in one day, each committed with the spec it came from.</p>
 </div>
 
-<div class="entry">
+<div class="entry" id="a-publishing-desk-that-reaches-fourteen-channels-from-my-own">
 <div class="date">2 July 2026</div>
 <h2>A publishing desk that reaches fourteen channels from my own machine</h2>
 <p>My replacement for a subscription scheduling desk: multi-brand calendar, per-platform composer, media library, analytics, engagement inbox, team access and cloud delegation. Data stays in my files. Every account starts in a manual or reviewed mode until its platform setup is ready.</p><p>It carries the operational checks. Per-platform setup notes, character-limit gates, brand-crossing warnings, account-scope controls, daily backups, and manual, reminder and auto modes. A first-post visibility check runs too, because some platforms confirm a post that only app-role users can see.</p>
@@ -723,7 +729,7 @@
 <p class="proof">Proof: the posts and essays in this log are scheduled and published through it.</p>
 </div>
 
-<p class="rule" style="border-bottom:none; border-top:1px solid var(--line); padding-top:24px; margin-top:8px;">Kept by Nicola Harvey. New entries most weeks.</p>
+<p class="rule" style="border-bottom:none; border-top:1px solid var(--line); padding-top:24px; margin-top:8px;">Kept by <a href="https://www.linkedin.com/in/nicolakharvey/">Nicola Harvey</a>.</p>
 
 </div>
 </body>
