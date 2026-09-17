@@ -92,15 +92,6 @@
 <p class="proof">Proof: the shared log holds 28 timestamped decisions, 14 of them this hook's. They are real refusals from my work, so it is held privately.</p>
 </div>
 
-<div class="entry" id="a-rights-filter-that-caught-43-325-restricted-images-before">
-<div class="date">13 September 2026</div>
-<h2>A rights filter that caught 43,325 restricted images before publication</h2>
-<p>A filter inside the ingest script reads the source's per-image permission column. I read the museum's own licence terms rather than the headline. The open waiver covers the dataset and says images are not included.</p>
-<p>Filtering on that column took the first run's 92,453 works down to 49,128. The 43,325 difference stays out of the build, and with the people who hold those rights. The deploy script stops on the file and size caps.</p>
-<p>Limit: it trusts the column the source sets for each image.</p>
-<p class="proof">Proof: every harvest run prints what it kept and what it skipped. The kept file holds 49,128 works. The gallery cannot be shown.</p>
-</div>
-
 <div class="entry" id="a-shelf-gate-that-holds-every-toy-to-one-floor">
 <div class="date">10 September 2026</div>
 <h2>A shelf gate that holds every toy to one floor</h2>
