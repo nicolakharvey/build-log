@@ -28,6 +28,10 @@
   .proof { font-family:-apple-system, sans-serif; font-size:.85rem; }
   .entry img { max-width:100%; display:block; margin:14px 0 4px; border-radius:4px; }
   .caption { font-family:-apple-system, sans-serif; font-size:.8rem; color:var(--soft); margin:0 0 6px; }
+  .built { padding:30px 0 10px; }
+  .built h3 { font-family:-apple-system, sans-serif; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin:26px 0 6px; }
+  .built ul { margin:0; padding-left:20px; }
+  .built li { margin:7px 0; }
 </style>
 </head>
 <body>
@@ -37,6 +41,7 @@
 <p class="byline">Nicola Harvey</p>
 <p class="standfirst">A dated record of the AI systems I direct, the guardrails I set, and what I proved worked.</p>
 <p class="rule">Every entry names the AI system, the decision I made about it, and a proof you can open. Dates are the dates things ran.</p>
+<p class="rule" style="border-bottom:none; padding-bottom:0; margin-top:-4px;"><a href="#what-ive-built">See the full range of what I have built</a></p>
 
 <div class="entry" id="a-gate-that-stops-a-publish-chained-after-an-unchecked-step">
 <div class="date">23 October 2026</div>
@@ -140,6 +145,85 @@
 <p>Limit: it shows where the model was uncertain, never why.</p>
 <p class="proof">Proof: <a href="https://jspace.herfrontier.com/" target="_blank" rel="noopener">the live instrument</a>. Its page sizes each word by the model's own probability and names what it cannot see.</p>
 </div>
+
+<section class="built" id="what-ive-built">
+<h2>What I have built</h2>
+<p class="rule">Built and working. The entries above each carry a proof you can open. For these, the proof is held privately.</p>
+<h3>Operating systems and infrastructure</h3>
+<ul>
+<li>My model router sets the model and effort for each task. It keeps designated sensitive tasks on local models.</li>
+<li>My coding agent runs sensitive work on local models, under network rules that allow only local calls. I checked that a hosted call fails.</li>
+<li>A local system holds each session's goal outside the model and restates it every turn. A second gate carries it into delegated work.</li>
+<li>A local wrapper puts a problem to a second model family for review. It reports failed calls and refuses a task under the wrong login.</li>
+<li>My writing lane hands drafting to a second model family, then runs every check on my machine. It refuses private material before anything leaves.</li>
+<li>Both my coding agents work from one standing brief and one linked set of skills. Private lines stay in a file only one agent reads.</li>
+<li>Local tools draft my handoffs, track promises and report weekly site changes, each with a pass/fail test. Fixes wait for me to press deploy.</li>
+<li>Each evening, a local workflow transcribes my recordings into project pages. Privacy is assessed on my machine, for each source and again for its summary.</li>
+<li>My blog is version-controlled text released on dates stored in the files. Build gates check voice, provenance, promises, reader value and brand fit first.</li>
+</ul>
+<h3>AI agents</h3>
+<ul>
+<li>My voice assistant runs on my AI session, with my files, notes, task board and rules. Private matters go to a local model.</li>
+<li>An agent reproduces a reported fault on a sealed copy and leaves a draft fix on a branch it cannot merge, publish or send.</li>
+<li>One agent checks my websites against my rules; a second verifies each finding live. Anything needing my words or another owner's approval comes to me.</li>
+<li>Reviewer agents compare running code with its own specification across data, dependencies, design and risk. A separate adversarial pass checks every finding against the source.</li>
+<li>Analyst agents check each strategy claim against my repositories and label it verified or inferred. A judge agent merges the strongest of the rival drafts.</li>
+<li>A local-model agent turns each written specification into a first-draft project. Its rules bar secrets, deploys and any send or charge to a real customer.</li>
+<li>I audited this record with blind reader agents, each holding one rule. An agent enforces the charter of binary rules I wrote and never publishes.</li>
+<li>An agent builds a browser game for each workshop lesson. The first reveals hidden characters in AI chat text for players to clear or keep.</li>
+<li>My avatar pipeline takes an AI character to a trained visual model. Candidate training images are scored against the approved face before joining the dataset.</li>
+</ul>
+<h3>Skills</h3>
+<ul>
+<li>A local skill registry routes each request to the right skill before work begins. A refresh script keeps it matched to what is installed.</li>
+<li>Mail I have not read goes out in my assistant's voice, signed as my assistant. The skill never claims my review unless I gave it.</li>
+<li>A policy skill writes and audits privacy policies, terms and app-store statements, and checks them against what the app does.</li>
+<li>A go-live skill sets a revert path and binary checklist, then checks secrets, rate limits, errors and consent. It labels each claim by evidence strength.</li>
+<li>A security triage skill explains what an alert flagged, what changed and what action is justified. Its rule keeps credible evidence of malicious activity visible.</li>
+<li>A course skill builds self-paced courses from content stored as data. AI coaching can use a managed, local or bring-your-own-key model.</li>
+<li>A local voice skill builds a private voice from a short recording. A written consent and rights rule covers any clip that is not mine.</li>
+<li>A writing skill makes a familiar true idea feel fresh through a set of named moves. An honesty check protects the claim underneath.</li>
+</ul>
+<h3>Guardrails and governance</h3>
+<ul>
+<li>A hook refuses any subagent brief matching my privacy patterns before it reaches a hosted model. Each override needs a written reason and is logged.</li>
+<li>A hook on my coding agent blocks destructive actions, like overwriting an app's main data file or deleting a broad folder. Overrides must be deliberate.</li>
+<li>A session-end hook checks loose ends, reusable value, my public record, outward voice and the final report's honesty. It states what it cannot see.</li>
+<li>A trust ledger records how reliably each skill has performed before I rely on it widely. Daily standing checks replace remembered confidence with dated evidence.</li>
+<li>I turned my logged mistakes into blind tests for my models. A search procedure in every session took the cheapest model to a full score.</li>
+<li>Read-only scripts report on my systems, and none sends, publishes or deploys. Most refuse to call a check clean when it could not run.</li>
+<li>A frame scan reads each screen recording for blocked names before the file leaves my machine. Any hit fails the check.</li>
+<li>A local scanner rates a package Clear, Caution or Stop before I install it, from reputation, install scripts, risky code, known vulnerabilities and lookalike names.</li>
+<li>A sandboxed trial runs an outside tool on decoy repositories, network off, before it may commit or merge. A destructive fake proves the trial first.</li>
+<li>I picked a summary job's local model by running its own prompt on a larger and smaller size. The smaller won on speed and length.</li>
+<li>A recount tool derives only the portfolio figures it can verify from my own records. Figures that depend on judgement stay outside its claims.</li>
+</ul>
+<h3>Apps and products</h3>
+<ul>
+<li>My publishing desk schedules for my brands across many channels. Logins are scoped per brand on the server, and scheduled posts wait for my approval.</li>
+<li>A cloud worker publishes approved automatic posts while my laptop sleeps. Each post has one writer, and any edit cancels the worker's claim.</li>
+<li>A private AI office runs on its owner's computer. Its front desk answers calls from the owner's script, and the owner confirms every booking.</li>
+<li>On shared decision pages, my AI drafts for us to correct and answers only from the page. A decision locks only when both people agree.</li>
+<li>A browser tool shows what an AI assistant's access lets it read, do and spend. A browser rule blocks the tool from sending anything.</li>
+<li>A Web3 sandbox runs a market, a DAO and wallet-holding agents on valueless tokens, offline.</li>
+<li>A simulation shows a hand-written agent acquiring a cardboard town, with public and private feeds exposing the gap between its explanation and its motive.</li>
+<li>My prospecting tools record each lead's source and lawful basis, enforced on the server. Illustrative records are blocked from sending.</li>
+<li>A local model notes and files each open tab under my projects before marking it safe to close. Work and personal pages stay separate.</li>
+<li>My toy studio holds every free browser toy to one floor, tested at phone size. A toy that calls an unapproved host during play fails.</li>
+<li>A free image library shows the model, prompt and settings behind every picture. Visitors vote on requests; I generate chosen ones locally.</li>
+<li>Self-paced workshops teach private message summaries, backup and restore, a local AI office and a first scheduled agent. Every command in them was tested.</li>
+<li>A compact prompt notation has its own grammar, shared modules and a linter. Its browser playground counts tokens offline, checked against the reference tokenizer.</li>
+</ul>
+<h3>Workflows and pipelines</h3>
+<ul>
+<li>Research agents rank problems from live sources by evidence and fit, marking timed-out searches unmeasured. I approve each opportunity before it becomes a build brief.</li>
+<li>A scheduled agent reads the primary AI and market sources I trust and writes my morning brief. A failed refresh keeps the last good edition.</li>
+<li>My code-drawn films use synthesised scores and my local voice model. Gates read the speech back and check frames and claims before the final render.</li>
+<li>A fact-check film series stamps each AI headline Confirmed, Reported, Rumour or False as framed against primary sources, with the sources on screen.</li>
+<li>One request produced a finished film: agents gathered the material, my local voice narrated it, and a review checked the frames for privacy.</li>
+<li>A cryptographic seal signs each generative work with my private key. Its certificate holds the command that recreates it, so origin can be checked independently.</li>
+</ul>
+</section>
 
 
 <p class="rule" style="border-bottom:none; border-top:1px solid var(--line); padding-top:24px; margin-top:8px;">Kept by <a href="https://www.linkedin.com/in/nicolakharvey/" target="_blank" rel="noopener">Nicola Harvey</a>.</p>
