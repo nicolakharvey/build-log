@@ -1,0 +1,20 @@
+Evidence: A game-building skill that makes every build mark every rule
+What this is: the rule table from a concept sheet the skill wrote for one later build, locked before any code; the build's name and design detail are removed
+Date: 9 October 2026; the template that requires every mark was written 23 August 2026 and is unchanged since; not re-run
+
+## STYLE PACK: none of the six fits, and the pack is not bent to fit
+[paragraph naming internal files and other builds removed]
+| Spine gate | Mark | How, here |
+|---|---|---|
+| Ethics fence | as written | [detail removed] |
+| Choice depth | adapted | [detail removed] |
+| Risk dial | inverted | [detail removed] |
+| The space between | n/a | [detail removed] |
+| Early satisfaction ladder | adapted | [detail removed] |
+| Front door | adapted | [detail removed] |
+| Art direction lock | as written | [detail removed] |
+| Audio direction lock | as written | [detail removed] |
+| No-trap gate | n/a | [detail removed] |
+| Fairness bots | replaced | [detail removed] |
+| Economy end to end | n/a | [detail removed] |
+| Collectibles with utility | n/a | [detail removed] |

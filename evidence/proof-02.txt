@@ -1,0 +1,43 @@
+Evidence: A roster of AI agents, each set to a model, an effort level, a tool allowlist and a boundary
+What this is: Part 1, each agent's configuration fields; Part 2, the model and effort each agent's latest run recorded.
+Date: configuration as of 18 October 2026, unchanged since; run records from 10 to 23 October 2026, read on 23 October 2026.
+
+Part 1. Configuration. Model, effort, tools and permission mode are copied from each agent's
+definition. Agent names are replaced by their role. The boundary line summarises the
+definition's own rule in one line.
+
+[ledger auditor]     model: opus   effort: high   tools: Read, Bash, Grep, Glob, Agent
+    boundary: reports findings; never rewrites an entry and never publishes
+[ledger keeper]      model: opus   effort: high   tools: Read, Write, Edit, Bash, Grep, Glob, Agent
+    boundary: selects, drafts and audits entries; never publishes and never pushes
+[planner]            model: fable  effort: xhigh  tools: Agent, Read, Write, Edit, Bash, Grep, Glob, WebSearch, WebFetch
+                     permissionMode: acceptEdits
+    boundary: plans and synthesises; acts alone only on reversible actions and asks first
+              before anything destructive or irreversible; agentic builds go to a separate lane
+[bulk worker]        model: haiku  effort: low    tools: Read, Grep, Glob, Bash
+    boundary: scoped single-step jobs; if a task needs judgment it says so and stops
+[game studio]        model: fable  effort: xhigh  tools: Read, Write, Edit, Bash, Grep, Glob, WebSearch, WebFetch, Agent
+                     permissionMode: acceptEdits
+    boundary: designs, builds and verifies a game; never publishes, submits to a store or
+              spends money; those gates are the owner's
+[analyst and grader] model: opus   effort: xhigh  tools: Read, Write, Edit, Bash, Grep, Glob, WebSearch, WebFetch
+    boundary: as a grader, works only from the frozen checklist it was handed, does not fix
+              the work, and stops for a human after three passes without a clean result
+[usefulness grader]  model: opus   effort: high   tools: Read, Write, Bash, Grep, Glob
+    boundary: grades a free tool as one fixed reader; never edits what it grades or its own
+              rubric; never sends, submits, buys or publishes
+
+A calling session can override an agent's model or effort for one run.
+
+Part 2. Latest recorded run per agent. Fields read from the run records: agent type
+(replaced by role), model, effort, and the time of the run's last reply in UTC.
+
+[ledger auditor]     model: claude-opus-5-5   effort: high   2026-10-22T23:12:05Z
+[ledger keeper]      model: claude-opus-5-5   effort: high   2026-10-19T08:15:19Z
+[planner]            model: claude-fable-5-1  effort: xhigh  2026-10-22T09:40:00Z
+[bulk worker]        model: claude-haiku-5-5  effort: low    2026-10-10T10:13:12Z
+[game studio]        no run recorded since its definition last changed on 17 October 2026
+                     before that change, 9 October 2026: six runs called with model opus and
+                     effort high, a calling session overriding its defaults
+[analyst and grader] model: claude-opus-5-5   effort: xhigh  2026-10-23T04:04:58Z
+[usefulness grader]  model: claude-opus-5-5   effort: high   2026-10-18T03:10:48Z

@@ -1,0 +1,55 @@
+Evidence: A verification skill that drives the real desk in a throwaway copy
+What this is: the skill's own output, in this order: the doctor and the three drives of the real run, then the doctor's failing lines with the sandbox removed, then the composer drive with the save skipped
+Date: 16 September 2026; the real run at 14:47, the mutation runs at 14:29 and 14:46
+
+PASS state file exists
+PASS launched sandboxed (a mutation run must FAIL here)
+PASS port is in the copy's range, never the app's own dev port
+PASS our process tree owns the port
+PASS pid is the app's dev server
+PASS it runs from the throwaway worktree
+PASS worktree is under $TMPDIR and is not the real checkout
+PASS worktree is its own git checkout at the recorded HEAD
+PASS the copy holds the checkout's files: HEAD plus 14 uncommitted or untracked
+PASS the checkout has not changed since launch (the copy tests what is on disk NOW)
+PASS no secret env files in the copy
+PASS copy's environment holds only the harness variables (no real keys)
+PASS copy's HOME and TMPDIR are inside the worktree
+PASS flight recorder is loaded into the copy
+PASS profile denies every outbound connection and every write outside the copy
+PASS profile never widens to "[host]:*" ([network])
+PASS the profile allows none of her own local service ports
+PASS canary route is configured (placeholder replaced)
+PASS scheduled-route setting is a deliberate choice
+PASS canary route answered
+PASS canary route made an outbound attempt and the sandbox refused it (recorder shows EPERM)
+PASS flight recorder wrote a row for the attempt
+PASS nothing reached the canary stand-in
+PASS no connection left the machine
+PASS same profile refuses an internet host ([host])
+PASS same profile refuses a write to the home folder
+
+DOCTOR OK  [host]
+
+{"feature": "composer", "ok": true, "skipped": []}
+{"check": "draft saved through the composer", "ok": true}
+{"check": "status is draft", "ok": true}
+{"check": "it targets an account", "ok": true}
+{"feature": "queue", "ok": true, "skipped": []}
+{"check": "scheduled through the composer", "ok": true}
+{"check": "the post shows in the queue", "ok": true}
+{"check": "+1 day moved it exactly one day", "ok": true}
+{"feature": "outbound", "ok": true, "skipped": []}
+{"check": "the outbound route answered", "ok": true}
+{"check": "the cloud test call: the copy tried to write and the sandbox refused it (EPERM on the stand-in)", "ok": true}
+{"check": "the cloud test call: nothing reached the canary stand-in", "ok": true}
+{"check": "the cloud test call: no connection left the machine", "ok": true}
+
+FAIL launched sandboxed (a mutation run must FAIL here)
+FAIL canary route made an outbound attempt and the sandbox refused it (recorder shows EPERM)   [recorder rows since the call: [{'t': [time], 'pid': [pid], 'ev': 'connected', 'via': 'fetch', 'host': '[host]', 'port': '[port]'}]]
+FAIL nothing reached the canary stand-in   [hits=1]
+
+{"feature": "composer", "ok": false, "skipped": ["save-the-draft"]}
+{"check": "draft saved through the composer", "ok": false}
+{"check": "status is draft", "ok": false}
+{"check": "it targets an account", "ok": false}

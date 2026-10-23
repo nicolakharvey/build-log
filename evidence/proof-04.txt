@@ -1,0 +1,23 @@
+Evidence: A send gate that will not offer a note holding the raw transcript
+What this is: the send gate's own test suite output; the first block is the gate as committed, the second is the same suite with the gate's model check removed
+Date: 23 October 2026; re-run from the code as committed on 16 September 2026
+
+PASS notes the model wrote can be sent
+PASS minutes the model wrote can be sent
+PASS a note holding the transcript cannot be sent
+PASS the owner's own recording can still be sent
+PASS a restricted recording is never sendable
+PASS an unknown classification is never sendable
+PASS a folder with nothing in it is not sendable
+PASS a folder that does not exist is not sendable
+ALL PASS
+
+PASS notes the model wrote can be sent
+PASS minutes the model wrote can be sent
+FAIL a note holding the transcript cannot be sent
+PASS the owner's own recording can still be sent
+PASS a restricted recording is never sendable
+PASS an unknown classification is never sendable
+FAIL a folder with nothing in it is not sendable
+FAIL a folder that does not exist is not sendable
+3 FAILED

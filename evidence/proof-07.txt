@@ -1,0 +1,59 @@
+Evidence: An open-source tool that checks what goes out under your name
+What this is: the test suite's own output from the public CI run, saved before GitHub expires the job logs.
+Date: 18 August 2026 (CI run on the public main branch, commit 1c1dc47); copied from the job logs on 23 October 2026, not re-run.
+
+Job test (ubuntu-latest, 20), step "node test.js":
+  ok    plain text is clean
+  ok    zero width space
+  ok    zero width non-joiner
+  ok    word joiner
+  ok    bidi override
+  ok    bidi isolate
+  ok    unicode tag characters
+  ok    counts by name
+  ok    leading BOM is left alone
+  ok    BOM mid text is caught
+  ok    ZWJ holding an emoji together is left alone
+  ok    ZWJ between letters is caught
+  ok    private use area is never checked
+  ok    Persian ZWNJ is spelling, left alone
+  ok    Persian text survives clean unchanged
+  ok    Hindi conjunct ZWJ is spelling, left alone
+  ok    ZWJ beside Arabic letters is left alone
+  ok    ZWNJ between Latin letters is still caught
+  ok    removes the carrier
+  ok    leaves every real character
+  ok    emoji survives cleaning
+  ok    leading BOM survives cleaning
+  ok    newlines and spacing untouched
+  ok    empty string
+  ok    null is handled
+  ok    astral text is not miscounted
+  ok    carrier after astral is found
+  ok    cleaning preserves astral pairs
+  ok    core markers present in index.html
+  ok    scan and clean agree on every case
+  ok    check exits 1 on findings
+  ok    check exits 0 when clear
+  ok    check exits 2 with no target
+  ok    check names the finding
+  ok    clean stdin writes clean text to stdout
+  ok    clean stdin reports on stderr
+  ok    check stdin exits 1 on findings
+  ok    check stdin exits 0 when clear
+  ok    clean on a missing file fails politely
+  ok    clean on a missing file has no stack trace
+  ok    clean on a folder is refused with guidance
+  ok    verbatim archive is refused by clean
+  ok    evidence folder is refused by clean
+  ok    archive contents survive untouched
+  ok    clean writes a .cleared file
+  ok    .cleared file is actually clear
+  ok    original stays dirty
+  skip  image inspect and strip (exiftool not installed; text checks above are unaffected)
+47 passed, 0 failed, 1 skipped
+
+Job test (macos-latest, 20): 47 passed, 0 failed, 1 skipped
+Job test (windows-latest, 20): 47 passed, 0 failed, 1 skipped
+Job test (ubuntu-latest, 18): 47 passed, 0 failed, 1 skipped
+Job test (ubuntu-latest, 22): 47 passed, 0 failed, 1 skipped

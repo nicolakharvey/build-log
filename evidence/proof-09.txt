@@ -1,0 +1,32 @@
+Evidence: A sealed-prediction web app whose checklist was locked before the build
+What this is: the project's own git log for the checklist, build and deploy commits, and lines from the locked checklist.
+Date: 6 August 2026; read from the dated commits on 23 October 2026.
+
+git log, every commit from the checklist to the deploy (author line removed):
+f723878 2026-08-06 09:20:39 +1000 Lock verification checklist before build
+    Co-Authored-By: Claude Fable 5 [email]
+473de7e 2026-08-06 09:31:32 +1000 [project]: complete build, 14/14 e2e checks passing
+    Co-Authored-By: Claude Fable 5 [email]
+72f2a3c 2026-08-06 09:51:17 +1000 Fix pass 1: close all graded breaks B1-B13
+1df2a63 2026-08-06 10:08:39 +1000 Fix pass 2: close N1-N6 from grade 2
+15dece5 2026-08-06 10:17:31 +1000 Test hygiene from final grade
+12478c2 2026-08-06 10:23:54 +1000 Deploy to production: [host]
+    [setup detail removed]. Live smoke test 8/8
+    including a real OpenTimestamps anchor from the production Worker.
+    Co-Authored-By: Claude Fable 5 [email]
+
+git log -- CHECKLIST.md (every commit that touched the checklist):
+f723878 2026-08-06 09:20:39 +1000
+
+CHECKLIST.md, lines 1-2:
+[project], LOCKED VERIFICATION CHECKLIST
+Written before the build, per the brief. Binary. Never edited after this commit.
+
+CHECKLIST.md, lines 11-12 (check 4):
+ 4. [ ] Sealed record page shows commitment hash and countdown, and the sealed
+        text appears NOWHERE in the response body (grep proves absence).
+
+CHECKLIST.md, lines 34-36:
+Grading: after the builder claims done, a fresh grader pass ([grading agent])
+re-runs items 1 to 13 as literal commands and may fail any of them. Builder
+fixes, max three loops. The builder may not edit this file.

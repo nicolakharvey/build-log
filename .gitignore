@@ -7,3 +7,5 @@
 !*.jpeg
 !*.svg
 !*.webp
+!evidence/
+!evidence/*.txt

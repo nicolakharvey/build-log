@@ -1,0 +1,41 @@
+Evidence: Two gate rules measured against 19,072 commands before either could block
+What this is: the measurement figures from the gate's own header, the same rules re-run today, then one refusal the gate gave my coding agent, with command text, paths and the override name removed
+Date: header written 7 August 2026 and unchanged since; refusal produced 27 August 2026 in a live session; not re-run
+
+Part 1. The measurement, from the gate's header (figures only; rule descriptions removed)
+
+Both rules were measured against 19,072 real Bash commands from my last
+700 sessions before being built (the 5 Aug 2026 rule: measure the collateral,
+not just the catch). Combined firing rate 0.23%.
+
+RULE 1  [rule]
+  Measured: 32 / 19,072 = 0.17%.
+
+RULE 2  [rule]
+  Measured: 12 / 19,072 = 0.063%.
+
+DELIBERATELY NOT BUILT, because the measurement refused them:
+  - [rule]. Fires on 11% to 38% of all commands depending on how it is
+    scoped, against 2 logged catches. That is noise, not a gate.
+  - [rule]. 419 fires = 2.2%,
+    and the sampled matches were overwhelmingly legitimate commands.
+  - [rule]. Zero historical fires, so there is
+    no evidence it would ever run.
+
+Part 1b. The same two rules re-run on 23 October 2026: the gate's own patterns, imported from
+the hook, applied to every Bash command in my session logs (counts only, no command text)
+
+Re-measured 2026-10-23 against 98,297 Bash commands from 1,308 session files, 2026-08-25 to 2026-10-23.
+RULE 1 fires on 158 (0.161%). RULE 2 fires on 22 (0.022%). Combined 0.183%.
+
+Part 2. One refusal, 27 August 2026 (the agent's command was not run)
+
+PreToolUse:Bash hook error: [path]: BLOCKED: [command] does not word-split in zsh.
+
+The loop will run ONCE with [variable] set to the whole blob, so any per-item check inside it compares nothing and reports a pass.
+
+Use one of these instead:
+  [three corrected commands removed]
+
+And make the loop FAIL LOUDLY on an empty value rather than pass.
+Override for one command with [override].

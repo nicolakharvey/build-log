@@ -1,0 +1,23 @@
+Evidence: A gate that stops a publish chained after an unchecked step
+What this is: the hook's own harness run against a copy of the gate, three probe commands, and one real refusal it gave my coding agent
+Date: 23 October 2026; harness and probes run on a scratch copy of the live gate, the refusal in a live session
+
+Part 1. The harness, run on a copy of the gate
+36/36 passed: 14 cases that must be blocked are blocked; 22 cases that must pass are passed.
+Sample cases:
+PASS [blocked] check ; deploy
+PASS [blocked] check, newline, deploy
+PASS [blocked] tests piped then ; deploy
+PASS [blocked] env-prefixed deploy after a check ;
+PASS [passed]  clean deploy
+PASS [passed]  push --dry-run
+PASS [passed]  prose that mentions a deploy
+
+Part 2. Probes outside the harness, on the same copy
+exit 2  set -e chain before a publish
+exit 2  semicolon chain before a publish
+
+Part 3. One real refusal, 23 October 2026 (the command was not run)
+BLOCKED: this wrangler runs after a step whose failure would not stop it (a `;` after [a check command]).
+Run the check as its own command and read the result, then publish. Or join every step with `&&`, which was measured on 17 Sep 2026 and does stop on a failure.
+`set -euo pipefail` on its own does NOT work in this tool and buys no exemption here.

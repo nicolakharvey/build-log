@@ -1,0 +1,22 @@
+Evidence: A nightly reader that turns my own messages into one page
+What this is: the reader's own log of its first run on the nightly schedule, then two of its check results; every chat name, host and output path is removed
+Date: log written 18 August 2026 at 05:16; check results recorded 17 August 2026; not re-run
+
+Part 1. The run log
+2026-08-18 05:16:43  Reading 14 active chat(s) of 563 in the roster.
+2026-08-18 05:16:43    [chat]: never captured, taking the last 7 days.
+2026-08-18 05:16:43    [chat] 2026-08-17: 16 line(s), summarising
+2026-08-18 05:16:47    [chat]: never captured, taking the last 7 days.
+2026-08-18 05:16:47    [chat] 2026-08-17: 11 line(s), summarising
+2026-08-18 05:16:49    [chat] 2026-08-18: 2 line(s), summarising
+2026-08-18 05:16:50    [chat]: never captured, taking the last 7 days.
+2026-08-18 05:16:50    [chat] 2026-08-17: 4 line(s), summarising
+2026-08-18 05:16:51    [chat]: never captured, taking the last 7 days.
+2026-08-18 05:16:51  Captured 4 conversation-day(s) across 4 chat(s).
+[three lines naming output paths removed]
+
+Part 2. Check results, 17 August 2026
+ 3. PASS   One URL in the whole file, [this Mac's local address]. Pointed at
+           [a remote address] it refuses to start and says why.
+ 5. PASS   563 chats listed, 14 on, no group active, no [status], [newsletter] or
+           broadcast row present.
